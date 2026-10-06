@@ -134,9 +134,18 @@ SEVERITY_CUES: dict[str, float] = {
     "escalates": 0.7, "ceasefire": 0.5, "acquisition": 0.45, "merger": 0.45, "takeover": 0.5,
     "beats estimates": 0.35, "misses estimates": 0.45, "all-time high": 0.45, "volatility": 0.4,
 }
+SEVERITY_CUES.update({"hikes": 0.6, "raises interest rates": 0.6, "raises rates": 0.6, "cuts interest rates": 0.55,
+                      "cuts rates": 0.55, "rate hikes": 0.6, "rate cuts": 0.55})
 SEVERITY_RX = _rx(list(SEVERITY_CUES))
 PCT_RX = re.compile(r"(\d{1,3}(?:\.\d+)?)\s?(%|percent|per cent)", re.I)
 MONEY_RX = re.compile(r"\$\s?(\d+(?:\.\d+)?)\s?(billion|bn|b|trillion|tn|t)\b", re.I)
+BP_RX = re.compile(r"(\d{2,3})\s?(?:-\s?)?(?:basis[- ]points?|bps?|bp)\b", re.I)
+
+# Monetary-policy polarity, read from an equity investor's perspective: tightening is bad news.
+HAWKISH_RX = re.compile(r"\b(rais(e|es|ed|ing)\s+(interest\s+)?rates?|rate\s+hikes?|hikes?\s+(interest\s+)?rates?|"
+                        r"more\s+hikes|tighten(ing|s)?|hawkish|higher\s+for\s+longer)\b", re.I)
+DOVISH_RX = re.compile(r"\b(cut(s|ting)?\s+(interest\s+)?rates?|rate\s+cuts?|lower(s|ed)?\s+(interest\s+)?rates?|"
+                       r"eas(e|es|ing)\s+(monetary\s+)?policy|dovish|stimulus)\b", re.I)
 
 # ---------------------------------------------------------------- regions (for Module B targeting)
 REGIONS: dict[str, list[str]] = {

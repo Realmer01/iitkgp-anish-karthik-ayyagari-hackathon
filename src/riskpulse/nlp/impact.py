@@ -45,6 +45,8 @@ def intensity(text: str) -> tuple[float, list[str]]:
         pct = float(m.group(1))
         if 3 <= pct <= 100:
             cues[m.group(0)] = round(min(1.0, 0.35 + pct / 25), 2)
+    for m in lx.BP_RX.finditer(text):  # size of a rate / spread move
+        cues[m.group(0)] = round(min(1.0, 0.35 + float(m.group(1)) / 200), 2)
     for m in lx.MONEY_RX.finditer(text):
         amount_bn = float(m.group(1)) * (1000 if m.group(2).lower().startswith("t") else 1)
         cues[m.group(0)] = round(min(1.0, 0.3 + math.log10(max(amount_bn, 1)) / 3.5), 2)
