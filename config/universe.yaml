@@ -1,0 +1,41 @@
+# Mock index for Module A: 16 S&P 100 constituents across 8 GICS sectors.
+# Membership checked against the public S&P 100 constituent list on 2026-10-06.
+# market_cap_bn: yfinance fast_info on 2026-10-06 (data/prices/market_caps.csv is the exact source).
+#
+# aliases                 matched case-insensitively on word boundaries
+# case_sensitive_aliases  ambiguous words that only count when capitalised ("Apple", not "apple pie")
+# bare_ticker             whether the ticker without "$" counts (off for words like BA, GS, KO, CAT)
+
+companies:
+  - {ticker: AAPL, name: Apple Inc., sector: Information Technology, country: US, market_cap_bn: 4858, bare_ticker: true,
+     aliases: [Apple Inc, Apple's, iPhone, iPad, MacBook, Tim Cook, App Store], case_sensitive_aliases: [Apple]}
+  - {ticker: MSFT, name: Microsoft Corp., sector: Information Technology, country: US, market_cap_bn: 3900, bare_ticker: true,
+     aliases: [Microsoft, Satya Nadella, Azure, Xbox, LinkedIn]}
+  - {ticker: NVDA, name: NVIDIA Corp., sector: Information Technology, country: US, market_cap_bn: 5769, bare_ticker: true,
+     aliases: [Nvidia, Jensen Huang, GeForce, CUDA]}
+  - {ticker: GOOGL, name: Alphabet Inc., sector: Communication Services, country: US, market_cap_bn: 4237, bare_ticker: true,
+     aliases: [Alphabet, Google, YouTube, Sundar Pichai, Waymo, GOOG]}
+  - {ticker: META, name: Meta Platforms Inc., sector: Communication Services, country: US, market_cap_bn: 1890, bare_ticker: false,
+     aliases: [Meta Platforms, Facebook, Instagram, WhatsApp, Mark Zuckerberg, Zuckerberg], case_sensitive_aliases: [Meta]}
+  - {ticker: AMZN, name: Amazon.com Inc., sector: Consumer Discretionary, country: US, market_cap_bn: 2712, bare_ticker: true,
+     aliases: [Amazon, AWS, Amazon Web Services, Andy Jassy, Jeff Bezos]}
+  - {ticker: TSLA, name: Tesla Inc., sector: Consumer Discretionary, country: US, market_cap_bn: 1496, bare_ticker: true,
+     aliases: [Tesla, Elon Musk, Cybertruck, Model Y, Model 3]}
+  - {ticker: JPM, name: JPMorgan Chase & Co., sector: Financials, country: US, market_cap_bn: 884, bare_ticker: true,
+     aliases: [JPMorgan, JP Morgan, J.P. Morgan, Jamie Dimon]}
+  - {ticker: GS, name: Goldman Sachs Group Inc., sector: Financials, country: US, market_cap_bn: 260, bare_ticker: false,
+     aliases: [Goldman Sachs, Goldman, David Solomon]}
+  - {ticker: XOM, name: Exxon Mobil Corp., sector: Energy, country: US, market_cap_bn: 674, bare_ticker: true,
+     aliases: [Exxon, ExxonMobil, Exxon Mobil, Darren Woods]}
+  - {ticker: JNJ, name: Johnson & Johnson, sector: Health Care, country: US, market_cap_bn: 610, bare_ticker: true,
+     aliases: [Johnson & Johnson, Johnson and Johnson, J&J]}
+  - {ticker: PFE, name: Pfizer Inc., sector: Health Care, country: US, market_cap_bn: 156, bare_ticker: true,
+     aliases: [Pfizer, Albert Bourla, Paxlovid]}
+  - {ticker: BA, name: Boeing Co., sector: Industrials, country: US, market_cap_bn: 152, bare_ticker: false,
+     aliases: [Boeing, 737 MAX, Dreamliner, Kelly Ortberg]}
+  - {ticker: CAT, name: Caterpillar Inc., sector: Industrials, country: US, market_cap_bn: 390, bare_ticker: false,
+     aliases: [Caterpillar]}
+  - {ticker: WMT, name: Walmart Inc., sector: Consumer Staples, country: US, market_cap_bn: 834, bare_ticker: false,
+     aliases: [Walmart, Wal-Mart, "Sam's Club"]}
+  - {ticker: KO, name: Coca-Cola Co., sector: Consumer Staples, country: US, market_cap_bn: 372, bare_ticker: false,
+     aliases: [Coca-Cola, Coca Cola]}
