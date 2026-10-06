@@ -1,0 +1,672 @@
+trade_id,trade_date,position_id,cpty_id,instrument,asset_class,side,notional,currency,maturity,coupon_or_rate,seniority,price,underlying,counterparty,sector,country,region,rating
+T00001,2024-04-20,LN-C020-TER,C020,Term Loan,Loan,Commitment,37728000.0,USD,2031-08-02,0.03127,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00002,2024-04-21,LN-C064-TER,C064,Term Loan,Loan,Drawdown,21581000.0,USD,2029-03-21,0.05241,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00003,2024-04-22,LN-C020-TRA,C020,Trade Finance,Loan,Drawdown,12038000.0,USD,2027-06-29,0.03221,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00004,2024-04-26,LN-C011-REV,C011,Revolving Credit Facility,Loan,Commitment,77685000.0,USD,2028-09-18,0.00994,Senior Unsecured,100.0,,Ashford Materials,Materials,US,North America,A
+T00005,2024-04-28,LN-C076-TER,C076,Term Loan,Loan,Commitment,80429000.0,USD,2032-08-24,0.01407,Senior Unsecured,100.0,,Foxglove Group Power,Utilities,US,North America,BBB
+T00006,2024-04-29,BD-C077,C077,Corporate Bond,Bond,Buy,45829000.0,JPY,2035-11-19,0.05782,Senior Unsecured,95.4727,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00007,2024-04-29,LN-C022-TER,C022,Term Loan,Loan,Drawdown,14384000.0,JPY,2030-12-17,0.04085,Senior Secured,100.0,,Kestrel Group Materials,Materials,AU,Asia-Pacific,B
+T00008,2024-04-30,BD-P-AMZN,P-AMZN,Corporate Bond,Bond,Buy,53902000.0,USD,2029-12-24,0.05452,Senior Unsecured,96.0331,,Amazon.com Inc.,Consumer Discretionary,US,North America,AA
+T00009,2024-05-04,LN-C047-TER,C047,Term Loan,Loan,Commitment,44087000.0,USD,2029-05-21,0.00996,Senior Secured,100.0,,Ironclad Industries,Industrials,CA,North America,A
+T00010,2024-05-08,BD-P-KO,P-KO,Corporate Bond,Bond,Sell,-23450000.0,USD,2036-08-07,0.06381,Senior Unsecured,96.5678,,Coca-Cola Co.,Consumer Staples,US,North America,A
+T00011,2024-05-10,LN-C064-REV,C064,Revolving Credit Facility,Loan,Drawdown,47006000.0,USD,2032-06-30,0.04923,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00012,2024-05-11,LN-C026-TRA,C026,Trade Finance,Loan,Drawdown,21911000.0,JPY,2027-07-30,0.02342,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00013,2024-05-11,LN-C078-TER,C078,Term Loan,Loan,Drawdown,60199000.0,USD,2032-06-27,0.00918,Senior Unsecured,100.0,,Glenmore Group Energy,Energy,US,North America,A
+T00014,2024-05-13,LN-C068-REV,C068,Revolving Credit Facility,Loan,Drawdown,472000.0,USD,2030-06-27,0.04623,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00015,2024-05-16,LN-C074-TER,C074,Term Loan,Loan,Commitment,53414000.0,JPY,2032-01-02,0.02704,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00016,2024-05-17,LN-C033-TER,C033,Term Loan,Loan,Drawdown,34627000.0,CNH,2031-10-07,0.0146,Senior Secured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00017,2024-05-18,CDS-TSLA,D02,Credit Default Swap,Derivative,Buy Protection,57100000.0,USD,2031-06-26,0.01,Senior Unsecured,100.0,P-TSLA,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00018,2024-05-19,LN-C041-REV,C041,Revolving Credit Facility,Loan,Drawdown,33603000.0,JPY,2033-02-09,0.01625,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00019,2024-05-20,BD-P-KO,P-KO,Corporate Bond,Bond,Buy,59240000.0,USD,2036-08-07,0.06381,Senior Unsecured,98.0211,,Coca-Cola Co.,Consumer Staples,US,North America,A
+T00020,2024-05-21,LN-C018-REV,C018,Revolving Credit Facility,Loan,Commitment,48106000.0,EUR,2032-11-25,0.01542,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00021,2024-05-21,LN-C043-TER,C043,Term Loan,Loan,Drawdown,8084000.0,USD,2030-01-03,0.04341,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00022,2024-05-24,BD-P-JNJ,P-JNJ,Corporate Bond,Bond,Buy,81274000.0,USD,2038-07-22,0.05421,Senior Unsecured,100.7122,,Johnson & Johnson,Health Care,US,North America,AAA
+T00023,2024-05-24,LN-C068-REV,C068,Revolving Credit Facility,Loan,Drawdown,26050000.0,USD,2030-06-27,0.04623,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00024,2024-05-28,CDS-XOM,D05,Credit Default Swap,Derivative,Buy Protection,75807000.0,USD,2031-09-20,0.01,Senior Unsecured,100.0,P-XOM,Sterling Bank (fictional dealer),Financials,US,North America,A
+T00025,2024-05-29,LN-C005-TRA,C005,Trade Finance,Loan,Drawdown,5609000.0,EUR,2028-01-21,0.02512,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00026,2024-05-29,LN-C028-TER,C028,Term Loan,Loan,Drawdown,22683000.0,USD,2031-12-11,0.01683,Senior Unsecured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00027,2024-05-29,LN-C080-TER,C080,Term Loan,Loan,Drawdown,16827000.0,USD,2032-11-08,0.01396,Senior Secured,100.0,,Hawthorn Group Industries,Industrials,AE,Middle East,BBB
+T00028,2024-05-30,LN-C001-TER,C001,Term Loan,Loan,Drawdown,19239000.0,CNH,2032-03-02,0.01307,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00029,2024-05-30,LN-C020-TRA,C020,Trade Finance,Loan,Drawdown,3904000.0,USD,2027-06-29,0.03221,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00030,2024-05-30,LN-C060-TER,C060,Term Loan,Loan,Commitment,41748000.0,EUR,2028-08-01,0.00988,Senior Unsecured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00031,2024-05-31,LN-C090-TER,C090,Term Loan,Loan,Drawdown,24388000.0,USD,2028-05-19,0.00911,Senior Unsecured,100.0,,Marlow Group Capital,Financials,US,North America,A
+T00032,2024-06-02,LN-C002-TER,C002,Term Loan,Loan,Drawdown,15065000.0,USD,2033-06-04,0.01246,Senior Unsecured,100.0,,Northwind Group Capital,Financials,MX,North America,BBB
+T00033,2024-06-02,LN-C048-TER,C048,Term Loan,Loan,Drawdown,56641000.0,EUR,2032-12-08,0.01003,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00034,2024-06-05,LN-C028-REV,C028,Revolving Credit Facility,Loan,Commitment,100606000.0,USD,2028-08-12,0.01483,Senior Secured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00035,2024-06-06,LN-C084-TER,C084,Term Loan,Loan,Commitment,40115000.0,EUR,2032-01-17,0.02462,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00036,2024-06-09,BD-C068,C068,Corporate Bond,Bond,Buy,10191000.0,USD,2030-09-01,0.08745,Senior Unsecured,95.2117,,Amberly Group Capital,Financials,US,North America,B
+T00037,2024-06-09,LN-C069-TRA,C069,Trade Finance,Loan,Commitment,52417000.0,JPY,2028-01-30,0.02622,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00038,2024-06-10,LN-C029-TER,C029,Term Loan,Loan,Drawdown,42297000.0,USD,2032-02-26,0.01088,Senior Unsecured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00039,2024-06-11,LN-C084-REV,C084,Revolving Credit Facility,Loan,Commitment,64185000.0,EUR,2030-05-17,0.03344,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00040,2024-06-13,LN-C022-TER,C022,Term Loan,Loan,Commitment,27689000.0,JPY,2030-12-17,0.04085,Senior Secured,100.0,,Kestrel Group Materials,Materials,AU,Asia-Pacific,B
+T00041,2024-06-16,LN-C076-TER,C076,Term Loan,Loan,Drawdown,38459000.0,USD,2032-08-24,0.01407,Senior Unsecured,100.0,,Foxglove Group Power,Utilities,US,North America,BBB
+T00042,2024-06-16,LN-C082-TER,C082,Term Loan,Loan,Drawdown,16713000.0,USD,2029-01-18,0.04727,Senior Secured,100.0,,Ivory Group Health,Health Care,CA,North America,B
+T00043,2024-06-17,LN-C015-REV,C015,Revolving Credit Facility,Loan,Drawdown,25471000.0,BRL,2032-12-17,0.04154,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00044,2024-06-24,TRS-XOM,D01,Equity Total Return Swap,Derivative,Receive Equity,32563000.0,USD,2027-07-18,0.0,,100.0,XOM,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00045,2024-06-26,BD-P-JPM,P-JPM,Corporate Bond,Bond,Buy,26253000.0,USD,2035-02-20,0.06119,Senior Unsecured,96.7777,,JPMorgan Chase & Co.,Financials,US,North America,A
+T00046,2024-06-26,LN-C057-TRA,C057,Trade Finance,Loan,Drawdown,14548000.0,JPY,2027-05-12,0.00644,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00047,2024-06-28,LN-C032-TER,C032,Term Loan,Loan,Commitment,23204000.0,USD,2028-11-25,0.0251,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00048,2024-06-28,LN-C088-REV,C088,Revolving Credit Facility,Loan,Commitment,106978000.0,USD,2028-09-12,0.01707,Senior Unsecured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00049,2024-06-29,BD-P-PFE,P-PFE,Corporate Bond,Bond,Buy,8290000.0,USD,2029-02-14,0.06327,Senior Unsecured,97.619,,Pfizer Inc.,Health Care,US,North America,A
+T00050,2024-07-02,LN-C040-TRA,C040,Trade Finance,Loan,Drawdown,34198000.0,JPY,2027-09-02,0.02448,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00051,2024-07-05,LN-C055-TER,C055,Term Loan,Loan,Drawdown,14941000.0,USD,2032-01-22,0.01452,Senior Unsecured,100.0,,Beacon Materials,Materials,US,North America,BBB
+T00052,2024-07-06,LN-C030-REV,C030,Revolving Credit Facility,Loan,Drawdown,30522000.0,USD,2032-05-09,0.01352,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00053,2024-07-06,LN-C075-TER,C075,Term Loan,Loan,Commitment,64586000.0,USD,2028-04-07,0.01567,Senior Unsecured,100.0,,Foxglove Properties,Real Estate,MX,North America,BBB
+T00054,2024-07-09,LN-C077-TRA,C077,Trade Finance,Loan,Drawdown,23084000.0,JPY,2027-10-02,0.05148,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00055,2024-07-10,LN-C020-TRA,C020,Trade Finance,Loan,Commitment,37728000.0,USD,2027-06-29,0.03221,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00056,2024-07-10,LN-C067-TER,C067,Term Loan,Loan,Commitment,50226000.0,USD,2031-07-30,0.02668,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00057,2024-07-11,LN-C059-TER,C059,Term Loan,Loan,Commitment,21612000.0,USD,2030-08-11,0.03019,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00058,2024-07-15,LN-C087-TRA,C087,Trade Finance,Loan,Commitment,82051000.0,BRL,2028-01-12,0.00628,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00059,2024-07-17,LN-C009-TRA,C009,Trade Finance,Loan,Drawdown,7111000.0,CNH,2027-04-12,0.02488,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00060,2024-07-18,LN-C074-REV,C074,Revolving Credit Facility,Loan,Commitment,85462000.0,JPY,2032-06-26,0.02643,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00061,2024-07-20,LN-C040-TER,C040,Term Loan,Loan,Drawdown,26293000.0,JPY,2029-09-07,0.03238,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00062,2024-07-21,BD-P-GOOGL,P-GOOGL,Corporate Bond,Bond,Sell,-7219000.0,USD,2030-09-20,0.05662,Senior Unsecured,98.5483,,Alphabet Inc.,Communication Services,US,North America,AA
+T00063,2024-07-21,LN-C007-TER,C007,Term Loan,Loan,Drawdown,16047000.0,USD,2031-01-10,0.01752,Senior Unsecured,100.0,,Cedar Retail,Consumer Discretionary,US,North America,BBB
+T00064,2024-07-24,LN-C088-TER,C088,Term Loan,Loan,Drawdown,21591000.0,USD,2030-02-01,0.01585,Senior Secured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00065,2024-07-25,LN-C064-REV,C064,Revolving Credit Facility,Loan,Commitment,79709000.0,USD,2032-06-30,0.04923,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00066,2024-07-27,BD-S-BTP,S-BTP,Sovereign Bond,Bond,Sell,-70464000.0,EUR,2038-07-21,0.03068,Senior Unsecured,102.5955,,Italy BTP,Sovereign,IT,Europe,BBB
+T00067,2024-07-27,BD-S-UST,S-UST,Sovereign Bond,Bond,Sell,-63327000.0,USD,2038-07-31,0.05149,Senior Unsecured,95.7074,,US Treasury,Sovereign,US,North America,AA
+T00068,2024-07-28,BD-C069,C069,Corporate Bond,Bond,Buy,36760000.0,JPY,2034-01-23,0.04124,Senior Unsecured,99.4304,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00069,2024-07-28,LN-C042-TER,C042,Term Loan,Loan,Drawdown,17796000.0,USD,2033-07-18,0.01084,Senior Unsecured,100.0,,Silverline Group Properties,Real Estate,US,North America,A
+T00070,2024-07-29,LN-C018-TER,C018,Term Loan,Loan,Commitment,30066000.0,EUR,2029-04-26,0.01457,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00071,2024-07-30,BD-S-BUND,S-BUND,Sovereign Bond,Bond,Sell,-73601000.0,EUR,2031-02-25,0.03079,Senior Unsecured,98.2289,,Germany Bund,Sovereign,DE,Europe,AAA
+T00072,2024-07-31,BD-C072,C072,Corporate Bond,Bond,Buy,38698000.0,USD,2035-05-07,0.07926,Senior Unsecured,102.6497,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00073,2024-08-03,BD-P-TSLA,P-TSLA,Corporate Bond,Bond,Buy,30849000.0,USD,2037-06-04,0.06564,Senior Unsecured,96.7927,,Tesla Inc.,Consumer Discretionary,US,North America,BBB
+T00074,2024-08-03,LN-C019-TER,C019,Term Loan,Loan,Commitment,22726000.0,USD,2029-09-13,0.00596,Senior Secured,100.0,,Granite Media,Communication Services,CA,North America,AA
+T00075,2024-08-04,LN-C062-TER,C062,Term Loan,Loan,Commitment,60412000.0,USD,2032-08-06,0.01635,Senior Unsecured,100.0,,Oakmont Group Retail,Consumer Discretionary,US,North America,BBB
+T00076,2024-08-05,LN-C050-REV,C050,Revolving Credit Facility,Loan,Drawdown,19115000.0,JPY,2032-01-24,0.01605,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00077,2024-08-06,LN-C014-TER,C014,Term Loan,Loan,Commitment,22165000.0,USD,2028-11-19,0.05341,Senior Secured,100.0,,Pioneer Group Industries,Industrials,CA,North America,B
+T00078,2024-08-07,LN-C013-TER,C013,Term Loan,Loan,Commitment,27547000.0,EUR,2029-10-29,0.02798,Senior Secured,100.0,,Pioneer Capital,Financials,DE,Europe,BB
+T00079,2024-08-11,LN-C021-TER,C021,Term Loan,Loan,Drawdown,20485000.0,USD,2033-03-03,0.01574,Senior Unsecured,100.0,,Kestrel Power,Utilities,US,North America,BBB
+T00080,2024-08-11,LN-C022-TRA,C022,Trade Finance,Loan,Drawdown,8838000.0,JPY,2027-02-07,0.05141,Senior Secured,100.0,,Kestrel Group Materials,Materials,AU,Asia-Pacific,B
+T00081,2024-08-11,LN-C063-TER,C063,Term Loan,Loan,Commitment,12278000.0,USD,2029-07-07,0.00813,Senior Secured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00082,2024-08-12,LN-C057-TRA,C057,Trade Finance,Loan,Commitment,30897000.0,JPY,2027-05-12,0.00644,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00083,2024-08-15,LN-C029-TER,C029,Term Loan,Loan,Commitment,71155000.0,USD,2032-02-26,0.01088,Senior Unsecured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00084,2024-08-16,LN-C053-REV,C053,Revolving Credit Facility,Loan,Drawdown,25335000.0,BRL,2030-11-03,0.09339,Senior Secured,100.0,,Juniper Properties,Real Estate,BR,Latin America,CCC
+T00085,2024-08-18,LN-C051-REV,C051,Revolving Credit Facility,Loan,Commitment,54692000.0,USD,2029-07-03,0.05305,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00086,2024-08-22,LN-C033-REV,C033,Revolving Credit Facility,Loan,Commitment,105785000.0,CNH,2031-03-15,0.0145,Senior Unsecured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00087,2024-08-27,LN-C017-TER,C017,Term Loan,Loan,Drawdown,34622000.0,USD,2030-10-19,0.05027,Senior Secured,100.0,,Lumen Foods,Consumer Staples,US,North America,B
+T00088,2024-08-28,LN-C044-REV,C044,Revolving Credit Facility,Loan,Commitment,124299000.0,EUR,2031-08-29,0.0127,Senior Secured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00089,2024-08-29,LN-C006-TRA,C006,Trade Finance,Loan,Drawdown,28407000.0,USD,2028-03-22,0.0167,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00090,2024-08-30,BD-C082,C082,Corporate Bond,Bond,Sell,-6502000.0,USD,2035-01-26,0.0936,Senior Unsecured,99.6189,,Ivory Group Health,Health Care,CA,North America,B
+T00091,2024-08-30,LN-C090-TER,C090,Term Loan,Loan,Commitment,50809000.0,USD,2028-05-19,0.00911,Senior Unsecured,100.0,,Marlow Group Capital,Financials,US,North America,A
+T00092,2024-08-31,LN-C078-TER,C078,Term Loan,Loan,Drawdown,7794000.0,USD,2032-06-27,0.00918,Senior Unsecured,100.0,,Glenmore Group Energy,Energy,US,North America,A
+T00093,2024-09-01,LN-C057-REV,C057,Revolving Credit Facility,Loan,Commitment,49435000.0,JPY,2032-10-17,0.0053,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00094,2024-09-02,BD-P-CAT,P-CAT,Corporate Bond,Bond,Buy,33533000.0,USD,2034-05-28,0.06142,Senior Unsecured,102.3143,,Caterpillar Inc.,Industrials,US,North America,A
+T00095,2024-09-02,BD-P-PFE,P-PFE,Corporate Bond,Bond,Sell,-15332000.0,USD,2029-02-14,0.06327,Senior Unsecured,99.0181,,Pfizer Inc.,Health Care,US,North America,A
+T00096,2024-09-02,LN-C039-TER,C039,Term Loan,Loan,Commitment,37343000.0,JPY,2028-11-18,0.01425,Senior Unsecured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00097,2024-09-03,LN-C028-TER,C028,Term Loan,Loan,Drawdown,13634000.0,USD,2031-12-11,0.01683,Senior Unsecured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00098,2024-09-04,LN-C053-TER,C053,Term Loan,Loan,Drawdown,11520000.0,BRL,2029-12-16,0.09491,Senior Secured,100.0,,Juniper Properties,Real Estate,BR,Latin America,CCC
+T00099,2024-09-05,BD-C082,C082,Corporate Bond,Bond,Buy,18339000.0,USD,2035-01-26,0.0936,Senior Unsecured,102.8196,,Ivory Group Health,Health Care,CA,North America,B
+T00100,2024-09-05,BD-S-JGB,S-JGB,Sovereign Bond,Bond,Buy,240259000.0,JPY,2036-05-19,0.02089,Senior Unsecured,97.8803,,Japan JGB,Sovereign,JP,Asia-Pacific,A
+T00101,2024-09-06,LN-C082-REV,C082,Revolving Credit Facility,Loan,Commitment,79372000.0,USD,2031-07-15,0.04124,Senior Secured,100.0,,Ivory Group Health,Health Care,CA,North America,B
+T00102,2024-09-14,IRS-12,D01,Interest Rate Swap,Derivative,Pay Fixed,356139000.0,USD,2032-06-09,0.05119,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00103,2024-09-14,LN-C038-REV,C038,Revolving Credit Facility,Loan,Commitment,57817000.0,EUR,2028-12-20,0.02632,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00104,2024-09-16,LN-C005-TRA,C005,Trade Finance,Loan,Drawdown,47002000.0,EUR,2028-01-21,0.02512,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00105,2024-09-18,LN-C065-REV,C065,Revolving Credit Facility,Loan,Drawdown,32854000.0,USD,2031-06-11,0.01083,Senior Secured,100.0,,Solano Power,Utilities,US,North America,A
+T00106,2024-09-20,LN-C048-TER,C048,Term Loan,Loan,Drawdown,35153000.0,EUR,2032-12-08,0.01003,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00107,2024-09-24,LN-C034-TER,C034,Term Loan,Loan,Commitment,69931000.0,BRL,2032-07-19,0.04444,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00108,2024-09-25,BD-P-META,P-META,Corporate Bond,Bond,Buy,36707000.0,USD,2037-11-09,0.05893,Senior Unsecured,102.933,,Meta Platforms Inc.,Communication Services,US,North America,AA
+T00109,2024-09-25,LN-C044-TER,C044,Term Loan,Loan,Commitment,77687000.0,EUR,2029-05-18,0.01607,Senior Unsecured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00110,2024-09-25,LN-C049-TRA,C049,Trade Finance,Loan,Commitment,31424000.0,BRL,2027-10-09,0.00833,Senior Unsecured,100.0,,Coral Health,Health Care,BR,Latin America,A
+T00111,2024-09-27,LN-C068-TER,C068,Term Loan,Loan,Drawdown,14197000.0,USD,2031-02-26,0.04032,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00112,2024-09-28,IRS-10,D04,Interest Rate Swap,Derivative,Pay Fixed,337646000.0,USD,2036-06-21,0.05833,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00113,2024-09-28,LN-C055-TER,C055,Term Loan,Loan,Drawdown,23600000.0,USD,2032-01-22,0.01452,Senior Unsecured,100.0,,Beacon Materials,Materials,US,North America,BBB
+T00114,2024-09-28,OPT-SPX-P3,D02,Equity Index Put Option,Derivative,Buy,100000000.0,USD,2027-04-30,0.85,,100.0,SPY,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00115,2024-09-29,BD-P-XOM,P-XOM,Corporate Bond,Bond,Buy,76148000.0,USD,2035-07-08,0.06191,Senior Unsecured,95.6093,,Exxon Mobil Corp.,Energy,US,North America,AA
+T00116,2024-09-29,LN-C066-REV,C066,Revolving Credit Facility,Loan,Drawdown,28133000.0,USD,2032-01-19,0.01752,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00117,2024-10-03,LN-C056-REV,C056,Revolving Credit Facility,Loan,Drawdown,15155000.0,USD,2032-02-16,0.05457,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00118,2024-10-05,BD-P-PFE,P-PFE,Corporate Bond,Bond,Buy,62330000.0,USD,2029-02-14,0.06327,Senior Unsecured,97.5357,,Pfizer Inc.,Health Care,US,North America,A
+T00119,2024-10-05,LN-C025-TER,C025,Term Loan,Loan,Commitment,64790000.0,USD,2033-02-14,0.01238,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00120,2024-10-08,LN-C034-REV,C034,Revolving Credit Facility,Loan,Commitment,111890000.0,BRL,2029-09-08,0.04436,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00121,2024-10-08,LN-C069-REV,C069,Revolving Credit Facility,Loan,Commitment,83867000.0,JPY,2032-11-15,0.03069,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00122,2024-10-09,LN-C052-TER,C052,Term Loan,Loan,Commitment,50401000.0,USD,2031-07-23,0.01038,Senior Unsecured,100.0,,Falcon Group Media,Communication Services,US,North America,A
+T00123,2024-10-09,LN-C055-TER,C055,Term Loan,Loan,Commitment,48513000.0,USD,2032-01-22,0.01452,Senior Unsecured,100.0,,Beacon Materials,Materials,US,North America,BBB
+T00124,2024-10-10,LN-C007-TER,C007,Term Loan,Loan,Commitment,34328000.0,USD,2031-01-10,0.01752,Senior Unsecured,100.0,,Cedar Retail,Consumer Discretionary,US,North America,BBB
+T00125,2024-10-10,LN-C008-TER,C008,Term Loan,Loan,Drawdown,12201000.0,EUR,2028-08-16,0.054,Senior Secured,100.0,,Cedar Group Media,Communication Services,ES,Europe,B
+T00126,2024-10-11,LN-C032-REV,C032,Revolving Credit Facility,Loan,Drawdown,15833000.0,USD,2029-04-09,0.02341,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00127,2024-10-12,LN-C019-TER,C019,Term Loan,Loan,Drawdown,10561000.0,USD,2029-09-13,0.00596,Senior Secured,100.0,,Granite Media,Communication Services,CA,North America,AA
+T00128,2024-10-12,LN-C065-TER,C065,Term Loan,Loan,Drawdown,20494000.0,USD,2029-09-15,0.01051,Senior Unsecured,100.0,,Solano Power,Utilities,US,North America,A
+T00129,2024-10-16,BD-P-NVDA,P-NVDA,Corporate Bond,Bond,Sell,-17099000.0,USD,2035-04-07,0.05988,Senior Unsecured,95.078,,NVIDIA Corp.,Information Technology,US,North America,AA
+T00130,2024-10-16,LN-C013-TER,C013,Term Loan,Loan,Drawdown,10441000.0,EUR,2029-10-29,0.02798,Senior Secured,100.0,,Pioneer Capital,Financials,DE,Europe,BB
+T00131,2024-10-16,LN-C049-TRA,C049,Trade Finance,Loan,Drawdown,13664000.0,BRL,2027-10-09,0.00833,Senior Unsecured,100.0,,Coral Health,Health Care,BR,Latin America,A
+T00132,2024-10-19,BD-C034,C034,Corporate Bond,Bond,Buy,27358000.0,BRL,2029-10-11,0.17337,Senior Unsecured,100.0883,,Zenith Group Energy,Energy,CL,Latin America,B
+T00133,2024-10-19,LN-C062-TER,C062,Term Loan,Loan,Drawdown,26191000.0,USD,2032-08-06,0.01635,Senior Unsecured,100.0,,Oakmont Group Retail,Consumer Discretionary,US,North America,BBB
+T00134,2024-10-20,LN-C056-TER,C056,Term Loan,Loan,Commitment,17250000.0,USD,2032-08-14,0.04687,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00135,2024-10-22,LN-C006-TRA,C006,Trade Finance,Loan,Drawdown,9131000.0,USD,2028-03-22,0.0167,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00136,2024-10-23,BD-P-BA,P-BA,Corporate Bond,Bond,Sell,-8125000.0,USD,2029-12-14,0.07156,Senior Unsecured,102.9304,,Boeing Co.,Industrials,US,North America,BBB
+T00137,2024-10-23,LN-C034-REV,C034,Revolving Credit Facility,Loan,Drawdown,49662000.0,BRL,2029-09-08,0.04436,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00138,2024-10-24,LN-C041-TER,C041,Term Loan,Loan,Drawdown,14156000.0,JPY,2031-09-05,0.0175,Senior Secured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00139,2024-10-26,LN-C005-TER,C005,Term Loan,Loan,Drawdown,46668000.0,EUR,2031-12-15,0.02554,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00140,2024-10-27,LN-C068-TER,C068,Term Loan,Loan,Commitment,33975000.0,USD,2031-02-26,0.04032,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00141,2024-10-31,LN-C010-TER,C010,Term Loan,Loan,Commitment,34457000.0,EUR,2028-08-08,0.00847,Senior Unsecured,100.0,,Orion Group Power,Utilities,ES,Europe,A
+T00142,2024-11-01,OPT-SPX-P2,D02,Equity Index Put Option,Derivative,Buy,150000000.0,USD,2027-05-02,0.9,,100.0,SPY,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00143,2024-11-10,BD-C051,C051,Corporate Bond,Bond,Sell,-29854000.0,USD,2036-06-30,0.08946,Senior Unsecured,98.8668,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00144,2024-11-10,LN-C084-TER,C084,Term Loan,Loan,Drawdown,10849000.0,EUR,2032-01-17,0.02462,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00145,2024-11-11,LN-C043-TER,C043,Term Loan,Loan,Drawdown,6892000.0,USD,2030-01-03,0.04341,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00146,2024-11-11,LN-C089-TER,C089,Term Loan,Loan,Commitment,149252000.0,USD,2029-03-17,0.00654,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00147,2024-11-13,LN-C018-TER,C018,Term Loan,Loan,Drawdown,17015000.0,EUR,2029-04-26,0.01457,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00148,2024-11-13,LN-C044-TRA,C044,Trade Finance,Loan,Commitment,77687000.0,EUR,2027-12-08,0.01413,Senior Secured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00149,2024-11-13,LN-C089-TER,C089,Term Loan,Loan,Drawdown,65071000.0,USD,2029-03-17,0.00654,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00150,2024-11-15,IRS-03,D02,Interest Rate Swap,Derivative,Pay Fixed,188995000.0,USD,2029-05-21,0.0534,,100.0,,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00151,2024-11-18,BD-C059,C059,Corporate Bond,Bond,Buy,24173000.0,USD,2031-12-22,0.08381,Senior Unsecured,101.6249,,Aurora Systems,Information Technology,US,North America,BB
+T00152,2024-11-19,LN-C030-TER,C030,Term Loan,Loan,Drawdown,20120000.0,USD,2028-04-20,0.01711,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00153,2024-11-20,LN-C013-TER,C013,Term Loan,Loan,Drawdown,7446000.0,EUR,2029-10-29,0.02798,Senior Secured,100.0,,Pioneer Capital,Financials,DE,Europe,BB
+T00154,2024-11-21,LN-C001-TRA,C001,Trade Finance,Loan,Drawdown,10071000.0,CNH,2027-11-03,0.01477,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00155,2024-11-23,LN-C054-TER,C054,Term Loan,Loan,Drawdown,12375000.0,CNH,2030-03-05,0.03123,Senior Secured,100.0,,Juniper Group Power,Utilities,CN,China,BB
+T00156,2024-11-24,BD-S-GILT,S-GILT,Sovereign Bond,Bond,Buy,96373000.0,GBP,2038-01-30,0.03981,Senior Unsecured,98.6404,,UK Gilt,Sovereign,GB,Europe,AA
+T00157,2024-11-28,LN-C057-REV,C057,Revolving Credit Facility,Loan,Drawdown,15692000.0,JPY,2032-10-17,0.0053,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00158,2024-11-30,LN-C012-TER,C012,Term Loan,Loan,Drawdown,22462000.0,CNH,2031-06-24,0.00692,Senior Unsecured,100.0,,Ashford Group Energy,Energy,CN,China,AA
+T00159,2024-12-03,LN-C050-REV,C050,Revolving Credit Facility,Loan,Drawdown,15431000.0,JPY,2032-01-24,0.01605,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00160,2024-12-05,LN-C011-TER,C011,Term Loan,Loan,Commitment,48553000.0,USD,2031-03-08,0.01093,Senior Unsecured,100.0,,Ashford Materials,Materials,US,North America,A
+T00161,2024-12-07,LN-C069-REV,C069,Revolving Credit Facility,Loan,Drawdown,47870000.0,JPY,2032-11-15,0.03069,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00162,2024-12-09,LN-C026-REV,C026,Revolving Credit Facility,Loan,Drawdown,44881000.0,JPY,2030-02-22,0.03318,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00163,2024-12-10,BD-C069,C069,Corporate Bond,Bond,Buy,36225000.0,JPY,2034-01-23,0.04124,Senior Unsecured,95.4532,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00164,2024-12-13,LN-C038-TER,C038,Term Loan,Loan,Drawdown,10912000.0,EUR,2028-09-28,0.03024,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00165,2024-12-16,LN-C056-REV,C056,Revolving Credit Facility,Loan,Commitment,27601000.0,USD,2032-02-16,0.05457,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00166,2024-12-16,LN-C060-REV,C060,Revolving Credit Facility,Loan,Drawdown,23995000.0,EUR,2029-01-06,0.00848,Senior Secured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00167,2024-12-20,LN-C081-TRA,C081,Trade Finance,Loan,Drawdown,42884000.0,BRL,2027-03-21,0.01678,Senior Unsecured,100.0,,Ivory Systems,Information Technology,CO,Latin America,BBB
+T00168,2024-12-21,BD-C054,C054,Corporate Bond,Bond,Buy,50697000.0,CNH,2029-08-03,0.04516,Senior Unsecured,100.8251,,Juniper Group Power,Utilities,CN,China,BB
+T00169,2024-12-21,LN-C088-REV,C088,Revolving Credit Facility,Loan,Drawdown,12703000.0,USD,2028-09-12,0.01707,Senior Unsecured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00170,2024-12-23,BD-C082,C082,Corporate Bond,Bond,Buy,59994000.0,USD,2035-01-26,0.0936,Senior Unsecured,101.7,,Ivory Group Health,Health Care,CA,North America,B
+T00171,2024-12-23,LN-C042-TER,C042,Term Loan,Loan,Drawdown,14986000.0,USD,2033-07-18,0.01084,Senior Unsecured,100.0,,Silverline Group Properties,Real Estate,US,North America,A
+T00172,2024-12-23,LN-C086-TER,C086,Term Loan,Loan,Commitment,36761000.0,EUR,2031-01-13,0.0106,Senior Unsecured,100.0,,Kingsley Group Properties,Real Estate,GB,Europe,A
+T00173,2024-12-26,LN-C005-TRA,C005,Trade Finance,Loan,Commitment,81018000.0,EUR,2028-01-21,0.02512,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00174,2024-12-26,LN-C042-TER,C042,Term Loan,Loan,Drawdown,20859000.0,USD,2033-07-18,0.01084,Senior Unsecured,100.0,,Silverline Group Properties,Real Estate,US,North America,A
+T00175,2024-12-28,LN-C056-REV,C056,Revolving Credit Facility,Loan,Drawdown,12446000.0,USD,2032-02-16,0.05457,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00176,2025-01-02,LN-C016-REV,C016,Revolving Credit Facility,Loan,Commitment,100768000.0,USD,2030-12-23,0.02638,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00177,2025-01-03,CDS-CDX-HY,D01,CDS Index,Derivative,Buy Protection,80000000.0,USD,2031-04-13,0.05,,100.0,I-CDX-HY,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00178,2025-01-03,LN-C070-TER,C070,Term Loan,Loan,Commitment,96261000.0,USD,2029-03-25,0.00884,Senior Unsecured,100.0,,Calder Group Systems,Information Technology,US,North America,A
+T00179,2025-01-03,LN-C087-TER,C087,Term Loan,Loan,Drawdown,20619000.0,BRL,2032-05-25,0.0053,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00180,2025-01-08,BD-S-INDIA,S-INDIA,Sovereign Bond,Bond,Buy,71404000.0,INR,2031-04-01,0.07081,Senior Unsecured,98.6173,,India G-Sec,Sovereign,IN,Asia-Pacific,BBB
+T00181,2025-01-11,LN-C088-REV,C088,Revolving Credit Facility,Loan,Drawdown,55202000.0,USD,2028-09-12,0.01707,Senior Unsecured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00182,2025-01-12,BD-C072,C072,Corporate Bond,Bond,Sell,-19103000.0,USD,2035-05-07,0.07926,Senior Unsecured,98.1226,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00183,2025-01-13,LN-C072-TER,C072,Term Loan,Loan,Drawdown,5121000.0,USD,2031-08-22,0.02411,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00184,2025-01-16,IRS-13,D04,Interest Rate Swap,Derivative,Pay Fixed,272186000.0,JPY,2032-05-18,0.01354,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00185,2025-01-17,LN-C043-TRA,C043,Trade Finance,Loan,Drawdown,1145000.0,USD,2027-03-01,0.04336,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00186,2025-01-17,LN-C085-REV,C085,Revolving Credit Facility,Loan,Drawdown,37463000.0,USD,2029-08-18,0.00939,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00187,2025-01-18,BD-P-CAT,P-CAT,Corporate Bond,Bond,Sell,-16286000.0,USD,2034-05-28,0.06142,Senior Unsecured,100.3927,,Caterpillar Inc.,Industrials,US,North America,A
+T00188,2025-01-21,LN-C051-REV,C051,Revolving Credit Facility,Loan,Drawdown,24221000.0,USD,2029-07-03,0.05305,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00189,2025-01-21,LN-C080-TER,C080,Term Loan,Loan,Drawdown,17642000.0,USD,2032-11-08,0.01396,Senior Secured,100.0,,Hawthorn Group Industries,Industrials,AE,Middle East,BBB
+T00190,2025-01-23,LN-C036-TRA,C036,Trade Finance,Loan,Drawdown,45732000.0,USD,2027-06-17,0.01653,Senior Unsecured,100.0,,Evergreen Group Industries,Industrials,AE,Middle East,BBB
+T00191,2025-01-27,BD-S-GILT,S-GILT,Sovereign Bond,Bond,Buy,333699000.0,GBP,2038-01-30,0.03981,Senior Unsecured,98.6396,,UK Gilt,Sovereign,GB,Europe,AA
+T00192,2025-01-27,LN-C041-TRA,C041,Trade Finance,Loan,Drawdown,16342000.0,JPY,2027-09-26,0.01648,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00193,2025-01-30,BD-P-WMT,P-WMT,Corporate Bond,Bond,Sell,-10632000.0,USD,2036-07-11,0.05505,Senior Unsecured,101.5401,,Walmart Inc.,Consumer Staples,US,North America,AA
+T00194,2025-01-31,LN-C063-TER,C063,Term Loan,Loan,Drawdown,3996000.0,USD,2029-07-07,0.00813,Senior Secured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00195,2025-02-04,LN-C050-TRA,C050,Trade Finance,Loan,Drawdown,11689000.0,JPY,2028-01-15,0.01358,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00196,2025-02-08,LN-C031-TER,C031,Term Loan,Loan,Commitment,51293000.0,EUR,2032-04-05,0.00814,Senior Unsecured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00197,2025-02-08,LN-C063-REV,C063,Revolving Credit Facility,Loan,Drawdown,8467000.0,USD,2032-07-24,0.00828,Senior Unsecured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00198,2025-02-14,TRS-NVDA,D01,Equity Total Return Swap,Derivative,Receive Equity,48600000.0,USD,2028-01-19,0.0,,100.0,NVDA,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00199,2025-02-16,LN-C088-TER,C088,Term Loan,Loan,Commitment,66861000.0,USD,2030-02-01,0.01585,Senior Secured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00200,2025-02-17,LN-C058-TER,C058,Term Loan,Loan,Drawdown,15221000.0,EUR,2033-01-02,0.01283,Senior Unsecured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00201,2025-02-19,LN-C026-TER,C026,Term Loan,Loan,Drawdown,14933000.0,JPY,2030-08-29,0.03254,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00202,2025-02-21,BD-P-NVDA,P-NVDA,Corporate Bond,Bond,Buy,14809000.0,USD,2035-04-07,0.05988,Senior Unsecured,100.1485,,NVIDIA Corp.,Information Technology,US,North America,AA
+T00203,2025-02-23,LN-C025-TER,C025,Term Loan,Loan,Drawdown,24489000.0,USD,2033-02-14,0.01238,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00204,2025-02-24,BD-P-MSFT,P-MSFT,Corporate Bond,Bond,Sell,-11976000.0,USD,2036-01-08,0.0549,Senior Unsecured,95.6891,,Microsoft Corp.,Information Technology,US,North America,AAA
+T00205,2025-02-24,LN-C009-TER,C009,Term Loan,Loan,Drawdown,6245000.0,CNH,2029-07-10,0.03124,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00206,2025-02-24,LN-C010-TER,C010,Term Loan,Loan,Drawdown,11473000.0,EUR,2028-08-08,0.00847,Senior Unsecured,100.0,,Orion Group Power,Utilities,ES,Europe,A
+T00207,2025-02-26,LN-C077-TER,C077,Term Loan,Loan,Drawdown,17564000.0,JPY,2031-03-15,0.03969,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00208,2025-02-27,LN-C053-TER,C053,Term Loan,Loan,Commitment,26643000.0,BRL,2029-12-16,0.09491,Senior Secured,100.0,,Juniper Properties,Real Estate,BR,Latin America,CCC
+T00209,2025-03-03,LN-C009-TER,C009,Term Loan,Loan,Drawdown,6028000.0,CNH,2029-07-10,0.03124,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00210,2025-03-05,BD-P-TSLA,P-TSLA,Corporate Bond,Bond,Buy,54188000.0,USD,2037-06-04,0.06564,Senior Unsecured,98.1028,,Tesla Inc.,Consumer Discretionary,US,North America,BBB
+T00211,2025-03-09,LN-C070-TER,C070,Term Loan,Loan,Drawdown,27955000.0,USD,2029-03-25,0.00884,Senior Unsecured,100.0,,Calder Group Systems,Information Technology,US,North America,A
+T00212,2025-03-11,IRS-06,D04,Interest Rate Swap,Derivative,Receive Fixed,168927000.0,USD,2032-09-29,0.05193,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00213,2025-03-13,BD-P-BA,P-BA,Corporate Bond,Bond,Buy,80040000.0,USD,2029-12-14,0.07156,Senior Unsecured,100.7801,,Boeing Co.,Industrials,US,North America,BBB
+T00214,2025-03-15,LN-C085-TER,C085,Term Loan,Loan,Drawdown,33676000.0,USD,2032-04-30,0.00886,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00215,2025-03-16,BD-C072,C072,Corporate Bond,Bond,Buy,19580000.0,USD,2035-05-07,0.07926,Senior Unsecured,98.031,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00216,2025-03-17,LN-C087-TRA,C087,Trade Finance,Loan,Drawdown,25633000.0,BRL,2028-01-12,0.00628,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00217,2025-03-20,BD-C051,C051,Corporate Bond,Bond,Buy,11935000.0,USD,2036-06-30,0.08946,Senior Unsecured,99.8424,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00218,2025-03-21,LN-C066-TER,C066,Term Loan,Loan,Commitment,40431000.0,USD,2029-04-29,0.01415,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00219,2025-03-23,LN-C015-TER,C015,Term Loan,Loan,Drawdown,7732000.0,BRL,2033-03-01,0.05239,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00220,2025-03-23,LN-C016-REV,C016,Revolving Credit Facility,Loan,Drawdown,19684000.0,USD,2030-12-23,0.02638,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00221,2025-03-23,LN-C082-TER,C082,Term Loan,Loan,Commitment,49607000.0,USD,2029-01-18,0.04727,Senior Secured,100.0,,Ivory Group Health,Health Care,CA,North America,B
+T00222,2025-03-24,LN-C005-TRA,C005,Trade Finance,Loan,Drawdown,28407000.0,EUR,2028-01-21,0.02512,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00223,2025-03-26,LN-C001-TER,C001,Term Loan,Loan,Drawdown,9735000.0,CNH,2032-03-02,0.01307,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00224,2025-03-27,BD-S-BTP,S-BTP,Sovereign Bond,Bond,Buy,321431000.0,EUR,2038-07-21,0.03068,Senior Unsecured,102.9909,,Italy BTP,Sovereign,IT,Europe,BBB
+T00225,2025-03-29,LN-C050-TER,C050,Term Loan,Loan,Drawdown,17315000.0,JPY,2029-10-10,0.01634,Senior Secured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00226,2025-03-30,CDS-CDX-IG,D01,CDS Index,Derivative,Buy Protection,300000000.0,USD,2031-06-11,0.01,,100.0,I-CDX-IG,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00227,2025-03-30,LN-C081-TRA,C081,Trade Finance,Loan,Drawdown,44806000.0,BRL,2027-03-21,0.01678,Senior Unsecured,100.0,,Ivory Systems,Information Technology,CO,Latin America,BBB
+T00228,2025-03-31,LN-C001-TER,C001,Term Loan,Loan,Commitment,33323000.0,CNH,2032-03-02,0.01307,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00229,2025-04-04,BD-P-GS,P-GS,Corporate Bond,Bond,Buy,14882000.0,USD,2033-11-18,0.06704,Senior Unsecured,95.8486,,Goldman Sachs Group Inc.,Financials,US,North America,BBB
+T00230,2025-04-05,LN-C061-REV,C061,Revolving Credit Facility,Loan,Commitment,98443000.0,USD,2028-06-11,0.01742,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00231,2025-04-07,LN-C020-TER,C020,Term Loan,Loan,Drawdown,15389000.0,USD,2031-08-02,0.03127,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00232,2025-04-07,LN-C041-TER,C041,Term Loan,Loan,Drawdown,26614000.0,JPY,2031-09-05,0.0175,Senior Secured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00233,2025-04-09,TRS-META,D05,Equity Total Return Swap,Derivative,Receive Equity,21076000.0,USD,2027-04-27,0.0,,100.0,META,Sterling Bank (fictional dealer),Financials,US,North America,A
+T00234,2025-04-10,LN-C009-TRA,C009,Trade Finance,Loan,Drawdown,9283000.0,CNH,2027-04-12,0.02488,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00235,2025-04-10,LN-C029-REV,C029,Revolving Credit Facility,Loan,Drawdown,59132000.0,USD,2028-11-01,0.00964,Senior Secured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00236,2025-04-10,LN-C036-TER,C036,Term Loan,Loan,Commitment,121156000.0,USD,2031-12-23,0.01726,Senior Unsecured,100.0,,Evergreen Group Industries,Industrials,AE,Middle East,BBB
+T00237,2025-04-11,BD-C034,C034,Corporate Bond,Bond,Sell,-24532000.0,BRL,2029-10-11,0.17337,Senior Unsecured,99.2853,,Zenith Group Energy,Energy,CL,Latin America,B
+T00238,2025-04-12,CMD-WTI,D03,Commodity Swap,Derivative,Pay Floating,120000000.0,USD,2028-03-18,0.0,,100.0,CL=F,Polaris Bank (fictional dealer),Financials,US,North America,AA
+T00239,2025-04-12,IRS-11,D05,Interest Rate Swap,Derivative,Pay Fixed,228895000.0,GBP,2033-11-12,0.03744,,100.0,,Sterling Bank (fictional dealer),Financials,US,North America,A
+T00240,2025-04-14,LN-C026-TRA,C026,Trade Finance,Loan,Commitment,48286000.0,JPY,2027-07-30,0.02342,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00241,2025-04-20,LN-C053-REV,C053,Revolving Credit Facility,Loan,Commitment,42629000.0,BRL,2030-11-03,0.09339,Senior Secured,100.0,,Juniper Properties,Real Estate,BR,Latin America,CCC
+T00242,2025-04-21,LN-C025-REV,C025,Revolving Credit Facility,Loan,Drawdown,39710000.0,USD,2031-06-23,0.01251,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00243,2025-04-22,LN-C015-TRA,C015,Trade Finance,Loan,Drawdown,14965000.0,BRL,2028-02-02,0.04197,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00244,2025-04-22,LN-C073-TER,C073,Term Loan,Loan,Drawdown,12825000.0,USD,2028-07-03,0.02493,Senior Secured,100.0,,Elmstead Retail,Consumer Discretionary,US,North America,BB
+T00245,2025-04-24,LN-C046-TER,C046,Term Loan,Loan,Commitment,47755000.0,USD,2033-04-05,0.01645,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00246,2025-04-26,LN-C068-TER,C068,Term Loan,Loan,Drawdown,8907000.0,USD,2031-02-26,0.04032,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00247,2025-04-28,LN-C010-TER,C010,Term Loan,Loan,Drawdown,14091000.0,EUR,2028-08-08,0.00847,Senior Unsecured,100.0,,Orion Group Power,Utilities,ES,Europe,A
+T00248,2025-04-29,LN-C023-REV,C023,Revolving Credit Facility,Loan,Commitment,100968000.0,USD,2032-01-24,0.01251,Senior Unsecured,100.0,,Sable Energy,Energy,CA,North America,BBB
+T00249,2025-05-01,LN-C016-TER,C016,Term Loan,Loan,Commitment,62980000.0,USD,2031-04-06,0.02848,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00250,2025-05-03,LN-C081-TER,C081,Term Loan,Loan,Drawdown,54661000.0,BRL,2029-01-20,0.01322,Senior Unsecured,100.0,,Ivory Systems,Information Technology,CO,Latin America,BBB
+T00251,2025-05-06,BD-C067,C067,Corporate Bond,Bond,Buy,37101000.0,USD,2032-02-27,0.07389,Senior Unsecured,98.7708,,Amberly Energy,Energy,CA,North America,BB
+T00252,2025-05-07,LN-C083-TER,C083,Term Loan,Loan,Drawdown,40322000.0,USD,2033-02-26,0.01012,Senior Unsecured,100.0,,Jasper Foods,Consumer Staples,US,North America,A
+T00253,2025-05-09,LN-C043-TRA,C043,Trade Finance,Loan,Drawdown,9890000.0,USD,2027-03-01,0.04336,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00254,2025-05-09,LN-C051-REV,C051,Revolving Credit Facility,Loan,Drawdown,19802000.0,USD,2029-07-03,0.05305,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00255,2025-05-10,BD-C067,C067,Corporate Bond,Bond,Sell,-28731000.0,USD,2032-02-27,0.07389,Senior Unsecured,99.3275,,Amberly Energy,Energy,CA,North America,BB
+T00256,2025-05-13,OPT-SPX-P1,D02,Equity Index Put Option,Derivative,Buy,200000000.0,USD,2027-05-28,0.95,,100.0,SPY,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00257,2025-05-15,BD-S-JGB,S-JGB,Sovereign Bond,Bond,Sell,-66464000.0,JPY,2036-05-19,0.02089,Senior Unsecured,98.4862,,Japan JGB,Sovereign,JP,Asia-Pacific,A
+T00258,2025-05-15,LN-C004-TER,C004,Term Loan,Loan,Drawdown,17510000.0,USD,2033-02-20,0.05454,Senior Secured,100.0,,Halcyon Group Systems,Information Technology,US,North America,B
+T00259,2025-05-19,LN-C060-REV,C060,Revolving Credit Facility,Loan,Commitment,66797000.0,EUR,2029-01-06,0.00848,Senior Secured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00260,2025-05-21,LN-C074-REV,C074,Revolving Credit Facility,Loan,Drawdown,40096000.0,JPY,2032-06-26,0.02643,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00261,2025-05-22,LN-C002-TER,C002,Term Loan,Loan,Drawdown,12323000.0,USD,2033-06-04,0.01246,Senior Unsecured,100.0,,Northwind Group Capital,Financials,MX,North America,BBB
+T00262,2025-05-26,LN-C047-TER,C047,Term Loan,Loan,Drawdown,25071000.0,USD,2029-05-21,0.00996,Senior Secured,100.0,,Ironclad Industries,Industrials,CA,North America,A
+T00263,2025-05-26,LN-C088-REV,C088,Revolving Credit Facility,Loan,Drawdown,39073000.0,USD,2028-09-12,0.01707,Senior Unsecured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00264,2025-05-31,LN-C020-TER,C020,Term Loan,Loan,Drawdown,22339000.0,USD,2031-08-02,0.03127,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00265,2025-06-09,LN-C058-TER,C058,Term Loan,Loan,Commitment,56863000.0,EUR,2033-01-02,0.01283,Senior Unsecured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00266,2025-06-10,LN-C012-TRA,C012,Trade Finance,Loan,Drawdown,18090000.0,CNH,2028-02-23,0.00576,Senior Secured,100.0,,Ashford Group Energy,Energy,CN,China,AA
+T00267,2025-06-10,LN-C048-TER,C048,Term Loan,Loan,Commitment,124384000.0,EUR,2032-12-08,0.01003,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00268,2025-06-17,LN-C043-TRA,C043,Trade Finance,Loan,Commitment,26219000.0,USD,2027-03-01,0.04336,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00269,2025-06-20,BD-C043,C043,Corporate Bond,Bond,Buy,15098000.0,USD,2030-05-06,0.09248,Senior Unsecured,102.2543,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00270,2025-06-20,LN-C089-TER,C089,Term Loan,Loan,Drawdown,84181000.0,USD,2029-03-17,0.00654,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00271,2025-06-21,LN-C032-TER,C032,Term Loan,Loan,Drawdown,12071000.0,USD,2028-11-25,0.0251,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00272,2025-06-24,BD-P-META,P-META,Corporate Bond,Bond,Sell,-15048000.0,USD,2037-11-09,0.05893,Senior Unsecured,95.0594,,Meta Platforms Inc.,Communication Services,US,North America,AA
+T00273,2025-06-25,IRS-14,D02,Interest Rate Swap,Derivative,Pay Fixed,313396000.0,GBP,2035-08-06,0.03886,,100.0,,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00274,2025-06-26,LN-C077-TRA,C077,Trade Finance,Loan,Commitment,53178000.0,JPY,2027-10-02,0.05148,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00275,2025-06-30,BD-C051,C051,Corporate Bond,Bond,Buy,66989000.0,USD,2036-06-30,0.08946,Senior Unsecured,101.7965,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00276,2025-07-01,CDS-BA,D04,Credit Default Swap,Derivative,Buy Protection,61615000.0,USD,2031-05-11,0.01,Senior Unsecured,100.0,P-BA,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00277,2025-07-04,LN-C079-TER,C079,Term Loan,Loan,Drawdown,17969000.0,USD,2029-02-16,0.02874,Senior Secured,100.0,,Hawthorn Capital,Financials,CA,North America,BB
+T00278,2025-07-05,LN-C086-TER,C086,Term Loan,Loan,Drawdown,17905000.0,EUR,2031-01-13,0.0106,Senior Unsecured,100.0,,Kingsley Group Properties,Real Estate,GB,Europe,A
+T00279,2025-07-06,BD-S-JGB,S-JGB,Sovereign Bond,Bond,Buy,76515000.0,JPY,2036-05-19,0.02089,Senior Unsecured,95.8262,,Japan JGB,Sovereign,JP,Asia-Pacific,A
+T00280,2025-07-06,LN-C018-TER,C018,Term Loan,Loan,Drawdown,11242000.0,EUR,2029-04-26,0.01457,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00281,2025-07-06,LN-C024-TER,C024,Term Loan,Loan,Drawdown,30708000.0,USD,2028-08-01,0.00657,Senior Secured,100.0,,Sable Group Capital,Financials,US,North America,AA
+T00282,2025-07-06,LN-C038-TRA,C038,Trade Finance,Loan,Commitment,36136000.0,EUR,2027-07-26,0.02576,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00283,2025-07-06,LN-C062-TER,C062,Term Loan,Loan,Drawdown,4086000.0,USD,2032-08-06,0.01635,Senior Unsecured,100.0,,Oakmont Group Retail,Consumer Discretionary,US,North America,BBB
+T00284,2025-07-11,LN-C081-TER,C081,Term Loan,Loan,Commitment,93291000.0,BRL,2029-01-20,0.01322,Senior Unsecured,100.0,,Ivory Systems,Information Technology,CO,Latin America,BBB
+T00285,2025-07-12,BD-C034,C034,Corporate Bond,Bond,Buy,82116000.0,BRL,2029-10-11,0.17337,Senior Unsecured,99.7081,,Zenith Group Energy,Energy,CL,Latin America,B
+T00286,2025-07-14,LN-C064-TER,C064,Term Loan,Loan,Drawdown,28237000.0,USD,2029-03-21,0.05241,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00287,2025-07-17,LN-C085-TER,C085,Term Loan,Loan,Drawdown,27413000.0,USD,2032-04-30,0.00886,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00288,2025-07-19,LN-C007-TER,C007,Term Loan,Loan,Drawdown,10309000.0,USD,2031-01-10,0.01752,Senior Unsecured,100.0,,Cedar Retail,Consumer Discretionary,US,North America,BBB
+T00289,2025-07-19,LN-C023-REV,C023,Revolving Credit Facility,Loan,Drawdown,25902000.0,USD,2032-01-24,0.01251,Senior Unsecured,100.0,,Sable Energy,Energy,CA,North America,BBB
+T00290,2025-07-20,LN-C067-REV,C067,Revolving Credit Facility,Loan,Drawdown,43828000.0,USD,2029-08-17,0.02617,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00291,2025-07-22,LN-C047-TER,C047,Term Loan,Loan,Drawdown,14037000.0,USD,2029-05-21,0.00996,Senior Secured,100.0,,Ironclad Industries,Industrials,CA,North America,A
+T00292,2025-07-22,LN-C058-TER,C058,Term Loan,Loan,Drawdown,17837000.0,EUR,2033-01-02,0.01283,Senior Unsecured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00293,2025-07-22,LN-C072-REV,C072,Revolving Credit Facility,Loan,Drawdown,20497000.0,USD,2031-11-16,0.02514,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00294,2025-07-23,LN-C069-TRA,C069,Trade Finance,Loan,Drawdown,16086000.0,JPY,2028-01-30,0.02622,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00295,2025-07-23,LN-C073-TER,C073,Term Loan,Loan,Commitment,26066000.0,USD,2028-07-03,0.02493,Senior Secured,100.0,,Elmstead Retail,Consumer Discretionary,US,North America,BB
+T00296,2025-07-24,LN-C049-TER,C049,Term Loan,Loan,Drawdown,18206000.0,BRL,2033-06-11,0.00823,Senior Unsecured,100.0,,Coral Health,Health Care,BR,Latin America,A
+T00297,2025-07-26,LN-C040-TER,C040,Term Loan,Loan,Commitment,83068000.0,JPY,2029-09-07,0.03238,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00298,2025-07-27,TRS-AMZN,D03,Equity Total Return Swap,Derivative,Receive Equity,31365000.0,USD,2027-12-24,0.0,,100.0,AMZN,Polaris Bank (fictional dealer),Financials,US,North America,AA
+T00299,2025-07-30,IRS-04,D05,Interest Rate Swap,Derivative,Pay Fixed,168078000.0,USD,2035-03-06,0.05253,,100.0,,Sterling Bank (fictional dealer),Financials,US,North America,A
+T00300,2025-07-30,LN-C051-TER,C051,Term Loan,Loan,Drawdown,14111000.0,USD,2028-12-17,0.04824,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00301,2025-07-30,LN-C075-TER,C075,Term Loan,Loan,Drawdown,27103000.0,USD,2028-04-07,0.01567,Senior Unsecured,100.0,,Foxglove Properties,Real Estate,MX,North America,BBB
+T00302,2025-07-31,BD-C008,C008,Corporate Bond,Bond,Sell,-12327000.0,EUR,2034-03-31,0.06326,Senior Unsecured,102.4675,,Cedar Group Media,Communication Services,ES,Europe,B
+T00303,2025-07-31,BD-S-BRAZIL,S-BRAZIL,Sovereign Bond,Bond,Sell,-65186000.0,BRL,2037-04-29,0.14098,Senior Unsecured,102.1932,,Brazil NTN-F,Sovereign,BR,Latin America,BB
+T00304,2025-07-31,LN-C020-REV,C020,Revolving Credit Facility,Loan,Commitment,60365000.0,USD,2030-05-12,0.02673,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00305,2025-07-31,LN-C046-TER,C046,Term Loan,Loan,Drawdown,13280000.0,USD,2033-04-05,0.01645,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00306,2025-08-01,LN-C050-REV,C050,Revolving Credit Facility,Loan,Drawdown,25057000.0,JPY,2032-01-24,0.01605,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00307,2025-08-02,LN-C057-TER,C057,Term Loan,Loan,Drawdown,16225000.0,JPY,2031-10-07,0.00637,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00308,2025-08-03,LN-C038-TRA,C038,Trade Finance,Loan,Drawdown,15125000.0,EUR,2027-07-26,0.02576,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00309,2025-08-04,LN-C051-REV,C051,Revolving Credit Facility,Loan,Drawdown,10669000.0,USD,2029-07-03,0.05305,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00310,2025-08-04,LN-C061-REV,C061,Revolving Credit Facility,Loan,Drawdown,41960000.0,USD,2028-06-11,0.01742,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00311,2025-08-04,LN-C077-TRA,C077,Trade Finance,Loan,Drawdown,30094000.0,JPY,2027-10-02,0.05148,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00312,2025-08-04,LN-C078-TER,C078,Term Loan,Loan,Commitment,101523000.0,USD,2032-06-27,0.00918,Senior Unsecured,100.0,,Glenmore Group Energy,Energy,US,North America,A
+T00313,2025-08-08,LN-C024-TER,C024,Term Loan,Loan,Drawdown,26437000.0,USD,2028-08-01,0.00657,Senior Secured,100.0,,Sable Group Capital,Financials,US,North America,AA
+T00314,2025-08-08,LN-C089-REV,C089,Revolving Credit Facility,Loan,Commitment,238804000.0,USD,2030-10-03,0.00502,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00315,2025-08-11,BD-S-INDIA,S-INDIA,Sovereign Bond,Bond,Buy,205764000.0,INR,2031-04-01,0.07081,Senior Unsecured,100.9064,,India G-Sec,Sovereign,IN,Asia-Pacific,BBB
+T00316,2025-08-12,BD-S-BRAZIL,S-BRAZIL,Sovereign Bond,Bond,Buy,135449000.0,BRL,2037-04-29,0.14098,Senior Unsecured,98.2258,,Brazil NTN-F,Sovereign,BR,Latin America,BB
+T00317,2025-08-13,LN-C054-TER,C054,Term Loan,Loan,Drawdown,7715000.0,CNH,2030-03-05,0.03123,Senior Secured,100.0,,Juniper Group Power,Utilities,CN,China,BB
+T00318,2025-08-13,LN-C072-TER,C072,Term Loan,Loan,Drawdown,8169000.0,USD,2031-08-22,0.02411,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00319,2025-08-16,LN-C082-REV,C082,Revolving Credit Facility,Loan,Drawdown,22485000.0,USD,2031-07-15,0.04124,Senior Secured,100.0,,Ivory Group Health,Health Care,CA,North America,B
+T00320,2025-08-17,LN-C001-TRA,C001,Trade Finance,Loan,Commitment,33323000.0,CNH,2027-11-03,0.01477,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00321,2025-08-19,LN-C026-TER,C026,Term Loan,Loan,Commitment,48286000.0,JPY,2030-08-29,0.03254,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00322,2025-08-20,LN-C052-TER,C052,Term Loan,Loan,Drawdown,24402000.0,USD,2031-07-23,0.01038,Senior Unsecured,100.0,,Falcon Group Media,Communication Services,US,North America,A
+T00323,2025-08-21,LN-C039-TER,C039,Term Loan,Loan,Drawdown,15269000.0,JPY,2028-11-18,0.01425,Senior Unsecured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00324,2025-08-22,BD-P-AAPL,P-AAPL,Corporate Bond,Bond,Buy,45876000.0,USD,2029-10-10,0.05931,Senior Unsecured,95.6395,,Apple Inc.,Information Technology,US,North America,AA
+T00325,2025-08-23,LN-C045-TER,C045,Term Loan,Loan,Commitment,44337000.0,USD,2033-01-18,0.04579,Senior Secured,100.0,,Summit Energy,Energy,MX,North America,B
+T00326,2025-08-25,BD-S-BRAZIL,S-BRAZIL,Sovereign Bond,Bond,Buy,258879000.0,BRL,2037-04-29,0.14098,Senior Unsecured,100.163,,Brazil NTN-F,Sovereign,BR,Latin America,BB
+T00327,2025-08-25,LN-C007-TER,C007,Term Loan,Loan,Drawdown,7971000.0,USD,2031-01-10,0.01752,Senior Unsecured,100.0,,Cedar Retail,Consumer Discretionary,US,North America,BBB
+T00328,2025-08-25,LN-C068-REV,C068,Revolving Credit Facility,Loan,Commitment,54360000.0,USD,2030-06-27,0.04623,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00329,2025-08-29,LN-C039-REV,C039,Revolving Credit Facility,Loan,Drawdown,33404000.0,JPY,2028-06-12,0.01476,Senior Secured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00330,2025-08-30,LN-C048-TRA,C048,Trade Finance,Loan,Drawdown,38735000.0,EUR,2027-05-13,0.00992,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00331,2025-08-31,BD-S-INDIA,S-INDIA,Sovereign Bond,Bond,Sell,-45450000.0,INR,2031-04-01,0.07081,Senior Unsecured,99.3468,,India G-Sec,Sovereign,IN,Asia-Pacific,BBB
+T00332,2025-09-01,LN-C009-TER,C009,Term Loan,Loan,Drawdown,8173000.0,CNH,2029-07-10,0.03124,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00333,2025-09-02,LN-C037-REV,C037,Revolving Credit Facility,Loan,Drawdown,1513000.0,USD,2033-04-28,0.01033,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00334,2025-09-03,LN-C025-REV,C025,Revolving Credit Facility,Loan,Drawdown,22127000.0,USD,2031-06-23,0.01251,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00335,2025-09-03,LN-C030-TER,C030,Term Loan,Loan,Drawdown,12718000.0,USD,2028-04-20,0.01711,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00336,2025-09-04,IRS-15,D01,Interest Rate Swap,Derivative,Receive Fixed,115499000.0,GBP,2035-07-03,0.0463,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00337,2025-09-05,LN-C087-TER,C087,Term Loan,Loan,Drawdown,22415000.0,BRL,2032-05-25,0.0053,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00338,2025-09-06,BD-P-WMT,P-WMT,Corporate Bond,Bond,Buy,17802000.0,USD,2036-07-11,0.05505,Senior Unsecured,95.0996,,Walmart Inc.,Consumer Staples,US,North America,AA
+T00339,2025-09-07,BD-S-UST,S-UST,Sovereign Bond,Bond,Buy,42473000.0,USD,2038-07-31,0.05149,Senior Unsecured,100.1122,,US Treasury,Sovereign,US,North America,AA
+T00340,2025-09-07,LN-C009-TRA,C009,Trade Finance,Loan,Commitment,20447000.0,CNH,2027-04-12,0.02488,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00341,2025-09-12,BD-P-XOM,P-XOM,Corporate Bond,Bond,Buy,10346000.0,USD,2035-07-08,0.06191,Senior Unsecured,95.8397,,Exxon Mobil Corp.,Energy,US,North America,AA
+T00342,2025-09-13,BD-S-BUND,S-BUND,Sovereign Bond,Bond,Buy,138123000.0,EUR,2031-02-25,0.03079,Senior Unsecured,100.8725,,Germany Bund,Sovereign,DE,Europe,AAA
+T00343,2025-09-13,LN-C059-TER,C059,Term Loan,Loan,Drawdown,1892000.0,USD,2030-08-11,0.03019,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00344,2025-09-13,LN-C060-TER,C060,Term Loan,Loan,Drawdown,14417000.0,EUR,2028-08-01,0.00988,Senior Unsecured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00345,2025-09-18,LN-C039-TER,C039,Term Loan,Loan,Drawdown,278000.0,JPY,2028-11-18,0.01425,Senior Unsecured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00346,2025-09-22,LN-C043-TER,C043,Term Loan,Loan,Commitment,26219000.0,USD,2030-01-03,0.04341,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00347,2025-09-24,LN-C083-TER,C083,Term Loan,Loan,Commitment,73258000.0,USD,2033-02-26,0.01012,Senior Unsecured,100.0,,Jasper Foods,Consumer Staples,US,North America,A
+T00348,2025-09-26,BD-P-KO,P-KO,Corporate Bond,Bond,Buy,15102000.0,USD,2036-08-07,0.06381,Senior Unsecured,96.0036,,Coca-Cola Co.,Consumer Staples,US,North America,A
+T00349,2025-09-27,LN-C020-TRA,C020,Trade Finance,Loan,Drawdown,21786000.0,USD,2027-06-29,0.03221,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00350,2025-09-27,LN-C050-REV,C050,Revolving Credit Facility,Loan,Commitment,59602000.0,JPY,2032-01-24,0.01605,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00351,2025-09-27,LN-C064-REV,C064,Revolving Credit Facility,Loan,Drawdown,32704000.0,USD,2032-06-30,0.04923,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00352,2025-09-28,BD-C054,C054,Corporate Bond,Bond,Sell,-23639000.0,CNH,2029-08-03,0.04516,Senior Unsecured,100.6649,,Juniper Group Power,Utilities,CN,China,BB
+T00353,2025-09-29,LN-C018-REV,C018,Revolving Credit Facility,Loan,Drawdown,12544000.0,EUR,2032-11-25,0.01542,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00354,2025-09-29,LN-C089-REV,C089,Revolving Credit Facility,Loan,Drawdown,113415000.0,USD,2030-10-03,0.00502,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00355,2025-09-30,LN-C063-REV,C063,Revolving Credit Facility,Loan,Drawdown,847000.0,USD,2032-07-24,0.00828,Senior Unsecured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00356,2025-10-02,LN-C011-REV,C011,Revolving Credit Facility,Loan,Drawdown,45088000.0,USD,2028-09-18,0.00994,Senior Unsecured,100.0,,Ashford Materials,Materials,US,North America,A
+T00357,2025-10-02,LN-C076-TER,C076,Term Loan,Loan,Drawdown,41970000.0,USD,2032-08-24,0.01407,Senior Unsecured,100.0,,Foxglove Group Power,Utilities,US,North America,BBB
+T00358,2025-10-03,LN-C071-TER,C071,Term Loan,Loan,Drawdown,14903000.0,EUR,2031-05-17,0.01393,Senior Unsecured,100.0,,Driftwood Health,Health Care,ES,Europe,BBB
+T00359,2025-10-04,LN-C038-REV,C038,Revolving Credit Facility,Loan,Drawdown,16761000.0,EUR,2028-12-20,0.02632,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00360,2025-10-05,BD-P-XOM,P-XOM,Corporate Bond,Bond,Sell,-5646000.0,USD,2035-07-08,0.06191,Senior Unsecured,102.2846,,Exxon Mobil Corp.,Energy,US,North America,AA
+T00361,2025-10-07,BD-C059,C059,Corporate Bond,Bond,Buy,59796000.0,USD,2031-12-22,0.08381,Senior Unsecured,96.7039,,Aurora Systems,Information Technology,US,North America,BB
+T00362,2025-10-07,LN-C084-REV,C084,Revolving Credit Facility,Loan,Drawdown,35809000.0,EUR,2030-05-17,0.03344,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00363,2025-10-09,LN-C036-TER,C036,Term Loan,Loan,Drawdown,69079000.0,USD,2031-12-23,0.01726,Senior Unsecured,100.0,,Evergreen Group Industries,Industrials,AE,Middle East,BBB
+T00364,2025-10-09,LN-C036-TRA,C036,Trade Finance,Loan,Commitment,121156000.0,USD,2027-06-17,0.01653,Senior Unsecured,100.0,,Evergreen Group Industries,Industrials,AE,Middle East,BBB
+T00365,2025-10-10,LN-C051-TER,C051,Term Loan,Loan,Drawdown,20071000.0,USD,2028-12-17,0.04824,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00366,2025-10-13,LN-C031-TER,C031,Term Loan,Loan,Drawdown,14676000.0,EUR,2032-04-05,0.00814,Senior Unsecured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00367,2025-10-16,LN-C015-REV,C015,Revolving Credit Facility,Loan,Commitment,45558000.0,BRL,2032-12-17,0.04154,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00368,2025-10-18,IRS-07,D04,Interest Rate Swap,Derivative,Pay Fixed,214822000.0,JPY,2030-08-02,0.01989,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00369,2025-10-19,LN-C044-TER,C044,Term Loan,Loan,Drawdown,44368000.0,EUR,2029-05-18,0.01607,Senior Unsecured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00370,2025-10-21,LN-C035-TER,C035,Term Loan,Loan,Drawdown,13576000.0,USD,2030-06-14,0.01567,Senior Unsecured,100.0,,Evergreen Capital,Financials,CA,North America,BBB
+T00371,2025-10-23,LN-C010-TER,C010,Term Loan,Loan,Drawdown,8893000.0,EUR,2028-08-08,0.00847,Senior Unsecured,100.0,,Orion Group Power,Utilities,ES,Europe,A
+T00372,2025-10-26,LN-C066-REV,C066,Revolving Credit Facility,Loan,Commitment,64689000.0,USD,2032-01-19,0.01752,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00373,2025-10-26,LN-C089-REV,C089,Revolving Credit Facility,Loan,Drawdown,125388000.0,USD,2030-10-03,0.00502,Senior Secured,100.0,,Marlow Energy,Energy,CA,North America,AA
+T00374,2025-10-29,LN-C030-TER,C030,Term Loan,Loan,Commitment,55338000.0,USD,2028-04-20,0.01711,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00375,2025-10-29,LN-C074-TER,C074,Term Loan,Loan,Drawdown,15517000.0,JPY,2032-01-02,0.02704,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00376,2025-10-30,LN-C015-TRA,C015,Trade Finance,Loan,Commitment,28473000.0,BRL,2028-02-02,0.04197,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00377,2025-10-31,LN-C058-TRA,C058,Trade Finance,Loan,Commitment,56863000.0,EUR,2027-04-08,0.01748,Senior Secured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00378,2025-10-31,LN-C067-REV,C067,Revolving Credit Facility,Loan,Commitment,80362000.0,USD,2029-08-17,0.02617,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00379,2025-11-01,LN-C044-TER,C044,Term Loan,Loan,Drawdown,20744000.0,EUR,2029-05-18,0.01607,Senior Unsecured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00380,2025-11-02,LN-C037-TER,C037,Term Loan,Loan,Drawdown,12666000.0,USD,2029-05-16,0.00878,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00381,2025-11-02,LN-C079-TER,C079,Term Loan,Loan,Drawdown,22973000.0,USD,2029-02-16,0.02874,Senior Secured,100.0,,Hawthorn Capital,Financials,CA,North America,BB
+T00382,2025-11-08,BD-P-JNJ,P-JNJ,Corporate Bond,Bond,Sell,-10062000.0,USD,2038-07-22,0.05421,Senior Unsecured,102.3243,,Johnson & Johnson,Health Care,US,North America,AAA
+T00383,2025-11-08,LN-C001-TRA,C001,Trade Finance,Loan,Drawdown,10167000.0,CNH,2027-11-03,0.01477,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00384,2025-11-08,LN-C056-TER,C056,Term Loan,Loan,Drawdown,9841000.0,USD,2032-08-14,0.04687,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00385,2025-11-10,IRS-05,D01,Interest Rate Swap,Derivative,Pay Fixed,202919000.0,JPY,2035-03-16,0.01961,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00386,2025-11-11,BD-P-GS,P-GS,Corporate Bond,Bond,Buy,54470000.0,USD,2033-11-18,0.06704,Senior Unsecured,97.2372,,Goldman Sachs Group Inc.,Financials,US,North America,BBB
+T00387,2025-11-11,LN-C084-TER,C084,Term Loan,Loan,Drawdown,14759000.0,EUR,2032-01-17,0.02462,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00388,2025-11-15,LN-C032-TER,C032,Term Loan,Loan,Drawdown,6184000.0,USD,2028-11-25,0.0251,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00389,2025-11-16,BD-P-NVDA,P-NVDA,Corporate Bond,Bond,Buy,58525000.0,USD,2035-04-07,0.05988,Senior Unsecured,101.1908,,NVIDIA Corp.,Information Technology,US,North America,AA
+T00390,2025-11-16,LN-C044-REV,C044,Revolving Credit Facility,Loan,Drawdown,52467000.0,EUR,2031-08-29,0.0127,Senior Secured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00391,2025-11-18,LN-C060-TER,C060,Term Loan,Loan,Drawdown,10483000.0,EUR,2028-08-01,0.00988,Senior Unsecured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00392,2025-11-18,LN-C067-REV,C067,Revolving Credit Facility,Loan,Drawdown,28037000.0,USD,2029-08-17,0.02617,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00393,2025-11-23,BD-P-GOOGL,P-GOOGL,Corporate Bond,Bond,Buy,28603000.0,USD,2030-09-20,0.05662,Senior Unsecured,102.346,,Alphabet Inc.,Communication Services,US,North America,AA
+T00394,2025-11-24,LN-C077-TER,C077,Term Loan,Loan,Drawdown,5242000.0,JPY,2031-03-15,0.03969,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00395,2025-11-25,LN-C021-TER,C021,Term Loan,Loan,Commitment,42897000.0,USD,2033-03-03,0.01574,Senior Unsecured,100.0,,Kestrel Power,Utilities,US,North America,BBB
+T00396,2025-11-29,LN-C062-TER,C062,Term Loan,Loan,Drawdown,30135000.0,USD,2032-08-06,0.01635,Senior Unsecured,100.0,,Oakmont Group Retail,Consumer Discretionary,US,North America,BBB
+T00397,2025-12-03,BD-P-MSFT,P-MSFT,Corporate Bond,Bond,Buy,12451000.0,USD,2036-01-08,0.0549,Senior Unsecured,102.8742,,Microsoft Corp.,Information Technology,US,North America,AAA
+T00398,2025-12-04,LN-C006-TRA,C006,Trade Finance,Loan,Commitment,51022000.0,USD,2028-03-22,0.0167,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00399,2025-12-06,IRS-09,D02,Interest Rate Swap,Derivative,Pay Fixed,319991000.0,JPY,2029-03-24,0.02119,,100.0,,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00400,2025-12-06,LN-C026-REV,C026,Revolving Credit Facility,Loan,Commitment,77258000.0,JPY,2030-02-22,0.03318,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00401,2025-12-09,LN-C006-TRA,C006,Trade Finance,Loan,Drawdown,13485000.0,USD,2028-03-22,0.0167,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00402,2025-12-11,LN-C044-TER,C044,Term Loan,Loan,Drawdown,12575000.0,EUR,2029-05-18,0.01607,Senior Unsecured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00403,2025-12-12,LN-C012-TER,C012,Term Loan,Loan,Commitment,37997000.0,CNH,2031-06-24,0.00692,Senior Unsecured,100.0,,Ashford Group Energy,Energy,CN,China,AA
+T00404,2025-12-12,LN-C046-REV,C046,Revolving Credit Facility,Loan,Drawdown,44590000.0,USD,2030-10-25,0.01541,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00405,2025-12-13,BD-S-UST,S-UST,Sovereign Bond,Bond,Buy,287092000.0,USD,2038-07-31,0.05149,Senior Unsecured,96.8189,,US Treasury,Sovereign,US,North America,AA
+T00406,2025-12-13,LN-C025-TER,C025,Term Loan,Loan,Drawdown,18347000.0,USD,2033-02-14,0.01238,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00407,2025-12-14,FXF-GBPUSD,D04,FX Forward,Derivative,Sell Foreign,157787000.0,GBP,2027-04-30,0.0,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00408,2025-12-16,FXF-EURUSD,D04,FX Forward,Derivative,Sell Foreign,498375000.0,EUR,2027-07-10,0.0,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00409,2025-12-16,LN-C073-TER,C073,Term Loan,Loan,Drawdown,10750000.0,USD,2028-07-03,0.02493,Senior Secured,100.0,,Elmstead Retail,Consumer Discretionary,US,North America,BB
+T00410,2025-12-18,LN-C085-REV,C085,Revolving Credit Facility,Loan,Commitment,98340000.0,USD,2029-08-18,0.00939,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00411,2025-12-19,BD-C043,C043,Corporate Bond,Bond,Buy,65686000.0,USD,2030-05-06,0.09248,Senior Unsecured,96.9194,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00412,2025-12-19,LN-C050-TER,C050,Term Loan,Loan,Commitment,37251000.0,JPY,2029-10-10,0.01634,Senior Secured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00413,2025-12-20,LN-C027-TER,C027,Term Loan,Loan,Commitment,61752000.0,USD,2030-10-10,0.01396,Senior Unsecured,100.0,,Meridian Health,Health Care,US,North America,BBB
+T00414,2025-12-21,LN-C085-REV,C085,Revolving Credit Facility,Loan,Drawdown,29010000.0,USD,2029-08-18,0.00939,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00415,2025-12-22,LN-C061-TER,C061,Term Loan,Loan,Drawdown,26171000.0,USD,2029-11-01,0.01633,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00416,2025-12-23,LN-C065-REV,C065,Revolving Credit Facility,Loan,Drawdown,24576000.0,USD,2031-06-11,0.01083,Senior Secured,100.0,,Solano Power,Utilities,US,North America,A
+T00417,2025-12-23,LN-C080-TER,C080,Term Loan,Loan,Commitment,35364000.0,USD,2032-11-08,0.01396,Senior Secured,100.0,,Hawthorn Group Industries,Industrials,AE,Middle East,BBB
+T00418,2025-12-27,FXF-CNHUSD,D02,FX Forward,Derivative,Sell Foreign,78155000.0,CNH,2027-01-23,0.0,,100.0,,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00419,2025-12-27,LN-C028-TER,C028,Term Loan,Loan,Commitment,62879000.0,USD,2031-12-11,0.01683,Senior Unsecured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00420,2025-12-27,LN-C032-REV,C032,Revolving Credit Facility,Loan,Commitment,37126000.0,USD,2029-04-09,0.02341,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00421,2025-12-29,BD-C054,C054,Corporate Bond,Bond,Buy,21518000.0,CNH,2029-08-03,0.04516,Senior Unsecured,102.3159,,Juniper Group Power,Utilities,CN,China,BB
+T00422,2026-01-01,LN-C087-TER,C087,Term Loan,Loan,Commitment,82051000.0,BRL,2032-05-25,0.0053,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00423,2026-01-02,LN-C023-TER,C023,Term Loan,Loan,Commitment,63105000.0,USD,2028-11-22,0.01325,Senior Unsecured,100.0,,Sable Energy,Energy,CA,North America,BBB
+T00424,2026-01-04,LN-C046-TER,C046,Term Loan,Loan,Drawdown,13340000.0,USD,2033-04-05,0.01645,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00425,2026-01-05,LN-C014-TER,C014,Term Loan,Loan,Drawdown,8877000.0,USD,2028-11-19,0.05341,Senior Secured,100.0,,Pioneer Group Industries,Industrials,CA,North America,B
+T00426,2026-01-07,BD-C059,C059,Corporate Bond,Bond,Sell,-15223000.0,USD,2031-12-22,0.08381,Senior Unsecured,102.4451,,Aurora Systems,Information Technology,US,North America,BB
+T00427,2026-01-07,CDS-GS,D01,Credit Default Swap,Derivative,Buy Protection,83876000.0,USD,2031-04-23,0.01,Senior Unsecured,100.0,P-GS,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00428,2026-01-08,BD-P-AAPL,P-AAPL,Corporate Bond,Bond,Buy,14518000.0,USD,2029-10-10,0.05931,Senior Unsecured,99.9312,,Apple Inc.,Information Technology,US,North America,AA
+T00429,2026-01-11,LN-C012-TRA,C012,Trade Finance,Loan,Commitment,37997000.0,CNH,2028-02-23,0.00576,Senior Secured,100.0,,Ashford Group Energy,Energy,CN,China,AA
+T00430,2026-01-11,LN-C041-REV,C041,Revolving Credit Facility,Loan,Drawdown,23564000.0,JPY,2033-02-09,0.01625,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00431,2026-01-12,IRS-01,D05,Interest Rate Swap,Derivative,Receive Fixed,284048000.0,USD,2029-09-09,0.05312,,100.0,,Sterling Bank (fictional dealer),Financials,US,North America,A
+T00432,2026-01-12,LN-C008-TER,C008,Term Loan,Loan,Drawdown,18095000.0,EUR,2028-08-16,0.054,Senior Secured,100.0,,Cedar Group Media,Communication Services,ES,Europe,B
+T00433,2026-01-12,LN-C031-TER,C031,Term Loan,Loan,Drawdown,14484000.0,EUR,2032-04-05,0.00814,Senior Unsecured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00434,2026-01-15,LN-C057-TER,C057,Term Loan,Loan,Commitment,30897000.0,JPY,2031-10-07,0.00637,Senior Unsecured,100.0,,Crescent Capital,Financials,AU,Asia-Pacific,AA
+T00435,2026-01-16,LN-C085-TER,C085,Term Loan,Loan,Drawdown,373000.0,USD,2032-04-30,0.00886,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00436,2026-01-19,LN-C081-TRA,C081,Trade Finance,Loan,Commitment,93291000.0,BRL,2027-03-21,0.01678,Senior Unsecured,100.0,,Ivory Systems,Information Technology,CO,Latin America,BBB
+T00437,2026-01-20,BD-S-BUND,S-BUND,Sovereign Bond,Bond,Buy,201474000.0,EUR,2031-02-25,0.03079,Senior Unsecured,98.2675,,Germany Bund,Sovereign,DE,Europe,AAA
+T00438,2026-01-21,LN-C002-TER,C002,Term Loan,Loan,Drawdown,19498000.0,USD,2033-06-04,0.01246,Senior Unsecured,100.0,,Northwind Group Capital,Financials,MX,North America,BBB
+T00439,2026-01-21,LN-C019-TER,C019,Term Loan,Loan,Drawdown,12165000.0,USD,2029-09-13,0.00596,Senior Secured,100.0,,Granite Media,Communication Services,CA,North America,AA
+T00440,2026-01-22,LN-C051-TER,C051,Term Loan,Loan,Commitment,34182000.0,USD,2028-12-17,0.04824,Senior Secured,100.0,,Falcon Retail,Consumer Discretionary,CA,North America,B
+T00441,2026-01-23,LN-C025-REV,C025,Revolving Credit Facility,Loan,Commitment,103664000.0,USD,2031-06-23,0.01251,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00442,2026-01-23,LN-C034-TER,C034,Term Loan,Loan,Drawdown,35243000.0,BRL,2032-07-19,0.04444,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00443,2026-01-23,LN-C067-TER,C067,Term Loan,Loan,Drawdown,20205000.0,USD,2031-07-30,0.02668,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00444,2026-01-25,LN-C064-TER,C064,Term Loan,Loan,Commitment,49818000.0,USD,2029-03-21,0.05241,Senior Secured,100.0,,Riverstone Group Properties,Real Estate,MX,North America,B
+T00445,2026-01-25,LN-C077-TER,C077,Term Loan,Loan,Drawdown,30371000.0,JPY,2031-03-15,0.03969,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00446,2026-01-28,EQF-SPX,D02,Equity Index Future,Derivative,Sell,180000000.0,USD,2027-01-02,0.0,,100.0,SPY,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00447,2026-01-31,LN-C075-TER,C075,Term Loan,Loan,Drawdown,33717000.0,USD,2028-04-07,0.01567,Senior Unsecured,100.0,,Foxglove Properties,Real Estate,MX,North America,BBB
+T00448,2026-02-02,LN-C069-TER,C069,Term Loan,Loan,Commitment,52417000.0,JPY,2029-01-26,0.02815,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00449,2026-02-07,LN-C037-TER,C037,Term Loan,Loan,Commitment,43338000.0,USD,2029-05-16,0.00878,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00450,2026-02-07,LN-C048-TRA,C048,Trade Finance,Loan,Drawdown,40132000.0,EUR,2027-05-13,0.00992,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00451,2026-02-08,BD-C008,C008,Corporate Bond,Bond,Buy,57658000.0,EUR,2034-03-31,0.06326,Senior Unsecured,96.3024,,Cedar Group Media,Communication Services,ES,Europe,B
+T00452,2026-02-10,LN-C077-TER,C077,Term Loan,Loan,Commitment,53178000.0,JPY,2031-03-15,0.03969,Senior Secured,100.0,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00453,2026-02-10,LN-C084-REV,C084,Revolving Credit Facility,Loan,Drawdown,28375000.0,EUR,2030-05-17,0.03344,Senior Secured,100.0,,Jasper Group Retail,Consumer Discretionary,IT,Europe,BB
+T00454,2026-02-11,LN-C016-REV,C016,Revolving Credit Facility,Loan,Drawdown,44626000.0,USD,2030-12-23,0.02638,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00455,2026-02-12,LN-C061-REV,C061,Revolving Credit Facility,Loan,Drawdown,56483000.0,USD,2028-06-11,0.01742,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00456,2026-02-12,LN-C088-TER,C088,Term Loan,Loan,Drawdown,31724000.0,USD,2030-02-01,0.01585,Senior Secured,100.0,,Larkspur Group Materials,Materials,CA,North America,BBB
+T00457,2026-02-13,LN-C037-REV,C037,Revolving Credit Facility,Loan,Commitment,69342000.0,USD,2033-04-28,0.01033,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00458,2026-02-16,BD-P-MSFT,P-MSFT,Corporate Bond,Bond,Buy,39841000.0,USD,2036-01-08,0.0549,Senior Unsecured,100.0396,,Microsoft Corp.,Information Technology,US,North America,AAA
+T00459,2026-02-16,LN-C040-TRA,C040,Trade Finance,Loan,Commitment,83068000.0,JPY,2027-09-02,0.02448,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00460,2026-02-19,LN-C016-TER,C016,Term Loan,Loan,Drawdown,34182000.0,USD,2031-04-06,0.02848,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00461,2026-02-21,BD-P-JPM,P-JPM,Corporate Bond,Bond,Sell,-16628000.0,USD,2035-02-20,0.06119,Senior Unsecured,95.6108,,JPMorgan Chase & Co.,Financials,US,North America,A
+T00462,2026-02-22,LN-C038-TER,C038,Term Loan,Loan,Commitment,36136000.0,EUR,2028-09-28,0.03024,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00463,2026-02-23,LN-C072-REV,C072,Revolving Credit Facility,Loan,Commitment,47931000.0,USD,2031-11-16,0.02514,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00464,2026-02-24,CDS-PFE,D04,Credit Default Swap,Derivative,Buy Protection,79205000.0,USD,2029-11-20,0.01,Senior Unsecured,100.0,P-PFE,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00465,2026-02-26,LN-C022-TRA,C022,Trade Finance,Loan,Drawdown,10571000.0,JPY,2027-02-07,0.05141,Senior Secured,100.0,,Kestrel Group Materials,Materials,AU,Asia-Pacific,B
+T00466,2026-02-27,LN-C058-TRA,C058,Trade Finance,Loan,Drawdown,28362000.0,EUR,2027-04-08,0.01748,Senior Secured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00467,2026-03-01,LN-C040-TER,C040,Term Loan,Loan,Drawdown,39850000.0,JPY,2029-09-07,0.03238,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00468,2026-03-06,BD-C068,C068,Corporate Bond,Bond,Buy,77799000.0,USD,2030-09-01,0.08745,Senior Unsecured,97.718,,Amberly Group Capital,Financials,US,North America,B
+T00469,2026-03-08,IRS-16,D01,Interest Rate Swap,Derivative,Pay Fixed,157079000.0,USD,2031-01-14,0.05419,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00470,2026-03-09,BD-P-AMZN,P-AMZN,Corporate Bond,Bond,Buy,25407000.0,USD,2029-12-24,0.05452,Senior Unsecured,96.7541,,Amazon.com Inc.,Consumer Discretionary,US,North America,AA
+T00471,2026-03-10,LN-C059-TER,C059,Term Loan,Loan,Drawdown,12888000.0,USD,2030-08-11,0.03019,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00472,2026-03-10,LN-C065-TER,C065,Term Loan,Loan,Commitment,37178000.0,USD,2029-09-15,0.01051,Senior Unsecured,100.0,,Solano Power,Utilities,US,North America,A
+T00473,2026-03-11,LN-C029-REV,C029,Revolving Credit Facility,Loan,Commitment,113847000.0,USD,2028-11-01,0.00964,Senior Secured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00474,2026-03-11,LN-C078-TER,C078,Term Loan,Loan,Drawdown,33530000.0,USD,2032-06-27,0.00918,Senior Unsecured,100.0,,Glenmore Group Energy,Energy,US,North America,A
+T00475,2026-03-12,LN-C031-REV,C031,Revolving Credit Facility,Loan,Drawdown,35593000.0,EUR,2029-10-30,0.01012,Senior Secured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00476,2026-03-16,LN-C068-TER,C068,Term Loan,Loan,Drawdown,10870000.0,USD,2031-02-26,0.04032,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00477,2026-03-17,LN-C003-TER,C003,Term Loan,Loan,Commitment,55892000.0,USD,2031-01-10,0.04621,Senior Secured,100.0,,Halcyon Industries,Industrials,US,North America,B
+T00478,2026-03-20,BD-P-META,P-META,Corporate Bond,Bond,Buy,18527000.0,USD,2037-11-09,0.05893,Senior Unsecured,102.4471,,Meta Platforms Inc.,Communication Services,US,North America,AA
+T00479,2026-03-22,LN-C026-TRA,C026,Trade Finance,Loan,Drawdown,11702000.0,JPY,2027-07-30,0.02342,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00480,2026-03-24,FXF-JPYUSD,D04,FX Forward,Derivative,Sell Foreign,208283000.0,JPY,2027-06-10,0.0,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00481,2026-03-24,LN-C048-TRA,C048,Trade Finance,Loan,Repayment,-19447000.0,EUR,2027-05-13,0.00992,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00482,2026-03-24,LN-C070-TER,C070,Term Loan,Loan,Drawdown,53933000.0,USD,2029-03-25,0.00884,Senior Unsecured,100.0,,Calder Group Systems,Information Technology,US,North America,A
+T00483,2026-03-25,BD-C077,C077,Corporate Bond,Bond,Sell,-8104000.0,JPY,2035-11-19,0.05782,Senior Unsecured,98.6043,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00484,2026-03-28,LN-C016-REV,C016,Revolving Credit Facility,Loan,Drawdown,36458000.0,USD,2030-12-23,0.02638,Senior Secured,100.0,,Vantage Group Health,Health Care,US,North America,BB
+T00485,2026-03-28,LN-C072-TER,C072,Term Loan,Loan,Drawdown,16667000.0,USD,2031-08-22,0.02411,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00486,2026-03-29,LN-C049-TER,C049,Term Loan,Loan,Commitment,31424000.0,BRL,2033-06-11,0.00823,Senior Unsecured,100.0,,Coral Health,Health Care,BR,Latin America,A
+T00487,2026-03-31,LN-C059-REV,C059,Revolving Credit Facility,Loan,Drawdown,17183000.0,USD,2033-04-24,0.0235,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00488,2026-04-01,LN-C072-TER,C072,Term Loan,Loan,Commitment,29957000.0,USD,2031-08-22,0.02411,Senior Secured,100.0,,Driftwood Group Foods,Consumer Staples,CA,North America,BB
+T00489,2026-04-03,LN-C037-REV,C037,Revolving Credit Facility,Loan,Repayment,-11450000.0,USD,2033-04-28,0.01033,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00490,2026-04-03,LN-C039-TER,C039,Term Loan,Loan,Drawdown,21796000.0,JPY,2028-11-18,0.01425,Senior Unsecured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00491,2026-04-03,LN-C041-TER,C041,Term Loan,Loan,Drawdown,14295000.0,JPY,2031-09-05,0.0175,Senior Secured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00492,2026-04-04,LN-C041-TRA,C041,Trade Finance,Loan,Drawdown,24491000.0,JPY,2027-09-26,0.01648,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00493,2026-04-05,BD-C043,C043,Corporate Bond,Bond,Sell,-26807000.0,USD,2030-05-06,0.09248,Senior Unsecured,98.4104,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00494,2026-04-05,LN-C025-REV,C025,Revolving Credit Facility,Loan,Drawdown,41827000.0,USD,2031-06-23,0.01251,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00495,2026-04-08,LN-C002-TER,C002,Term Loan,Loan,Commitment,46886000.0,USD,2033-06-04,0.01246,Senior Unsecured,100.0,,Northwind Group Capital,Financials,MX,North America,BBB
+T00496,2026-04-09,LN-C071-TER,C071,Term Loan,Loan,Commitment,37112000.0,EUR,2031-05-17,0.01393,Senior Unsecured,100.0,,Driftwood Health,Health Care,ES,Europe,BBB
+T00497,2026-04-10,LN-C030-REV,C030,Revolving Credit Facility,Loan,Commitment,88541000.0,USD,2032-05-09,0.01352,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00498,2026-04-10,LN-C031-REV,C031,Revolving Credit Facility,Loan,Commitment,82068000.0,EUR,2029-10-30,0.01012,Senior Secured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00499,2026-04-10,LN-C041-TRA,C041,Trade Finance,Loan,Drawdown,14232000.0,JPY,2027-09-26,0.01648,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00500,2026-04-10,LN-C060-TER,C060,Term Loan,Loan,Repayment,-4804000.0,EUR,2028-08-01,0.00988,Senior Unsecured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00501,2026-04-11,LN-C058-TRA,C058,Trade Finance,Loan,Repayment,-11631000.0,EUR,2027-04-08,0.01748,Senior Secured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00502,2026-04-13,LN-C023-TER,C023,Term Loan,Loan,Repayment,-6346000.0,USD,2028-11-22,0.01325,Senior Unsecured,100.0,,Sable Energy,Energy,CA,North America,BBB
+T00503,2026-04-13,LN-C068-TER,C068,Term Loan,Loan,Repayment,-4388000.0,USD,2031-02-26,0.04032,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00504,2026-04-13,LN-C074-REV,C074,Revolving Credit Facility,Loan,Drawdown,45366000.0,JPY,2032-06-26,0.02643,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00505,2026-04-14,LN-C042-TER,C042,Term Loan,Loan,Commitment,53641000.0,USD,2033-07-18,0.01084,Senior Unsecured,100.0,,Silverline Group Properties,Real Estate,US,North America,A
+T00506,2026-04-15,LN-C006-TER,C006,Term Loan,Loan,Commitment,51022000.0,USD,2031-01-15,0.0126,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00507,2026-04-15,LN-C035-TER,C035,Term Loan,Loan,Commitment,39435000.0,USD,2030-06-14,0.01567,Senior Unsecured,100.0,,Evergreen Capital,Financials,CA,North America,BBB
+T00508,2026-04-16,LN-C005-TER,C005,Term Loan,Loan,Repayment,-5735000.0,EUR,2031-12-15,0.02554,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00509,2026-04-16,LN-C041-REV,C041,Revolving Credit Facility,Loan,Repayment,-10648000.0,JPY,2033-02-09,0.01625,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00510,2026-04-16,LN-C069-REV,C069,Revolving Credit Facility,Loan,Drawdown,10049000.0,JPY,2032-11-15,0.03069,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00511,2026-04-18,LN-C026-TRA,C026,Trade Finance,Loan,Drawdown,14674000.0,JPY,2027-07-30,0.02342,Senior Secured,100.0,,Atlas Group Systems,Information Technology,AU,Asia-Pacific,BB
+T00512,2026-04-18,LN-C034-TER,C034,Term Loan,Loan,Drawdown,34689000.0,BRL,2032-07-19,0.04444,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00513,2026-04-19,LN-C007-TER,C007,Term Loan,Loan,Repayment,-5904000.0,USD,2031-01-10,0.01752,Senior Unsecured,100.0,,Cedar Retail,Consumer Discretionary,US,North America,BBB
+T00514,2026-04-22,LN-C020-REV,C020,Revolving Credit Facility,Loan,Drawdown,15774000.0,USD,2030-05-12,0.02673,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00515,2026-04-22,LN-C046-REV,C046,Revolving Credit Facility,Loan,Commitment,76408000.0,USD,2030-10-25,0.01541,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00516,2026-04-22,LN-C085-TER,C085,Term Loan,Loan,Commitment,61462000.0,USD,2032-04-30,0.00886,Senior Unsecured,100.0,,Kingsley Media,Communication Services,US,North America,A
+T00517,2026-04-23,BD-C008,C008,Corporate Bond,Bond,Buy,17512000.0,EUR,2034-03-31,0.06326,Senior Unsecured,98.4357,,Cedar Group Media,Communication Services,ES,Europe,B
+T00518,2026-04-23,LN-C018-TER,C018,Term Loan,Loan,Repayment,-5723000.0,EUR,2029-04-26,0.01457,Senior Unsecured,100.0,,Lumen Group Retail,Consumer Discretionary,FR,Europe,BBB
+T00519,2026-04-24,LN-C066-REV,C066,Revolving Credit Facility,Loan,Drawdown,19166000.0,USD,2032-01-19,0.01752,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00520,2026-04-25,BD-P-AAPL,P-AAPL,Corporate Bond,Bond,Sell,-9095000.0,USD,2029-10-10,0.05931,Senior Unsecured,95.7092,,Apple Inc.,Information Technology,US,North America,AA
+T00521,2026-04-28,LN-C087-TER,C087,Term Loan,Loan,Drawdown,35452000.0,BRL,2032-05-25,0.0053,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00522,2026-04-29,LN-C063-TER,C063,Term Loan,Loan,Drawdown,3649000.0,USD,2029-07-07,0.00813,Senior Secured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00523,2026-04-29,LN-C069-TER,C069,Term Loan,Loan,Drawdown,24895000.0,JPY,2029-01-26,0.02815,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00524,2026-04-30,BD-P-BA,P-BA,Corporate Bond,Bond,Buy,17019000.0,USD,2029-12-14,0.07156,Senior Unsecured,101.0037,,Boeing Co.,Industrials,US,North America,BBB
+T00525,2026-05-02,LN-C037-TER,C037,Term Loan,Loan,Drawdown,18212000.0,USD,2029-05-16,0.00878,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00526,2026-05-03,BD-P-WMT,P-WMT,Corporate Bond,Bond,Buy,53299000.0,USD,2036-07-11,0.05505,Senior Unsecured,95.1263,,Walmart Inc.,Consumer Staples,US,North America,AA
+T00527,2026-05-04,BD-S-BTP,S-BTP,Sovereign Bond,Bond,Buy,57584000.0,EUR,2038-07-21,0.03068,Senior Unsecured,96.7236,,Italy BTP,Sovereign,IT,Europe,BBB
+T00528,2026-05-05,LN-C033-REV,C033,Revolving Credit Facility,Loan,Drawdown,33102000.0,CNH,2031-03-15,0.0145,Senior Unsecured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00529,2026-05-10,LN-C006-TER,C006,Term Loan,Loan,Repayment,-2113000.0,USD,2031-01-15,0.0126,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00530,2026-05-12,LN-C049-TRA,C049,Trade Finance,Loan,Repayment,-3619000.0,BRL,2027-10-09,0.00833,Senior Unsecured,100.0,,Coral Health,Health Care,BR,Latin America,A
+T00531,2026-05-13,LN-C063-REV,C063,Revolving Credit Facility,Loan,Repayment,-5094000.0,USD,2032-07-24,0.00828,Senior Unsecured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00532,2026-05-14,EQ-WMT,P-WMT,Listed Equity,Equity,Buy,132000.0,USD,,0.0,,105.824,WMT,Walmart Inc.,Consumer Staples,US,North America,AA
+T00533,2026-05-17,BD-C068,C068,Corporate Bond,Bond,Sell,-6522000.0,USD,2030-09-01,0.08745,Senior Unsecured,101.6946,,Amberly Group Capital,Financials,US,North America,B
+T00534,2026-05-17,EQ-AMZN,P-AMZN,Listed Equity,Equity,Buy,115000.0,USD,,0.0,,253.66,AMZN,Amazon.com Inc.,Consumer Discretionary,US,North America,AA
+T00535,2026-05-17,LN-C002-TER,C002,Term Loan,Loan,Repayment,-10650000.0,USD,2033-06-04,0.01246,Senior Unsecured,100.0,,Northwind Group Capital,Financials,MX,North America,BBB
+T00536,2026-05-19,BD-P-JNJ,P-JNJ,Corporate Bond,Bond,Buy,16763000.0,USD,2038-07-22,0.05421,Senior Unsecured,98.0528,,Johnson & Johnson,Health Care,US,North America,AAA
+T00537,2026-05-19,EQ-XOM,P-XOM,Listed Equity,Equity,Buy,172000.0,USD,,0.0,,164.495,XOM,Exxon Mobil Corp.,Energy,US,North America,AA
+T00538,2026-05-20,LN-C031-REV,C031,Revolving Credit Facility,Loan,Repayment,-6333000.0,EUR,2029-10-30,0.01012,Senior Secured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00539,2026-05-21,LN-C011-REV,C011,Revolving Credit Facility,Loan,Drawdown,32597000.0,USD,2028-09-18,0.00994,Senior Unsecured,100.0,,Ashford Materials,Materials,US,North America,A
+T00540,2026-05-21,LN-C029-REV,C029,Revolving Credit Facility,Loan,Repayment,-16974000.0,USD,2028-11-01,0.00964,Senior Secured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00541,2026-05-21,LN-C058-TRA,C058,Trade Finance,Loan,Drawdown,26170000.0,EUR,2027-04-08,0.01748,Senior Secured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00542,2026-05-21,LN-C076-REV,C076,Revolving Credit Facility,Loan,Drawdown,40901000.0,USD,2029-02-23,0.01447,Senior Secured,100.0,,Foxglove Group Power,Utilities,US,North America,BBB
+T00543,2026-05-26,IRS-02,D01,Interest Rate Swap,Derivative,Pay Fixed,139477000.0,EUR,2031-05-27,0.02945,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00544,2026-05-28,EQ-JPM,P-JPM,Listed Equity,Equity,Buy,115000.0,USD,,0.0,,332.69,JPM,JPMorgan Chase & Co.,Financials,US,North America,A
+T00545,2026-05-28,LN-C020-REV,C020,Revolving Credit Facility,Loan,Drawdown,24294000.0,USD,2030-05-12,0.02673,Senior Secured,100.0,,Granite Group Properties,Real Estate,IL,Middle East,BB
+T00546,2026-05-28,LN-C022-TRA,C022,Trade Finance,Loan,Commitment,27689000.0,JPY,2027-02-07,0.05141,Senior Secured,100.0,,Kestrel Group Materials,Materials,AU,Asia-Pacific,B
+T00547,2026-05-28,LN-C024-TER,C024,Term Loan,Loan,Repayment,-12831000.0,USD,2028-08-01,0.00657,Senior Secured,100.0,,Sable Group Capital,Financials,US,North America,AA
+T00548,2026-05-28,LN-C037-REV,C037,Revolving Credit Facility,Loan,Drawdown,31661000.0,USD,2033-04-28,0.01033,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00549,2026-05-31,LN-C027-TER,C027,Term Loan,Loan,Drawdown,21274000.0,USD,2030-10-10,0.01396,Senior Unsecured,100.0,,Meridian Health,Health Care,US,North America,BBB
+T00550,2026-05-31,LN-C041-TER,C041,Term Loan,Loan,Commitment,55064000.0,JPY,2031-09-05,0.0175,Senior Secured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00551,2026-06-02,LN-C063-REV,C063,Revolving Credit Facility,Loan,Commitment,19646000.0,USD,2032-07-24,0.00828,Senior Unsecured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00552,2026-06-02,LN-C083-TER,C083,Term Loan,Loan,Drawdown,32936000.0,USD,2033-02-26,0.01012,Senior Unsecured,100.0,,Jasper Foods,Consumer Staples,US,North America,A
+T00553,2026-06-03,LN-C003-TER,C003,Term Loan,Loan,Drawdown,26151000.0,USD,2031-01-10,0.04621,Senior Secured,100.0,,Halcyon Industries,Industrials,US,North America,B
+T00554,2026-06-03,LN-C028-TER,C028,Term Loan,Loan,Repayment,-7945000.0,USD,2031-12-11,0.01683,Senior Unsecured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00555,2026-06-04,LN-C039-REV,C039,Revolving Credit Facility,Loan,Commitment,59749000.0,JPY,2028-06-12,0.01476,Senior Secured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00556,2026-06-05,LN-C044-TRA,C044,Trade Finance,Loan,Drawdown,40981000.0,EUR,2027-12-08,0.01413,Senior Secured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00557,2026-06-07,LN-C045-TER,C045,Term Loan,Loan,Drawdown,23510000.0,USD,2033-01-18,0.04579,Senior Secured,100.0,,Summit Energy,Energy,MX,North America,B
+T00558,2026-06-07,LN-C048-TRA,C048,Trade Finance,Loan,Commitment,124384000.0,EUR,2027-05-13,0.00992,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00559,2026-06-08,BD-P-GOOGL,P-GOOGL,Corporate Bond,Bond,Buy,63555000.0,USD,2030-09-20,0.05662,Senior Unsecured,99.3659,,Alphabet Inc.,Communication Services,US,North America,AA
+T00560,2026-06-08,FXF-INRUSD,D01,FX Forward,Derivative,Sell Foreign,59831000.0,INR,2027-09-17,0.0,,100.0,,Silverline Bank (fictional dealer),Financials,US,North America,A
+T00561,2026-06-08,LN-C019-TER,C019,Term Loan,Loan,Repayment,-5606000.0,USD,2029-09-13,0.00596,Senior Secured,100.0,,Granite Media,Communication Services,CA,North America,AA
+T00562,2026-06-08,LN-C068-REV,C068,Revolving Credit Facility,Loan,Repayment,-11647000.0,USD,2030-06-27,0.04623,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00563,2026-06-09,LN-C061-TER,C061,Term Loan,Loan,Commitment,61527000.0,USD,2029-11-01,0.01633,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00564,2026-06-10,LN-C009-TRA,C009,Trade Finance,Loan,Repayment,-5454000.0,CNH,2027-04-12,0.02488,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00565,2026-06-10,LN-C041-REV,C041,Revolving Credit Facility,Loan,Commitment,88103000.0,JPY,2033-02-09,0.01625,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00566,2026-06-10,LN-C052-TER,C052,Term Loan,Loan,Drawdown,25998000.0,USD,2031-07-23,0.01038,Senior Unsecured,100.0,,Falcon Group Media,Communication Services,US,North America,A
+T00567,2026-06-13,LN-C059-TER,C059,Term Loan,Loan,Drawdown,6831000.0,USD,2030-08-11,0.03019,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00568,2026-06-15,LN-C028-TER,C028,Term Loan,Loan,Drawdown,26562000.0,USD,2031-12-11,0.01683,Senior Unsecured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00569,2026-06-15,LN-C033-TER,C033,Term Loan,Loan,Commitment,66115000.0,CNH,2031-10-07,0.0146,Senior Secured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00570,2026-06-16,LN-C033-REV,C033,Revolving Credit Facility,Loan,Drawdown,10977000.0,CNH,2031-03-15,0.0145,Senior Unsecured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00571,2026-06-17,LN-C025-REV,C025,Revolving Credit Facility,Loan,Repayment,-13845000.0,USD,2031-06-23,0.01251,Senior Unsecured,100.0,,Atlas Industries,Industrials,CA,North America,BBB
+T00572,2026-06-19,LN-C041-TRA,C041,Trade Finance,Loan,Commitment,55064000.0,JPY,2027-09-26,0.01648,Senior Unsecured,100.0,,Silverline Media,Communication Services,JP,Asia-Pacific,BBB
+T00573,2026-06-25,LN-C004-TER,C004,Term Loan,Loan,Commitment,40601000.0,USD,2033-02-20,0.05454,Senior Secured,100.0,,Halcyon Group Systems,Information Technology,US,North America,B
+T00574,2026-06-26,LN-C056-REV,C056,Revolving Credit Facility,Loan,Repayment,-4026000.0,USD,2032-02-16,0.05457,Senior Secured,100.0,,Beacon Group Energy,Energy,US,North America,B
+T00575,2026-06-26,LN-C079-TER,C079,Term Loan,Loan,Commitment,43332000.0,USD,2029-02-16,0.02874,Senior Secured,100.0,,Hawthorn Capital,Financials,CA,North America,BB
+T00576,2026-06-27,BD-P-GS,P-GS,Corporate Bond,Bond,Sell,-11391000.0,USD,2033-11-18,0.06704,Senior Unsecured,96.8742,,Goldman Sachs Group Inc.,Financials,US,North America,BBB
+T00577,2026-06-28,FXF-BRLUSD,D04,FX Forward,Derivative,Sell Foreign,69900000.0,BRL,2027-08-29,0.0,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00578,2026-06-28,LN-C032-TER,C032,Term Loan,Loan,Drawdown,4949000.0,USD,2028-11-25,0.0251,Senior Secured,100.0,,Quarry Group Power,Utilities,MX,North America,BB
+T00579,2026-06-28,LN-C033-REV,C033,Revolving Credit Facility,Loan,Drawdown,61706000.0,CNH,2031-03-15,0.0145,Senior Unsecured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00580,2026-06-29,LN-C046-REV,C046,Revolving Credit Facility,Loan,Repayment,-8532000.0,USD,2030-10-25,0.01541,Senior Unsecured,100.0,,Summit Group Capital,Financials,MX,North America,BBB
+T00581,2026-06-30,LN-C053-TER,C053,Term Loan,Loan,Drawdown,15124000.0,BRL,2029-12-16,0.09491,Senior Secured,100.0,,Juniper Properties,Real Estate,BR,Latin America,CCC
+T00582,2026-07-01,CDS-JPM,D02,Credit Default Swap,Derivative,Buy Protection,53389000.0,USD,2031-03-19,0.01,Senior Unsecured,100.0,P-JPM,Monarch Securities (fictional dealer),Financials,GB,Europe,A
+T00583,2026-07-03,EQ-KO,P-KO,Listed Equity,Equity,Buy,340000.0,USD,,0.0,,86.85,KO,Coca-Cola Co.,Consumer Staples,US,North America,A
+T00584,2026-07-03,LN-C055-TER,C055,Term Loan,Loan,Repayment,-10095000.0,USD,2032-01-22,0.01452,Senior Unsecured,100.0,,Beacon Materials,Materials,US,North America,BBB
+T00585,2026-07-03,LN-C062-TER,C062,Term Loan,Loan,Repayment,-14877000.0,USD,2032-08-06,0.01635,Senior Unsecured,100.0,,Oakmont Group Retail,Consumer Discretionary,US,North America,BBB
+T00586,2026-07-04,LN-C001-TRA,C001,Trade Finance,Loan,Repayment,-3580000.0,CNH,2027-11-03,0.01477,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00587,2026-07-04,LN-C065-REV,C065,Revolving Credit Facility,Loan,Commitment,59486000.0,USD,2031-06-11,0.01083,Senior Secured,100.0,,Solano Power,Utilities,US,North America,A
+T00588,2026-07-05,LN-C011-TER,C011,Term Loan,Loan,Drawdown,20831000.0,USD,2031-03-08,0.01093,Senior Unsecured,100.0,,Ashford Materials,Materials,US,North America,A
+T00589,2026-07-08,LN-C027-TER,C027,Term Loan,Loan,Drawdown,29681000.0,USD,2030-10-10,0.01396,Senior Unsecured,100.0,,Meridian Health,Health Care,US,North America,BBB
+T00590,2026-07-09,LN-C004-TER,C004,Term Loan,Loan,Drawdown,23091000.0,USD,2033-02-20,0.05454,Senior Secured,100.0,,Halcyon Group Systems,Information Technology,US,North America,B
+T00591,2026-07-12,EQ-MSFT,P-MSFT,Listed Equity,Equity,Buy,74000.0,USD,,0.0,,534.55,MSFT,Microsoft Corp.,Information Technology,US,North America,AAA
+T00592,2026-07-13,LN-C021-TER,C021,Term Loan,Loan,Drawdown,20791000.0,USD,2033-03-03,0.01574,Senior Unsecured,100.0,,Kestrel Power,Utilities,US,North America,BBB
+T00593,2026-07-14,BD-P-JPM,P-JPM,Corporate Bond,Bond,Buy,65500000.0,USD,2035-02-20,0.06119,Senior Unsecured,97.7672,,JPMorgan Chase & Co.,Financials,US,North America,A
+T00594,2026-07-15,EQ-BA,P-BA,Listed Equity,Equity,Buy,158000.0,USD,,0.0,,189.68,BA,Boeing Co.,Industrials,US,North America,BBB
+T00595,2026-07-15,LN-C044-TER,C044,Term Loan,Loan,Repayment,-7773000.0,EUR,2029-05-18,0.01607,Senior Unsecured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00596,2026-07-16,LN-C054-TER,C054,Term Loan,Loan,Commitment,24597000.0,CNH,2030-03-05,0.03123,Senior Secured,100.0,,Juniper Group Power,Utilities,CN,China,BB
+T00597,2026-07-17,BD-C067,C067,Corporate Bond,Bond,Buy,23162000.0,USD,2032-02-27,0.07389,Senior Unsecured,101.6436,,Amberly Energy,Energy,CA,North America,BB
+T00598,2026-07-17,LN-C067-TER,C067,Term Loan,Loan,Drawdown,15607000.0,USD,2031-07-30,0.02668,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00599,2026-07-19,LN-C006-TER,C006,Term Loan,Loan,Drawdown,13410000.0,USD,2031-01-15,0.0126,Senior Secured,100.0,,Brightwater Group Foods,Consumer Staples,IL,Middle East,BBB
+T00600,2026-07-19,LN-C076-REV,C076,Revolving Credit Facility,Loan,Commitment,128687000.0,USD,2029-02-23,0.01447,Senior Secured,100.0,,Foxglove Group Power,Utilities,US,North America,BBB
+T00601,2026-07-21,LN-C031-TER,C031,Term Loan,Loan,Repayment,-6728000.0,EUR,2032-04-05,0.00814,Senior Unsecured,100.0,,Quarry Properties,Real Estate,GB,Europe,A
+T00602,2026-07-21,LN-C048-TER,C048,Term Loan,Loan,Repayment,-27275000.0,EUR,2032-12-08,0.01003,Senior Unsecured,100.0,,Ironclad Group Systems,Information Technology,ES,Europe,A
+T00603,2026-07-24,EQ-META,P-META,Listed Equity,Equity,Buy,60000.0,USD,,0.0,,741.3099,META,Meta Platforms Inc.,Communication Services,US,North America,AA
+T00604,2026-07-25,LN-C060-REV,C060,Revolving Credit Facility,Loan,Repayment,-3014000.0,EUR,2029-01-06,0.00848,Senior Secured,100.0,,Aurora Group Health,Health Care,ES,Europe,A
+T00605,2026-07-28,LN-C028-REV,C028,Revolving Credit Facility,Loan,Drawdown,40143000.0,USD,2028-08-12,0.01483,Senior Secured,100.0,,Meridian Group Foods,Consumer Staples,CA,North America,BBB
+T00606,2026-07-28,LN-C037-REV,C037,Revolving Credit Facility,Loan,Drawdown,36167000.0,USD,2033-04-28,0.01033,Senior Unsecured,100.0,,Tidewater Systems,Information Technology,MX,North America,A
+T00607,2026-07-29,LN-C043-TER,C043,Term Loan,Loan,Drawdown,7837000.0,USD,2030-01-03,0.04341,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00608,2026-07-29,LN-C045-TER,C045,Term Loan,Loan,Repayment,-6307000.0,USD,2033-01-18,0.04579,Senior Secured,100.0,,Summit Energy,Energy,MX,North America,B
+T00609,2026-07-30,LN-C015-REV,C015,Revolving Credit Facility,Loan,Drawdown,16071000.0,BRL,2032-12-17,0.04154,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00610,2026-07-31,IRS-08,D04,Interest Rate Swap,Derivative,Receive Fixed,242425000.0,USD,2035-10-07,0.05125,,100.0,,Westgate Markets (fictional dealer),Financials,GB,Europe,AA
+T00611,2026-08-02,EQ-TSLA,P-TSLA,Listed Equity,Equity,Buy,97000.0,USD,,0.0,,381.36,TSLA,Tesla Inc.,Consumer Discretionary,US,North America,BBB
+T00612,2026-08-03,LN-C043-TRA,C043,Trade Finance,Loan,Drawdown,15185000.0,USD,2027-03-01,0.04336,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00613,2026-08-04,LN-C061-TER,C061,Term Loan,Loan,Drawdown,28797000.0,USD,2029-11-01,0.01633,Senior Unsecured,100.0,,Oakmont Foods,Consumer Staples,US,North America,BBB
+T00614,2026-08-04,LN-C065-TER,C065,Term Loan,Loan,Repayment,-3747000.0,USD,2029-09-15,0.01051,Senior Unsecured,100.0,,Solano Power,Utilities,US,North America,A
+T00615,2026-08-05,LN-C063-REV,C063,Revolving Credit Facility,Loan,Drawdown,10332000.0,USD,2032-07-24,0.00828,Senior Unsecured,100.0,,Riverstone Media,Communication Services,US,North America,A
+T00616,2026-08-07,LN-C030-TER,C030,Term Loan,Loan,Drawdown,22500000.0,USD,2028-04-20,0.01711,Senior Secured,100.0,,Harbor Group Media,Communication Services,US,North America,BBB
+T00617,2026-08-10,LN-C010-TER,C010,Term Loan,Loan,Repayment,-4297000.0,EUR,2028-08-08,0.00847,Senior Unsecured,100.0,,Orion Group Power,Utilities,ES,Europe,A
+T00618,2026-08-11,LN-C017-TER,C017,Term Loan,Loan,Commitment,78553000.0,USD,2030-10-19,0.05027,Senior Secured,100.0,,Lumen Foods,Consumer Staples,US,North America,B
+T00619,2026-08-11,LN-C034-REV,C034,Revolving Credit Facility,Loan,Drawdown,33596000.0,BRL,2029-09-08,0.04436,Senior Secured,100.0,,Zenith Group Energy,Energy,CL,Latin America,B
+T00620,2026-08-12,EQ-JNJ,P-JNJ,Listed Equity,Equity,Buy,107000.0,USD,,0.0,,251.86,JNJ,Johnson & Johnson,Health Care,US,North America,AAA
+T00621,2026-08-12,LN-C001-TRA,C001,Trade Finance,Loan,Drawdown,8883000.0,CNH,2027-11-03,0.01477,Senior Unsecured,100.0,,Northwind Energy,Energy,CN,China,BBB
+T00622,2026-08-13,BD-S-GILT,S-GILT,Sovereign Bond,Bond,Sell,-90067000.0,GBP,2038-01-30,0.03981,Senior Unsecured,95.8429,,UK Gilt,Sovereign,GB,Europe,AA
+T00623,2026-08-13,LN-C040-TER,C040,Term Loan,Loan,Drawdown,16925000.0,JPY,2029-09-07,0.03238,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00624,2026-08-14,LN-C047-TER,C047,Term Loan,Loan,Repayment,-4781000.0,USD,2029-05-21,0.00996,Senior Secured,100.0,,Ironclad Industries,Industrials,CA,North America,A
+T00625,2026-08-16,LN-C029-REV,C029,Revolving Credit Facility,Loan,Drawdown,54715000.0,USD,2028-11-01,0.00964,Senior Secured,100.0,,Harbor Retail,Consumer Discretionary,IL,Middle East,A
+T00626,2026-08-16,LN-C059-REV,C059,Revolving Credit Facility,Loan,Commitment,34578000.0,USD,2033-04-24,0.0235,Senior Secured,100.0,,Aurora Systems,Information Technology,US,North America,BB
+T00627,2026-08-17,BD-C069,C069,Corporate Bond,Bond,Sell,-6487000.0,JPY,2034-01-23,0.04124,Senior Unsecured,102.0556,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00628,2026-08-17,LN-C068-REV,C068,Revolving Credit Facility,Loan,Drawdown,27838000.0,USD,2030-06-27,0.04623,Senior Secured,100.0,,Amberly Group Capital,Financials,US,North America,B
+T00629,2026-08-18,EQ-AAPL,P-AAPL,Listed Equity,Equity,Buy,56000.0,USD,,0.0,,333.31,AAPL,Apple Inc.,Information Technology,US,North America,AA
+T00630,2026-08-18,LN-C066-TER,C066,Term Loan,Loan,Drawdown,15637000.0,USD,2029-04-29,0.01415,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00631,2026-08-20,LN-C083-TER,C083,Term Loan,Loan,Repayment,-15487000.0,USD,2033-02-26,0.01012,Senior Unsecured,100.0,,Jasper Foods,Consumer Staples,US,North America,A
+T00632,2026-08-21,LN-C069-REV,C069,Revolving Credit Facility,Loan,Repayment,-24557000.0,JPY,2032-11-15,0.03069,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00633,2026-08-24,LN-C036-TER,C036,Term Loan,Loan,Repayment,-8944000.0,USD,2031-12-23,0.01726,Senior Unsecured,100.0,,Evergreen Group Industries,Industrials,AE,Middle East,BBB
+T00634,2026-08-27,LN-C050-TER,C050,Term Loan,Loan,Drawdown,19936000.0,JPY,2029-10-10,0.01634,Senior Secured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00635,2026-08-28,LN-C015-TER,C015,Term Loan,Loan,Commitment,28473000.0,BRL,2033-03-01,0.05239,Senior Secured,100.0,,Vantage Systems,Information Technology,BR,Latin America,B
+T00636,2026-08-28,LN-C069-REV,C069,Revolving Credit Facility,Loan,Drawdown,25948000.0,JPY,2032-11-15,0.03069,Senior Secured,100.0,,Calder Industries,Industrials,KR,Asia-Pacific,BB
+T00637,2026-08-30,LN-C038-REV,C038,Revolving Credit Facility,Loan,Drawdown,26861000.0,EUR,2028-12-20,0.02632,Senior Secured,100.0,,Tidewater Group Health,Health Care,DE,Europe,BB
+T00638,2026-08-30,LN-C040-TRA,C040,Trade Finance,Loan,Repayment,-9171000.0,JPY,2027-09-02,0.02448,Senior Secured,100.0,,Blue Ridge Group Retail,Consumer Discretionary,JP,Asia-Pacific,BB
+T00639,2026-08-30,LN-C066-REV,C066,Revolving Credit Facility,Loan,Repayment,-4870000.0,USD,2032-01-19,0.01752,Senior Unsecured,100.0,,Solano Group Materials,Materials,MX,North America,BBB
+T00640,2026-08-30,LN-C086-TER,C086,Term Loan,Loan,Repayment,-3680000.0,EUR,2031-01-13,0.0106,Senior Unsecured,100.0,,Kingsley Group Properties,Real Estate,GB,Europe,A
+T00641,2026-09-01,LN-C033-TER,C033,Term Loan,Loan,Drawdown,21995000.0,CNH,2031-10-07,0.0146,Senior Secured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00642,2026-09-02,LN-C070-TER,C070,Term Loan,Loan,Repayment,-8994000.0,USD,2029-03-25,0.00884,Senior Unsecured,100.0,,Calder Group Systems,Information Technology,US,North America,A
+T00643,2026-09-03,LN-C043-TRA,C043,Trade Finance,Loan,Repayment,-5593000.0,USD,2027-03-01,0.04336,Senior Secured,100.0,,Redwood Power,Utilities,KZ,Russia/CIS,B
+T00644,2026-09-03,LN-C067-REV,C067,Revolving Credit Facility,Loan,Repayment,-10849000.0,USD,2029-08-17,0.02617,Senior Secured,100.0,,Amberly Energy,Energy,CA,North America,BB
+T00645,2026-09-04,EQ-CAT,P-CAT,Listed Equity,Equity,Buy,39000.0,USD,,0.0,,868.5642,CAT,Caterpillar Inc.,Industrials,US,North America,A
+T00646,2026-09-04,LN-C005-TER,C005,Term Loan,Loan,Commitment,81018000.0,EUR,2031-12-15,0.02554,Senior Secured,100.0,,Brightwater Health,Health Care,FR,Europe,BB
+T00647,2026-09-04,LN-C044-TRA,C044,Trade Finance,Loan,Repayment,-5289000.0,EUR,2027-12-08,0.01413,Senior Secured,100.0,,Redwood Group Materials,Materials,NL,Europe,BBB
+T00648,2026-09-09,LN-C033-TER,C033,Term Loan,Loan,Drawdown,9494000.0,CNH,2031-10-07,0.0146,Senior Secured,100.0,,Zenith Materials,Materials,CN,China,BBB
+T00649,2026-09-12,EQ-GS,P-GS,Listed Equity,Equity,Buy,48000.0,USD,,0.0,,901.1556,GS,Goldman Sachs Group Inc.,Financials,US,North America,BBB
+T00650,2026-09-12,LN-C039-TER,C039,Term Loan,Loan,Repayment,-10859000.0,JPY,2028-11-18,0.01425,Senior Unsecured,100.0,,Blue Ridge Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00651,2026-09-12,LN-C087-TRA,C087,Trade Finance,Loan,Repayment,-7670000.0,BRL,2028-01-12,0.00628,Senior Unsecured,100.0,,Larkspur Power,Utilities,BR,Latin America,AA
+T00652,2026-09-13,EQ-PFE,P-PFE,Listed Equity,Equity,Buy,665000.0,USD,,0.0,,27.2401,PFE,Pfizer Inc.,Health Care,US,North America,A
+T00653,2026-09-13,LN-C009-TER,C009,Term Loan,Loan,Commitment,20447000.0,CNH,2029-07-10,0.03124,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00654,2026-09-14,BD-C077,C077,Corporate Bond,Bond,Buy,10380000.0,JPY,2035-11-19,0.05782,Senior Unsecured,98.8741,,Glenmore Materials,Materials,KR,Asia-Pacific,B
+T00655,2026-09-14,LN-C074-REV,C074,Revolving Credit Facility,Loan,Repayment,-16646000.0,JPY,2032-06-26,0.02643,Senior Secured,100.0,,Elmstead Group Media,Communication Services,KR,Asia-Pacific,BB
+T00656,2026-09-15,LN-C024-TER,C024,Term Loan,Loan,Commitment,58991000.0,USD,2028-08-01,0.00657,Senior Secured,100.0,,Sable Group Capital,Financials,US,North America,AA
+T00657,2026-09-18,BD-P-TSLA,P-TSLA,Corporate Bond,Bond,Sell,-8370000.0,USD,2037-06-04,0.06564,Senior Unsecured,98.4147,,Tesla Inc.,Consumer Discretionary,US,North America,BBB
+T00658,2026-09-18,LN-C075-TER,C075,Term Loan,Loan,Drawdown,3765000.0,USD,2028-04-07,0.01567,Senior Unsecured,100.0,,Foxglove Properties,Real Estate,MX,North America,BBB
+T00659,2026-09-20,LN-C008-TER,C008,Term Loan,Loan,Commitment,40307000.0,EUR,2028-08-16,0.054,Senior Secured,100.0,,Cedar Group Media,Communication Services,ES,Europe,B
+T00660,2026-09-21,LN-C058-TER,C058,Term Loan,Loan,Repayment,-4935000.0,EUR,2033-01-02,0.01283,Senior Unsecured,100.0,,Crescent Group Industries,Industrials,IT,Europe,BBB
+T00661,2026-09-22,LN-C050-TRA,C050,Trade Finance,Loan,Commitment,37251000.0,JPY,2028-01-15,0.01358,Senior Unsecured,100.0,,Coral Group Foods,Consumer Staples,JP,Asia-Pacific,BBB
+T00662,2026-09-23,LN-C013-TER,C013,Term Loan,Loan,Drawdown,9660000.0,EUR,2029-10-29,0.02798,Senior Secured,100.0,,Pioneer Capital,Financials,DE,Europe,BB
+T00663,2026-09-25,BD-P-AMZN,P-AMZN,Corporate Bond,Bond,Sell,-11087000.0,USD,2029-12-24,0.05452,Senior Unsecured,97.6638,,Amazon.com Inc.,Consumer Discretionary,US,North America,AA
+T00664,2026-09-25,EQ-GOOGL,P-GOOGL,Listed Equity,Equity,Buy,80000.0,USD,,0.0,,347.16,GOOGL,Alphabet Inc.,Communication Services,US,North America,AA
+T00665,2026-09-25,LN-C023-TER,C023,Term Loan,Loan,Drawdown,25649000.0,USD,2028-11-22,0.01325,Senior Unsecured,100.0,,Sable Energy,Energy,CA,North America,BBB
+T00666,2026-09-25,LN-C080-TER,C080,Term Loan,Loan,Drawdown,896000.0,USD,2032-11-08,0.01396,Senior Secured,100.0,,Hawthorn Group Industries,Industrials,AE,Middle East,BBB
+T00667,2026-09-26,BD-P-CAT,P-CAT,Corporate Bond,Bond,Buy,51177000.0,USD,2034-05-28,0.06142,Senior Unsecured,100.3193,,Caterpillar Inc.,Industrials,US,North America,A
+T00668,2026-09-26,LN-C009-TER,C009,Term Loan,Loan,Repayment,-5776000.0,CNH,2029-07-10,0.03124,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00669,2026-09-26,LN-C009-TRA,C009,Trade Finance,Loan,Drawdown,4053000.0,CNH,2027-04-12,0.02488,Senior Secured,100.0,,Orion Properties,Real Estate,CN,China,BB
+T00670,2026-09-28,EQ-NVDA,P-NVDA,Listed Equity,Equity,Buy,104000.0,USD,,0.0,,241.87,NVDA,NVIDIA Corp.,Information Technology,US,North America,AA
+T00671,2026-09-30,LN-C065-REV,C065,Revolving Credit Facility,Loan,Drawdown,2056000.0,USD,2031-06-11,0.01083,Senior Secured,100.0,,Solano Power,Utilities,US,North America,A
