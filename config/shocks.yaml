@@ -1,0 +1,129 @@
+# Module B scenario library. Shocks are at scale 1.0; the trigger scales them by Impact Score
+# (impact 7 -> 0.7x, 10 -> 1.3x). Magnitudes are loosely calibrated to public historical episodes
+# and are APPROXIMATE - they illustrate a framework, not a regulatory scenario.
+#
+# units: rates_bp / spreads_bp in basis points; equity_pct, fx_pct (foreign ccy vs USD), oil_pct as fractions;
+# pd_multiplier multiplies 1-year PDs. `sector` / `region` keys override or multiply the defaults.
+
+scenarios:
+  conflict:
+    name: Geopolitical conflict & sanctions
+    analogue: "Russia-Ukraine, Feb-Mar 2022: S&P 500 ~-12% peak-to-trough, Brent ~+30%, EURUSD ~-5%, US HY ~+150bp"
+    rates_bp: {USD: -25, EUR: -20, GBP: -20, JPY: -5, BRL: 100, INR: 25, CNH: 0}
+    spreads_bp: {AAA: 10, AA: 15, A: 25, BBB: 45, BB: 120, B: 200, CCC: 400}
+    sovereign_spreads_bp: {DM: 10, EM: 150}
+    equity_pct: {default: -0.10, Energy: 0.05, Industrials: -0.12, Consumer Discretionary: -0.14,
+                 Financials: -0.12, Information Technology: -0.11}
+    fx_pct: {EUR: -0.05, GBP: -0.04, JPY: 0.02, CNH: -0.02, BRL: -0.06, INR: -0.03}
+    oil_pct: 0.30
+    pd_multiplier: {default: 1.4}
+    region_pd_multiplier: {Russia/CIS: 3.0, Europe: 1.4, Middle East: 1.4}
+
+  trade_war:
+    name: Tariff escalation / trade war
+    analogue: "US tariff shock, 2-8 Apr 2025: S&P 500 ~-12%, US HY ~+150bp, UST 10y ~+50bp in a week, WTI ~-15%"
+    rates_bp: {USD: 30, EUR: -10, GBP: 0, JPY: -5, BRL: 50, INR: 0, CNH: -10}
+    spreads_bp: {AAA: 10, AA: 15, A: 25, BBB: 50, BB: 130, B: 220, CCC: 450}
+    sovereign_spreads_bp: {DM: 5, EM: 100}
+    equity_pct: {default: -0.12, Information Technology: -0.15, Consumer Discretionary: -0.16, Industrials: -0.13,
+                 Materials: -0.12, Consumer Staples: -0.05, Utilities: -0.04, Health Care: -0.06}
+    fx_pct: {EUR: 0.03, GBP: 0.01, JPY: 0.04, CNH: -0.02, BRL: -0.05, INR: -0.02}
+    oil_pct: -0.15
+    pd_multiplier: {default: 1.3}
+    region_pd_multiplier: {China: 2.0, Asia-Pacific: 1.4, Latin America: 1.3}
+
+  rates_shock:
+    name: Hawkish rates shock
+    analogue: "2022 Fed tightening: UST 10y ~+230bp over the year, S&P 500 ~-25% peak-to-trough; the case study's
+               own example (equities -10%, rates +200bp)"
+    rates_bp: {USD: 200, EUR: 150, GBP: 175, JPY: 50, BRL: 250, INR: 100, CNH: 25}
+    spreads_bp: {AAA: 10, AA: 15, A: 30, BBB: 50, BB: 150, B: 250, CCC: 450}
+    sovereign_spreads_bp: {DM: 15, EM: 120}
+    equity_pct: {default: -0.10, Information Technology: -0.15, Communication Services: -0.14, Real Estate: -0.18,
+                 Utilities: -0.08, Energy: -0.02, Financials: -0.06}
+    fx_pct: {EUR: -0.06, GBP: -0.06, JPY: -0.10, CNH: -0.04, BRL: -0.08, INR: -0.04}
+    oil_pct: 0.0
+    pd_multiplier: {default: 1.3, Real Estate: 1.8}
+
+  growth_shock:
+    name: Recession / growth shock
+    analogue: "Feb-Mar 2020 COVID crash at roughly half strength: S&P 500 -34%, US IG +200bp, HY +600bp, UST 10y -100bp"
+    rates_bp: {USD: -100, EUR: -50, GBP: -75, JPY: -10, BRL: 50, INR: -50, CNH: -30}
+    spreads_bp: {AAA: 25, AA: 40, A: 80, BBB: 150, BB: 350, B: 550, CCC: 1000}
+    sovereign_spreads_bp: {DM: 20, EM: 250}
+    equity_pct: {default: -0.20, Energy: -0.30, Financials: -0.25, Consumer Discretionary: -0.25,
+                 Consumer Staples: -0.08, Health Care: -0.10, Utilities: -0.10}
+    fx_pct: {EUR: -0.04, GBP: -0.06, JPY: 0.05, CNH: -0.03, BRL: -0.15, INR: -0.06}
+    oil_pct: -0.40
+    pd_multiplier: {default: 2.0, Energy: 2.5, Consumer Discretionary: 2.5}
+
+  oil_shock:
+    name: Oil supply shock
+    analogue: "Mar 2022 / 1990 Gulf War: crude ~+40%, energy equities up, transport and consumers down"
+    rates_bp: {USD: 40, EUR: 30, GBP: 30, JPY: 5, BRL: 75, INR: 50, CNH: 0}
+    spreads_bp: {AAA: 5, AA: 10, A: 15, BBB: 25, BB: 80, B: 140, CCC: 300}
+    sovereign_spreads_bp: {DM: 5, EM: 80}
+    equity_pct: {default: -0.05, Energy: 0.10, Industrials: -0.08, Consumer Discretionary: -0.08, Utilities: -0.04}
+    fx_pct: {EUR: -0.03, GBP: -0.02, JPY: -0.04, CNH: -0.01, BRL: 0.02, INR: -0.04}
+    oil_pct: 0.40
+    pd_multiplier: {default: 1.15, Energy: 0.9, Industrials: 1.4}
+
+  credit_crisis:
+    name: Systemic credit crisis
+    analogue: "Between March 2023 regional-bank stress and Sep-Nov 2008: financials equity -28%, US IG +175bp
+               (BBB), HY +450bp, UST -75bp flight to quality"
+    rates_bp: {USD: -75, EUR: -50, GBP: -50, JPY: -10, BRL: 100, INR: -25, CNH: -20}
+    spreads_bp: {AAA: 30, AA: 50, A: 100, BBB: 175, BB: 450, B: 700, CCC: 1200}
+    sovereign_spreads_bp: {DM: 25, EM: 300}
+    sector_spread_multiplier: {Financials: 1.5, Real Estate: 1.5}
+    equity_pct: {default: -0.15, Financials: -0.28, Real Estate: -0.25}
+    fx_pct: {EUR: -0.03, GBP: -0.04, JPY: 0.04, CNH: -0.02, BRL: -0.10, INR: -0.04}
+    oil_pct: -0.20
+    pd_multiplier: {default: 2.0, Financials: 3.0, Real Estate: 2.5}
+
+  market_disruption:
+    name: Market-wide operational disruption
+    analogue: "Global IT / cyber outage (e.g. July 2024 CrowdStrike outage): short-lived risk-off, airlines and
+               payments hit"
+    rates_bp: {USD: -10, EUR: -5}
+    spreads_bp: {AAA: 5, AA: 5, A: 10, BBB: 20, BB: 50, B: 80, CCC: 150}
+    equity_pct: {default: -0.04, Information Technology: -0.07, Industrials: -0.05}
+    pd_multiplier: {default: 1.05}
+
+# Name-specific overlays, applied to every position referencing the signal's company
+# (its bonds, CDS, equity) and, at `sector_share`, to the rest of its sector.
+overlays:
+  credit_event: {spread_bp: 500, equity_pct: -0.40, pd_multiplier: 10.0, sector_share: 0.25}
+  operational: {spread_bp: 150, equity_pct: -0.15, pd_multiplier: 2.0, sector_share: 0.20}
+  legal: {spread_bp: 60, equity_pct: -0.08, pd_multiplier: 1.3, sector_share: 0.15}
+  mna: {spread_bp: 75, equity_pct: -0.04, pd_multiplier: 1.2, sector_share: 0.0}
+
+# event type -> scenario. `when` lists cue words checked against the headline (first match wins).
+routing:
+  Geopolitical:
+    - {when: [tariff, tariffs, "trade war", "export controls", duties, "export ban"], scenario: trade_war}
+    - {scenario: conflict}
+  Macroeconomic:
+    - {when: [recession, jobless, unemployment, contraction, slowdown, layoffs, "gdp shrinks", downturn], scenario: growth_shock}
+    - {when: [oil, crude, opec, brent, wti], scenario: oil_shock}
+    - {scenario: rates_shock}
+  Credit Event:
+    - {scenario: credit_crisis, overlay: credit_event, systemic_share_if_company: 0.35}
+  Operational Risk:
+    - {scenario: market_disruption, overlay: operational, systemic_share_if_company: 0.25}
+  Legal & Regulatory:
+    - {scenario: market_disruption, overlay: legal, systemic_share_if_company: 0.10}
+  Merger & Acquisition:
+    - {scenario: market_disruption, overlay: mna, systemic_share_if_company: 0.0}
+
+# The naive comparison: one static shock applied whatever the event (the case study's example).
+naive:
+  name: Naive static stress (event-agnostic)
+  rates_bp: {default: 200}
+  spreads_bp: {AAA: 100, AA: 100, A: 100, BBB: 100, BB: 100, B: 100, CCC: 100}
+  equity_pct: {default: -0.10}
+  pd_multiplier: {default: 1.5}
+
+region_targeting_multiplier: 1.5   # spreads / PD in regions named by the signal
+sector_targeting_multiplier: 1.3   # spreads / equity / PD for the signal's sector
+em_countries: [BR, IN, CN, MX, CL, CO, KZ, SA, AE, QA]   # emerging-market sovereigns
