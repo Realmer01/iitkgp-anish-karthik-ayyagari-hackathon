@@ -22,7 +22,9 @@ STOPWORDS = {"the", "a", "an", "and", "of", "to", "in", "on", "for", "is", "are"
              "by", "from", "its", "it", "after", "over", "says", "new", "be", "has", "have", "will"}
 
 # Social-media conventions rewritten into plain financial English that FinBERT understands.
-SLANG = {
+SLANG = {  # order matters: specific phrases before generic ones
+    r"(bears|shorts|short sellers) (got |getting |are )?(rekt|wrecked|crushed)": "the stock rallied strongly",
+    r"crushed (it|earnings|estimates)": "beat expectations strongly",
     r"to the moon": "set for a strong rally", r"mooning": "rallying strongly", r"stonks?": "stocks",
     r"bag ?holders?": "investors stuck with losses", r"rekt": "suffered heavy losses", r"tendies": "profits",
     r"diamond hands": "holding with conviction", r"paper hands": "panic selling", r"btfd|buy the dip": "buying the dip",
