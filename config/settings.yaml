@@ -23,6 +23,11 @@ replay:
   speed: 3600                                 # simulated seconds per wall-clock second
   batch_max: 32
 
+demo:                                         # offline demo: precomputed signals replayed through the bus
+  start: "2025-03-31T00:00:00Z"               # window around the April 2025 US tariff shock
+  end: "2025-04-15T00:00:00Z"
+  speed: 5400                                 # 1.5 simulated hours per second -> ~4 minutes
+
 module_a:                                     # tactical index rebalancer
   base_weighting: capped_market_cap           # capped_market_cap | equal
   base_cap: 0.15                              # max base weight per name
@@ -51,7 +56,7 @@ module_b:                                     # strategic stress tester
   cooldown_minutes: 60                        # same scenario + story is not re-run within this window
   scale_at_threshold: 0.7                     # shock multiplier at impact 7
   scale_at_max: 1.3                           # shock multiplier at impact 10
-  cet1_capital_usd: 2.6e9                     # simplified capital proxy (see README)
+  baseline_cet1_ratio: 0.13                   # simplified capital proxy: CET1 = 13% of baseline RWA
   cet1_minimum_ratio: 0.105                   # 4.5% CET1 + 2.5% conservation buffer + 3.5% assumed buffers
 
 api:
