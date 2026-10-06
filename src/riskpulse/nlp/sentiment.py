@@ -45,9 +45,31 @@ FINANCE_LEXICON = {
 }
 
 
+CLAUSE_SPLIT_RX = re.compile(r"[,;]?\s+\b(?:while|whereas|but|however|although|even as)\b\s+|;\s+", re.I)
+
+
 def split_sentences(text: str) -> list[str]:
     parts = [p.strip() for p in SENT_SPLIT_RX.split(text) if p and len(p.strip()) > 3]
     return parts or [text]
+
+
+def split_clauses(text: str) -> list[str]:
+    """Sentences, further split at contrastive conjunctions - for company-level sentiment."""
+    parts = [c.strip() for s in split_sentences(text) for c in CLAUSE_SPLIT_RX.split(s) if c and len(c.strip()) > 3]
+    return parts or [text]
+
+
+def policy_polarity(text: str, p: np.ndarray) -> np.ndarray:
+    """Read monetary-policy news from the equity investor's side: models trained on corporate news
+    see "raises rates" as positive, but tightening is negative for risk assets (and easing positive).
+    Swaps the positive/negative mass when the wording is unambiguously hawkish or dovish."""
+    from riskpulse.nlp.lexicons import DOVISH_RX, HAWKISH_RX
+
+    hawk, dove = bool(HAWKISH_RX.search(text)), bool(DOVISH_RX.search(text))
+    if hawk != dove and ((hawk and p[2] > p[0]) or (dove and p[0] > p[2])):
+        p = p.copy()
+        p[0], p[2] = p[2], p[0]
+    return p
 
 
 def summarise(p: np.ndarray) -> tuple[float, str, float]:
