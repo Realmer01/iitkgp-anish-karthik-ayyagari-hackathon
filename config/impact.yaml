@@ -1,0 +1,20 @@
+# Impact score: impact = 1 + 9 * sigmoid(intercept + sum_i weight_i * feature_i), every feature in [0, 1].
+# Expert weights below encode domain judgement; scripts/calibrate_impact.py fits weights against realised
+# absolute abnormal returns (event study) and writes models/impact_calibrated.json. `use_calibrated`
+# switches the engine to the fitted weights when that file exists.
+
+use_calibrated: true
+
+expert:
+  intercept: -5.5
+  weights:
+    severity: 3.0        # event-class prior (taxonomy.yaml), shrunk to neutral when the classifier is unsure
+    sentiment: 1.5       # |sentiment| x confidence; negative news counts fully, positive news x0.75
+    intensity: 2.5       # strongest severity cue: "bankruptcy", "invasion", "plunges 15%", "$40 billion"
+    systemic: 1.0        # market-wide 1.0 > sector 0.8 > company (scaled by market-cap share)
+    confirmation: 1.2    # distinct publishers confirming the story: 1 - exp(-(n - 1) / 3)
+    velocity: 0.5        # mentions of the story in the window: 1 - exp(-(m - 1) / 5)
+    credibility: 0.8     # tier-1 wire 1.0, other news 0.8, curated social 0.65, open social 0.5
+    novelty: 0.3         # 1 for the first report of a story, 0 for follow-ups
+
+positive_sentiment_factor: 0.75   # bad news moves prices more than good news
