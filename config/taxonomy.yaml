@@ -1,0 +1,66 @@
+# RiskPulse event taxonomy (12 classes). `severity` is the prior used by the impact score;
+# `stress` says whether a high-impact event of this type can trigger a Module B stress test.
+# ESG controversies are routed by their risk channel: litigation / fines -> Legal & Regulatory,
+# spills / accidents / labour disruption -> Operational Risk (no ESG-labelled public training data exists).
+
+events:
+  Geopolitical:
+    definition: War, sanctions, tariffs and trade conflict, elections and political instability.
+    examples: ["New tariffs on all Chinese imports escalate the trade war", "EU adopts fresh sanctions on Russian oil"]
+    severity: 0.80
+    stress: true
+  Macroeconomic:
+    definition: Central banks, rates, inflation, growth, jobs, currencies and commodity prices.
+    examples: ["Fed raises rates by 50bp", "US inflation hits a 40-year high", "Oil jumps as OPEC cuts output"]
+    severity: 0.75
+    stress: true
+  Credit Event:
+    definition: Default, bankruptcy, missed payments, rating downgrades, restructurings, bank runs.
+    examples: ["Retailer files for Chapter 11", "Moody's cuts issuer to junk", "Regional lender seized by FDIC"]
+    severity: 0.90
+    stress: true
+  Merger & Acquisition:
+    definition: Acquisitions, mergers, takeovers, stake purchases, divestitures and spin-offs.
+    examples: ["Company agrees to acquire rival for $20bn in cash", "Activist takes stake in conglomerate"]
+    severity: 0.60
+    stress: true
+  Product Launch:
+    definition: New products and services, launches, unveilings and regulatory product approvals.
+    examples: ["Apple unveils new iPhone lineup", "FDA approves Pfizer's new drug"]
+    severity: 0.40
+    stress: false
+  Earnings:
+    definition: Quarterly results, revenue and profit, guidance changes and profit warnings.
+    examples: ["Nvidia beats estimates and raises guidance", "Walmart cuts full-year outlook"]
+    severity: 0.55
+    stress: false
+  Legal & Regulatory:
+    definition: Lawsuits, fines, investigations, antitrust action and new regulation.
+    examples: ["DOJ sues Google over ad-tech monopoly", "EU fines Meta for data-privacy breach"]
+    severity: 0.60
+    stress: true
+  Leadership Change:
+    definition: CEO/CFO/chair appointments, resignations and dismissals.
+    examples: ["Boeing names new chief executive", "CFO steps down unexpectedly"]
+    severity: 0.50
+    stress: false
+  Operational Risk:
+    definition: Outages, cyber attacks, recalls, accidents, strikes, supply disruption, natural disasters.
+    examples: ["Ransomware attack halts pipeline operations", "Automaker recalls 1 million cars"]
+    severity: 0.70
+    stress: true
+  Analyst Rating:
+    definition: Broker upgrades/downgrades of a stock and price-target changes.
+    examples: ["Goldman upgrades Caterpillar to Buy", "Analysts cut Tesla price target"]
+    severity: 0.40
+    stress: false
+  Capital Markets:
+    definition: IPOs, share offerings, buybacks and dividends.
+    examples: ["Coca-Cola raises quarterly dividend", "Exxon announces $20bn buyback"]
+    severity: 0.35
+    stress: false
+  General News:
+    definition: Market commentary, price moves without a stated cause, opinion and other news.
+    examples: ["Stocks to watch this week", "Tesla shares up 3% in pre-market trading"]
+    severity: 0.15
+    stress: false
