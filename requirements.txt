@@ -1,0 +1,6 @@
+# Full tier (FinBERT + sentence embeddings). CPU-only is enough.
+-r requirements-lite.txt
+torch==2.11.0
+transformers==5.8.0
+tokenizers==0.22.2
+sentence-transformers==5.5.0

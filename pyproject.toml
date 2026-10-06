@@ -1,0 +1,20 @@
+[project]
+name = "riskpulse"
+version = "1.0.0"
+description = "Real-time AI/NLP financial risk engine with index-rebalancing and stress-testing modules"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "scripts"]
+testpaths = ["tests"]
+addopts = "-q"
