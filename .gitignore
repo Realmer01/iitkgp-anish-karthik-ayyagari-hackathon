@@ -38,3 +38,6 @@ runtime/
 Thumbs.db
 .vscode/
 .idea/
+
+# Derived training tables (rebuilt in seconds by scripts/build_training_data.py)
+data/processed/events_*.csv
