@@ -86,6 +86,30 @@ def _fit_nonneg_logit(X: np.ndarray, y: np.ndarray, l2: float = 1e-2) -> tuple[f
     return float(res.x[0]), res.x[1:]
 
 
+def market_level(tier: str = "full") -> dict:
+    """MARKET-entity signals vs the S&P 500's own move: the scope Module B stress tests care about."""
+    close = pd.read_csv(PRICES / "prices_daily.csv", index_col=0, parse_dates=True)
+    days = _trading_days(close)
+    r = close["SPY"].pct_change(fill_method=None)
+    s = pd.read_csv(OUTPUT / f"signals_history_{tier}.csv.gz")
+    s = s[s["entity_type"] == "market"].copy()
+    s["published_at"] = pd.to_datetime(s["published_at"], utc=True, format="ISO8601")
+    s["D"] = [event_day(t, p, days) for t, p in zip(s["published_at"], s["time_precision"])]
+    s = s.dropna(subset=["D"])
+    s["abs_s"] = s["sentiment"].abs()
+    g = s.groupby("D").agg(impact=("impact", "max"), abs_s=("abs_s", "max"), volume=("impact", "size"))
+    pos = {d: i for i, d in enumerate(days)}
+    g["move"] = [abs(r.iloc[pos[d]] + r.iloc[pos[d] + 1]) if pos[d] + 1 < len(days) else np.nan for d in g.index]
+    g = g.dropna()
+    test = g[g.index > g.index[int(len(g) * 0.6)]]
+    rows = [{"score": n, "spearman_all_days": round(float(spearmanr(g[c], g["move"])[0]), 4),
+             "spearman_test_period": round(float(spearmanr(test[c], test["move"])[0]), 4)}
+            for n, c in (("Impact score (RiskPulse)", "impact"), ("|Sentiment| only (naive)", "abs_s"),
+                         ("News volume", "volume"))]
+    return {"n_days": int(len(g)), "table": rows,
+            "note": "Daily max over market-wide signals vs |SPY return| over [D, D+1]."}
+
+
 def evaluate(tier: str = "full", write_calibration: bool = True) -> dict:
     df = ticker_days(tier)
     table = []
@@ -123,6 +147,7 @@ def evaluate(tier: str = "full", write_calibration: bool = True) -> dict:
             path.unlink()
     return {"n_ticker_days": int(len(df)), "period": [str(df["D"].min().date()), str(df["D"].max().date())],
             "table": table, "deciles": dec.to_dict(orient="records"), "calibration": calib,
+            "market_level": market_level(tier),
             "note": "Market-adjusted abnormal returns from data/prices. Event window [D, D+1] because most archive "
                     "timestamps are date-only. Forward window opens after the news is public (next open). "
                     f"Calibration {'adopted' if adopt else 'not adopted (did not beat the expert weights out of sample)'}."}
