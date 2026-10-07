@@ -120,9 +120,11 @@ def live_feed(refresh: int) -> None:
         k[1].metric("High-impact (>7)", f"{high:,}", help="among the latest 400 signals")
         k[2].metric("Stress tests run", f"{len(runs):,}")
         k[3].metric("Engine tier", eng.get("model_tier", "loading…"))
-        k[4].metric("Latency p50", f"{eng['latency_ms_p50']:.0f} ms" if eng.get("latency_ms_p50") else "n/a",
-                    help="engine time per document (live / replay modes)")
-        k[5].metric("Clock (UTC)", stats.get("clock", {}).get("now", "")[:16].replace("T", " "))
+        lat = sorted(r["latency_ms"] for r in rows if r.get("latency_ms"))
+        k[4].metric("Engine latency p50", f"{lat[len(lat) // 2]:.0f} ms / doc" if lat else "n/a",
+                    help="engine processing time per document, measured when each signal was produced")
+        now = pd.to_datetime(stats.get("clock", {}).get("now")) if stats.get("clock") else None
+        k[5].metric("Clock (UTC)", now.strftime("%d %b %Y %H:%M") if now is not None else "-")
         st.markdown("##### Latest signals")
         _signal_table(rows[:60])
         if rows:

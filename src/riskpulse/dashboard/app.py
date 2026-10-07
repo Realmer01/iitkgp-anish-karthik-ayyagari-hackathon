@@ -32,7 +32,8 @@ def sidebar() -> None:
         st.markdown(f"**Mode:** `{stats.get('mode')}` · **Engine:** "
                     f"`{(stats.get('engine') or {}).get('model_tier', 'loading')}`"
                     + ("" if health.get("engine_ready") else " ⏳"))
-        st.markdown(f"**Clock:** {clock.get('now', '')[:16].replace('T', ' ')} UTC")
+        st.markdown(f"**Clock:** {clock.get('now', '')[:16].replace('T', ' ')} UTC"
+                    + (" · paused" if clock.get("paused") else ""))
         if clock.get("mode") == "replay":
             st.caption(f"Replay window {stats['window'][0][:10]} → {stats['window'][1][:10]}"
                        + (" · finished" if stats.get("replay_finished") else ""))
