@@ -178,10 +178,12 @@ SECTORS: dict[str, list[str]] = {
 }
 SECTOR_RX = {sector: _rx(terms) for sector, terms in SECTORS.items()}
 
+# Specific market-wide phrases only: bare "stocks" / "markets" / "investors" also appear in
+# company- and sector-specific headlines ("hotel stocks downgraded") and over-linked them to MARKET.
 MARKET_WIDE = [
-    "stock market", "stocks", "equities", "wall street", "s&p 500", "s&p500", "dow jones", "the dow",
-    "nasdaq", "russell 2000", "global markets", "markets", "investors", "bond market", "treasuries",
-    "risk assets", "vix", "volatility index",
+    "stock market", "stock markets", "equity markets", "wall street", "s&p 500", "s&p500", "dow jones", "the dow",
+    "nasdaq", "russell 2000", "global markets", "world markets", "bond market", "treasuries",
+    "risk assets", "vix", "volatility index", "us stocks", "u.s. stocks", "global stocks", "world stocks",
 ] + MACRO
 MARKET_RX = _rx(MARKET_WIDE)
 
