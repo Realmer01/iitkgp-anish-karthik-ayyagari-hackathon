@@ -70,7 +70,10 @@ class RawDocument(BaseModel):
 
     def model_post_init(self, __context) -> None:
         if not self.id:
-            key = f"{self.source}|{self.url}|{self.title}|{self.text[:200]}"
+            # publisher + timestamp included: the same headline from another outlet, or republished days
+            # later, is a different document (otherwise their signal ids would collide)
+            key = (f"{self.source}|{self.publisher}|{self.author}|{self.published_at.isoformat()}|{self.url}|"
+                   f"{self.title}|{self.text[:200]}")
             self.id = hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
 
     @property
