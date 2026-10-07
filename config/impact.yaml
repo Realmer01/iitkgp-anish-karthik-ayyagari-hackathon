@@ -6,7 +6,7 @@
 use_calibrated: true
 
 expert:
-  intercept: -5.5
+  intercept: -6.27     # scale only: ~10% of archive signals score above 7 (the Module B threshold); rankings unchanged
   weights:
     severity: 3.0        # event-class prior (taxonomy.yaml), shrunk to neutral when the classifier is unsure
     sentiment: 1.5       # |sentiment| x confidence; negative news counts fully, positive news x0.75
