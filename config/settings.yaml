@@ -30,12 +30,14 @@ demo:                                         # offline demo: precomputed signal
 
 module_a:                                     # tactical index rebalancer
   base_weighting: capped_market_cap           # capped_market_cap | equal
-  base_cap: 0.15                              # max base weight per name
+  base_cap: 0.15                              # base weights: market cap, capped at 15% ...
+  base_floor: 0.01                            # ... and floored at 1% (keeps small names investable)
   kappa: 0.8                                  # tilt strength in w_i ~ b_i * exp(kappa * s_i)
-  min_weight: 0.02
-  max_weight: 0.15
-  max_active_weight: 0.05                     # |w_i - b_i| limit
-  drift_band: 0.005                           # rebalance only if some |target - current| exceeds 50 bp
+  min_weight: 0.005                           # per-stock bounds after tilting
+  max_weight: 0.18
+  max_active_weight: 0.04                     # |w_i - b_i| limit
+  drift_band: 0.005                           # rebalance only if some |target - current| exceeds
+  drift_band_relative: 0.25                   # min(50 bp, 25% of the name's base weight)
   max_turnover_per_rebalance: 0.10            # one-way
   transaction_cost_bps: 5
   half_life_hours: 12                         # EWMA decay of the per-ticker sentiment signal
