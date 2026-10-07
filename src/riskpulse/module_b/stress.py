@@ -72,6 +72,9 @@ def run(shocks: scenarios.ShockSet, trigger: dict | None = None, now: datetime |
 
 def what_if(event_type: str, impact: float, headline: str = "", ticker: str = "", sector: str = "",
             regions: list[str] | None = None) -> dict:
+    if ticker and not sector:
+        from riskpulse.universe import by_ticker
+        sector = by_ticker()[ticker].sector if ticker in by_ticker() else ""
     entity_type = "company" if ticker else ("sector" if sector else "market")
     shocks = scenarios.build(event_type, impact, headline, entity_type, ticker, sector, regions or [])
     return run(shocks, trigger={"type": "what-if", "event_type": event_type, "impact": impact, "headline": headline,
