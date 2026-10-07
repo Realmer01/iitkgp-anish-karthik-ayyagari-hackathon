@@ -165,10 +165,10 @@ def blotter(cp: pd.DataFrame) -> pd.DataFrame:
     for t in ["NVDA", "AMZN", "META", "XOM"]:                               # client-facilitation total-return swaps
         add(f"TRS-{t}", str(RNG.choice(dealers)), "Equity Total Return Swap", "Derivative", "Receive Equity",
             RNG.uniform(20e6, 50e6), "USD", mat(0.5, 1.5), underlying=t)
-    for k, (strike, ntl) in enumerate([(0.95, 200e6), (0.90, 150e6), (0.85, 100e6)]):
+    for k, (strike, ntl) in enumerate([(0.95, 120e6), (0.90, 80e6), (0.85, 50e6)]):
         add(f"OPT-SPX-P{k + 1}", "D02", "Equity Index Put Option", "Derivative", "Buy", ntl, "USD", mat(0.25, 0.75),
             strike, underlying="SPY")
-    add("EQF-SPX", "D02", "Equity Index Future", "Derivative", "Sell", 180e6, "USD", mat(0.2, 0.25), underlying="SPY")
+    add("EQF-SPX", "D02", "Equity Index Future", "Derivative", "Sell", 120e6, "USD", mat(0.2, 0.25), underlying="SPY")
     add("CMD-WTI", "D03", "Commodity Swap", "Derivative", "Pay Floating", 120e6, "USD", mat(0.5, 1.5), underlying="CL=F")
 
     df = pd.DataFrame(tx).merge(cp[["cpty_id", "name", "sector", "country", "region", "rating"]], on="cpty_id")
