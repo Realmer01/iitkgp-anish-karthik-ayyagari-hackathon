@@ -75,7 +75,7 @@ def fingerprint(text: str) -> str:
     return hashlib.md5(re.sub(r"[^a-z0-9]+", " ", text.lower()).strip().encode()).hexdigest()
 
 
-@dataclass
+@dataclass(eq=False)          # identity semantics: stories hold numpy arrays
 class Story:
     story_id: str
     centroid: np.ndarray
@@ -97,51 +97,60 @@ class Assignment:
 class StoryClusterer:
     """Online clustering of documents into stories over a sliding window.
 
-    * exact duplicate (same fingerprint)                         -> dropped
-    * near-duplicate (cosine >= dedup, same origin)              -> dropped (re-posts, syndication)
-    * same story (cosine >= story threshold)                     -> merged: mention_count += 1,
-                                                                    origin added to `sources`
-    * otherwise                                                  -> new story (novel = True)
-    Cross-source confirmation (len(sources)) and velocity feed the impact score.
+    * exact duplicate text (same fingerprint)       -> dropped; if another outlet republished it
+                                                       (syndication) the story's mention count rises
+                                                       (reach) but it is NOT an independent source
+    * near-duplicate (cosine >= dedup, same origin)  -> dropped (re-posts)
+    * same story (cosine >= story threshold vs the   -> merged: mention_count += 1, origin added to
+      story's FIRST report)                             `sources` (independent confirmation)
+    * otherwise                                      -> new story (novel = True)
+    Stories expire `window` hours after their first report. Thresholds were tuned on real headlines
+    (data/raw/news_history, April 2025): bge-small 0.85, hashed TF 0.55.
     """
 
-    def __init__(self, dedup_threshold: float = 0.92, story_threshold: float = 0.72,
+    def __init__(self, dedup_threshold: float = 0.95, story_threshold: float = 0.85,
                  window_hours: float = 24.0, max_stories: int = 5000):
         self.dedup, self.story_threshold = dedup_threshold, story_threshold
         self.window = timedelta(hours=window_hours)
         self.stories: deque[Story] = deque(maxlen=max_stories)
-        self._fingerprints: dict[str, datetime] = {}
+        self._fingerprints: dict[str, tuple[datetime, Story | None]] = {}
         self._lock = threading.Lock()
 
     def _evict(self, now: datetime) -> None:
-        while self.stories and now - self.stories[0].last_seen > self.window:
+        # A story lives for `window` after its FIRST report: continuous coverage of a company must not
+        # keep one ever-growing cluster alive (which would inflate confirmation counts).
+        while self.stories and now - self.stories[0].first_seen > self.window:
             self.stories.popleft()
         if len(self._fingerprints) > 100_000:
             cutoff = now - self.window
-            self._fingerprints = {k: t for k, t in self._fingerprints.items() if t >= cutoff}
+            self._fingerprints = {k: v for k, v in self._fingerprints.items() if v[0] >= cutoff}
 
     def assign(self, emb: np.ndarray, origin: str, ts: datetime, text: str) -> Assignment:
         with self._lock:
             self._evict(ts)
             fp = fingerprint(text)
-            if fp in self._fingerprints and ts - self._fingerprints[fp] <= self.window:
-                return Assignment("", 0, [], duplicate=True, novel=False)
-            self._fingerprints[fp] = ts
+            seen = self._fingerprints.get(fp)
+            if seen and ts - seen[0] <= self.window:
+                story = seen[1]
+                if story is not None and ts - story.first_seen <= self.window and origin not in story.sources:
+                    story.mentions += 1                      # syndicated copy: more reach, same source
+                    return Assignment(story.story_id, story.mentions, list(story.sources), True, False)
+                return Assignment(story.story_id if story else "", 0, [], duplicate=True, novel=False)
             best, sim = None, -1.0
             if self.stories:
                 sims = np.stack([s.centroid for s in self.stories]) @ emb
                 i = int(np.argmax(sims))
                 best, sim = self.stories[i], float(sims[i])
             if best is not None and sim >= self.story_threshold:
+                self._fingerprints[fp] = (ts, best)
                 if sim >= self.dedup and origin in best.sources:
                     return Assignment(best.story_id, best.mentions, list(best.sources), duplicate=True, novel=False)
-                best.mentions += 1
-                best.centroid = best.centroid + (emb - best.centroid) / best.mentions
-                best.centroid /= np.linalg.norm(best.centroid) + 1e-9
+                best.mentions += 1          # the seed (first report) stays the reference: no centroid drift
                 if origin not in best.sources:
                     best.sources.append(origin)
                 best.last_seen = max(best.last_seen, ts)
                 return Assignment(best.story_id, best.mentions, list(best.sources), duplicate=False, novel=False)
             story = Story(f"S{uuid.uuid4().hex[:10]}", emb.copy(), ts, ts, [origin])
             self.stories.append(story)
+            self._fingerprints[fp] = (ts, story)
             return Assignment(story.story_id, 1, [origin], duplicate=False, novel=True)

@@ -39,6 +39,22 @@ def test_story_clusterer_dedup_and_corroboration():
     assert c.novel and c.story_id != a.story_id
 
 
+def test_syndicated_copy_adds_reach_not_confirmation():
+    sc = StoryClusterer(dedup_threshold=0.95, story_threshold=0.85)
+    sc.assign(unit([1, 0, 0]), "AP", T0, "Fed holds rates steady")
+    dup = sc.assign(unit([1, 0, 0]), "Yahoo", T0 + timedelta(minutes=5), "Fed holds rates steady")
+    assert dup.duplicate and dup.mention_count == 2 and dup.sources == ["AP"]
+
+
+def test_story_expires_from_first_report_despite_continuous_coverage():
+    """Regression: one company's stream of news must not grow a months-long 'story'."""
+    sc = StoryClusterer(story_threshold=0.85, window_hours=24)
+    first = sc.assign(unit([1, 0]), "a", T0, "Nvidia story number 0")
+    for h in range(1, 30):
+        last = sc.assign(unit([1, 0]), f"p{h}", T0 + timedelta(hours=h * 2), f"Nvidia story number {h}")
+    assert last.story_id != first.story_id and last.mention_count < 13
+
+
 def test_story_window_expires():
     sc = StoryClusterer(window_hours=1)
     a = sc.assign(unit([1, 0]), "x", T0, "first text here")

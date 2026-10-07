@@ -38,7 +38,6 @@ from riskpulse.nlp.tier import resolve_tier
 from riskpulse.schema import RawDocument, RiskSignal, SourceType
 
 log = logging.getLogger("riskpulse.engine")
-STORY_THRESHOLDS = {"full": (0.92, 0.72), "lite": (0.85, 0.55)}   # (dedup, same-story) cosine per vector space
 LONG_TEXT_CHARS = 280
 
 
@@ -65,7 +64,8 @@ class RiskEngine:
         log.info("RiskEngine ready in %.1fs: %s", time.perf_counter() - t0, self.model_version)
 
     def _new_clusterer(self) -> StoryClusterer:
-        dedup, story = STORY_THRESHOLDS[self.tier]
+        dedup = float(config.get(f"engine.dedup_similarity.{self.tier}", 0.95))
+        story = float(config.get(f"engine.story_similarity.{self.tier}", 0.85))
         return StoryClusterer(dedup_threshold=dedup, story_threshold=story,
                               window_hours=float(config.get("engine.story_window_hours", 24)))
 

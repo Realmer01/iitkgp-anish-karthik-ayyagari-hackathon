@@ -7,8 +7,9 @@ engine:
   batch_size: 32
   min_chars: 20
   min_words: 4
-  dedup_similarity: 0.92                      # same publisher + cosine >= this -> duplicate, dropped
-  story_similarity: 0.72                      # cosine >= this -> same story (corroboration)
+  dedup_similarity: {full: 0.95, lite: 0.90}  # same publisher + cosine >= this -> duplicate, dropped
+  story_similarity: {full: 0.85, lite: 0.55}  # cosine to a story's first report >= this -> same story;
+                                              # tuned on April 2025 headlines (bge vs hashed TF vectors)
   story_window_hours: 24
 
 ingestion:
