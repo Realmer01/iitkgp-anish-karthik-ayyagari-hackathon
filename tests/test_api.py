@@ -45,7 +45,7 @@ def test_analyze_preview_and_inject(client):
 
 def test_modules_endpoints(client):
     state = client.get("/module-a/state").json()
-    assert abs(sum(w["weight"] for w in state["weights"]) - 1) < 1e-6
+    assert abs(sum(w["weight"] for w in state["weights"]) - 1) < 1e-4   # weights are rounded to 5 dp
     assert client.get("/module-a/weights").json()
     runs = client.get("/module-b/runs").json()
     assert "monitor" in runs
