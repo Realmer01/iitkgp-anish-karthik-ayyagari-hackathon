@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-lite:
+    runs-on: ubuntu-latest
+    env:
+      RISKPULSE_TIER: lite   # no torch in CI: exercises the automatic lite fallback end to end
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-lite.txt
+      - name: Install (lite tier)
+        run: pip install -r requirements-lite.txt
+      - name: Lint
+        run: ruff check src scripts tests run.py
+      - name: Tests
+        run: pytest
+      - name: Evaluation smoke run (lite)
+        run: python run.py evaluate --quick
