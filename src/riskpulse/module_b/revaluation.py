@@ -17,7 +17,7 @@ from riskpulse.module_b.scenarios import ShockSet
 from riskpulse.universe import by_ticker
 
 COMPONENTS = ("pnl_rates", "pnl_spread", "pnl_credit", "pnl_equity", "pnl_fx", "pnl_commodity")
-VOL_UP_PER_EQUITY_DOWN = 1.5   # +1.5 vol points per 1% equity fall (VIX ~21 -> ~45 on the Apr-2025 -12% move)
+VOL_UP_PER_EQUITY_DOWN = 2.5   # implied-vol points per 1% equity fall: VIX 21 -> 52 on SPY -12.1%, Apr 2025
 
 
 def _sector_of(ticker: str, default: str) -> str:
