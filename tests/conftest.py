@@ -1,9 +1,11 @@
 import os
+import tempfile
 from datetime import datetime, timezone
 
 import pytest
 
 os.environ.setdefault("RISKPULSE_TIER", "lite")   # the test-suite never needs torch
+os.environ["RISKPULSE_RUNTIME"] = tempfile.mkdtemp(prefix="riskpulse-test-")   # never touch ./runtime
 
 from riskpulse.schema import Entity, ImpactDrivers, RiskSignal  # noqa: E402
 
