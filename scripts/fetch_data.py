@@ -59,11 +59,19 @@ def fetch_prices() -> None:
     daily.dropna(how="all").round(4).to_csv(PRICES / "prices_daily.csv")
     print(f"  prices_daily.csv: {daily.shape[0]} days x {daily.shape[1]} series")
 
-    hourly = yf.download(tickers() + ["SPY"], period="730d", interval="1h", auto_adjust=True, progress=False)["Close"]
-    hourly.index = pd.to_datetime(hourly.index, utc=True)
-    hourly.index.name = "timestamp_utc"
-    hourly.dropna(how="all").round(3).to_csv(PRICES / "prices_hourly.csv.gz", compression="gzip")
-    print(f"  prices_hourly.csv.gz: {hourly.shape[0]} bars ({hourly.index.min()} .. {hourly.index.max()})")
+    # Open prices let the backtest earn open-to-open returns: weights chosen at a bar's start never earn
+    # an overnight gap that happened before they could have been traded.
+    raw = yf.download(tickers() + ["SPY"], period="730d", interval="1h", auto_adjust=True, progress=False)
+    for field in ("Open", "Close"):
+        bars = raw[field].copy()
+        bars.index = pd.to_datetime(bars.index, utc=True)
+        bars.index.name = "bar_start_utc"
+        bars.dropna(how="all").round(3).to_csv(PRICES / f"prices_hourly_{field.lower()}.csv.gz", compression="gzip")
+    print(f"  prices_hourly_{{open,close}}.csv.gz: {raw.shape[0]} bars ({raw.index.min()} .. {raw.index.max()})")
+    opens = yf.download(tickers() + ["SPY"], period="2y", interval="1d", auto_adjust=True, progress=False)["Open"]
+    opens.index = pd.to_datetime(opens.index).date
+    opens.index.name = "date"
+    opens.dropna(how="all").round(4).to_csv(PRICES / "prices_daily_open.csv")
 
     caps = []
     for t in tickers():
