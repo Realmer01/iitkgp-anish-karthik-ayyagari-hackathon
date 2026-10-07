@@ -1,7 +1,8 @@
 """Revalue every position under a ShockSet (sensitivity-based, with full repricing for options).
 
   bonds        dP/P = -D_mod * dy + 0.5 * C * dy^2,  dy = rate shift + spread shift
-  loans        dEL  = EAD * (PD' - PD) * LGD  (impairment through P&L); PD' = min(1, PD * multiplier)
+  loans        IFRS 9 expected credit loss: 12-month EAD*PD'*LGD, or lifetime EAD*LGD*(1-(1-PD')^T) once
+               PD' = PD * multiplier >= SICR multiple x PD (Stage 2); the ECL increase is the credit P&L
   IRS          dV   = DV01 * d(rate) in bp           CDS  dV = CS01 * d(spread) in bp
   FX forwards  dV   = -N * dFX                       non-USD assets also carry FX translation P&L
   equity/TRS   dV   = delta * d(equity)              index puts: Black-Scholes repricing, vol up in sell-offs
@@ -12,11 +13,13 @@ from __future__ import annotations
 
 import pandas as pd
 
+from riskpulse import config
 from riskpulse.module_b.portfolio import bs_put, market
 from riskpulse.module_b.scenarios import ShockSet
 from riskpulse.universe import by_ticker
 
 COMPONENTS = ("pnl_rates", "pnl_spread", "pnl_credit", "pnl_equity", "pnl_fx", "pnl_commodity")
+SICR_PD_MULTIPLE = float(config.get("module_b.sicr_pd_multiple", 2.0))
 VOL_UP_PER_EQUITY_DOWN = 2.5   # implied-vol points per 1% equity fall: VIX 21 -> 52 on SPY -12.1%, Apr 2025
 
 
@@ -43,9 +46,15 @@ def revalue(pos: pd.DataFrame, s: ShockSet) -> pd.DataFrame:
             r["pnl_fx"] = (p.value + total) * fxs
             r["stressed_pd"] = min(1.0, p.pd * s.pd_multiplier(p.sector, p.region, p.ticker))
         elif p.asset_class == "Loan":
-            pd_new = min(1.0, p.pd * s.pd_multiplier(p.sector, p.region, p.ticker))
+            mult = s.pd_multiplier(p.sector, p.region, p.ticker)
+            pd_new = min(1.0, p.pd * mult)
             r["stressed_pd"] = pd_new
-            r["pnl_credit"] = -p.ead * (pd_new - p.pd) * p.lgd
+            # IFRS 9: a significant increase in credit risk (PD x >= SICR multiple) moves the loan to Stage 2,
+            # which books LIFETIME expected loss instead of 12-month - the "cliff effect" of stress tests.
+            stage2 = mult >= SICR_PD_MULTIPLE
+            ecl_new = p.ead * p.lgd * (1 - (1 - pd_new) ** max(p.years, 1.0)) if stage2 else p.ead * pd_new * p.lgd
+            r["stage"] = 2 if stage2 else 1
+            r["pnl_credit"] = -(ecl_new - p.el)
             r["pnl_fx"] = (p.value + r["pnl_credit"]) * fxs
         elif p.asset_class == "Equity":
             r["pnl_equity"] = p.value * s.equity_pct(p.sector, p.ticker)
