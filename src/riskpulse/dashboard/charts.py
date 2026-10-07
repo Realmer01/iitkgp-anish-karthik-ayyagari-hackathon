@@ -4,7 +4,7 @@ from __future__ import annotations
 import pandas as pd
 import plotly.graph_objects as go
 
-from riskpulse.dashboard.theme import (AXIS, DIVERGING, MUTED, NEG, POS, SEQUENTIAL, SERIES, SURFACE)
+from riskpulse.dashboard.theme import AXIS, DIVERGING, MUTED, NEG, POS, SEQUENTIAL, SERIES, SURFACE
 
 
 def _finish(fig: go.Figure, title: str, height: int) -> go.Figure:

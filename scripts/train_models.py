@@ -15,7 +15,6 @@ from __future__ import annotations
 import argparse
 import time
 
-import _bootstrap  # noqa: F401
 import joblib
 import numpy as np
 import pandas as pd
@@ -25,6 +24,7 @@ from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import MODELS, PROCESSED, RAW
 from riskpulse.nlp.preprocess import clean, normalize_social
 from riskpulse.nlp.sentiment import LABELS, LiteSentiment

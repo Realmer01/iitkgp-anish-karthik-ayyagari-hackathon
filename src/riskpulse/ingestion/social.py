@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import random
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 
@@ -76,7 +76,7 @@ class SocialCorpusSource(Source):
     def __init__(self, per_poll: int = 2, now: Callable[[], datetime] | None = None, seed: int = 7):
         super().__init__()
         self.texts, self.per_poll, self._i = corpus_posts(seed=seed), per_poll, 0
-        self.now = now or (lambda: datetime.now(timezone.utc))
+        self.now = now or (lambda: datetime.now(UTC))
 
     def fetch(self) -> list[RawDocument]:
         out = []

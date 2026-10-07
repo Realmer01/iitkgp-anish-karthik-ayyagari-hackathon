@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import os
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus, urlparse
 
@@ -28,10 +28,10 @@ def parse_date(value: str | None) -> datetime:
                       lambda v: datetime.fromisoformat(v.replace("Z", "+00:00"))):
             try:
                 dt = parse(value)
-                return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt.astimezone(timezone.utc)
+                return dt.replace(tzinfo=UTC) if dt.tzinfo is None else dt.astimezone(UTC)
             except (TypeError, ValueError):
                 continue
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def short_name(name: str) -> str:

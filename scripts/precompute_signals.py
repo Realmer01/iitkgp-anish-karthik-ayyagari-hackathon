@@ -12,9 +12,9 @@ import argparse
 import gzip
 import time
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse import config
 from riskpulse.config import OUTPUT, RAW
 from riskpulse.engine import RiskEngine

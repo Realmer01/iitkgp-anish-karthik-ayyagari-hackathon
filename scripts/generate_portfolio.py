@@ -15,10 +15,10 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 
-import _bootstrap  # noqa: F401
 import numpy as np
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import PORTFOLIO, PRICES
 
 RNG = np.random.default_rng(20261006)

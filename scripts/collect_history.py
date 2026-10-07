@@ -16,9 +16,9 @@ import time
 import zlib
 from datetime import date, timedelta
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import RAW
 from riskpulse.ingestion.news import GoogleNewsSource
 from riskpulse.universe import companies

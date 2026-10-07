@@ -9,9 +9,9 @@ model predictions in data/labeled/gold_labels.csv (see data/README.md for the la
 """
 from __future__ import annotations
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import LABELED, RAW
 from riskpulse.nlp import lexicons as lx
 from riskpulse.nlp.entities import link

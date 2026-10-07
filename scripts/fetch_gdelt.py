@@ -9,12 +9,12 @@ from __future__ import annotations
 
 import argparse
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 import requests
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import RAW
 from riskpulse.ingestion.news import GDELT_URL, parse_gdelt_articles, short_name
 from riskpulse.universe import companies
@@ -59,7 +59,7 @@ def main() -> None:
     prior = pd.read_csv(OUT) if OUT.exists() else pd.DataFrame(columns=["query_key", "slice"])
     done = set(zip(prior["query_key"], prior["slice"]))
     rows = prior.to_dict("records")
-    end = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    end = datetime.now(UTC).replace(minute=0, second=0, microsecond=0)
     names = [query_for(c.name) for c in companies()]
     # GDELT throttles hard per IP, so companies are grouped into OR-queries (fewer, larger requests).
     jobs = [(f"COMPANIES_{i // 6 + 1}", f"({' OR '.join(names[i:i + 6])})") for i in range(0, len(names), 6)]

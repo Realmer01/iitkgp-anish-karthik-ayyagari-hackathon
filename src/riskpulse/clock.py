@@ -8,12 +8,12 @@ from __future__ import annotations
 
 import threading
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 
 class Clock:
     def now(self) -> datetime:
-        return datetime.now(timezone.utc)
+        return datetime.now(UTC)
 
     def status(self) -> dict:
         return {"mode": "live", "now": self.now().isoformat()}
@@ -21,7 +21,7 @@ class Clock:
 
 class ReplayClock(Clock):
     def __init__(self, start: datetime, speed: float = 3600.0):
-        self._sim0 = start if start.tzinfo else start.replace(tzinfo=timezone.utc)
+        self._sim0 = start if start.tzinfo else start.replace(tzinfo=UTC)
         self._wall0 = time.monotonic()
         self._speed = float(speed)
         self._paused_at: float | None = None

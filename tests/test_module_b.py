@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pandas as pd
 import pytest
@@ -59,7 +59,7 @@ def test_stress_run_outputs_and_named_overlay():
 
 
 def test_trigger_threshold_dedup_and_cooldown(make_signal):
-    clock = {"t": datetime(2025, 4, 3, tzinfo=timezone.utc)}
+    clock = {"t": datetime(2025, 4, 3, tzinfo=UTC)}
     mon = StressMonitor(now=lambda: clock["t"])
     bus = SignalBus()
     mon.attach(InProcessSubscriber(bus))

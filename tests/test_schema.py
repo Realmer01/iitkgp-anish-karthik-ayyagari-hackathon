@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from pydantic import ValidationError
@@ -7,7 +7,7 @@ from riskpulse.schema import Entity, ImpactDrivers, RawDocument, RiskSignal, Sou
 
 
 def make_signal(**over):
-    base = dict(signal_id="s1", published_at=datetime.now(timezone.utc), source="test", source_type="news",
+    base = dict(signal_id="s1", published_at=datetime.now(UTC), source="test", source_type="news",
                 doc_ids=["d1"], story_id="S1", headline="Boeing shares slump",
                 entity=Entity(type="company", id="BA", name="Boeing Co.", ticker="BA"),
                 sentiment_score=-0.6, sentiment_label="negative", sentiment_confidence=0.8,

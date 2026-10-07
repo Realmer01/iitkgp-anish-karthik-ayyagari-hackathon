@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import numpy as np
 import pandas as pd
@@ -49,7 +49,7 @@ def test_drift_band_and_turnover_cap():
 
 
 def test_sentiment_book_decay_and_shrinkage():
-    t0 = datetime(2025, 1, 1, tzinfo=timezone.utc)
+    t0 = datetime(2025, 1, 1, tzinfo=UTC)
     book = SentimentBook(half_life_hours=12, k0=1.0)
     book.add("BA", -1.0, 1.0, t0)
     s0 = book.snapshot(t0).loc["BA", "sentiment"]
@@ -72,7 +72,7 @@ def test_backtest_has_no_look_ahead():
 
 
 def test_live_rebalancer_reacts_to_signals(make_signal):
-    mod = LiveRebalancer(now=lambda: datetime(2025, 4, 3, 15, tzinfo=timezone.utc))   # replay-clock time
+    mod = LiveRebalancer(now=lambda: datetime(2025, 4, 3, 15, tzinfo=UTC))   # replay-clock time
     mod.min_interval = 0
     bus = SignalBus()
     mod.attach(InProcessSubscriber(bus))

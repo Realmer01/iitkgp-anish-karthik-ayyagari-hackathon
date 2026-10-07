@@ -10,9 +10,9 @@ import argparse
 import time
 from pathlib import Path
 
-import _bootstrap  # noqa: F401
 from playwright.sync_api import sync_playwright
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import DOCS
 
 TABS = ["Live risk feed", "Module A · Index rebalancer", "Module B · Stress test", "Model evaluation"]

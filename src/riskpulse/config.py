@@ -6,7 +6,7 @@ behaviour can be inspected and changed without touching code.
 from __future__ import annotations
 
 import os
-from functools import lru_cache
+from functools import cache
 from pathlib import Path
 from typing import Any
 
@@ -40,7 +40,7 @@ def _load_dotenv() -> None:
 _load_dotenv()
 
 
-@lru_cache(maxsize=None)
+@cache
 def load_yaml(name: str) -> Any:
     with open(CONFIG / name, encoding="utf-8") as fh:
         return yaml.safe_load(fh)

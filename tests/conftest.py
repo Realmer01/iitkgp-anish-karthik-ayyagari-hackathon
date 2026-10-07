@@ -1,6 +1,6 @@
 import os
 import tempfile
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -13,7 +13,7 @@ from riskpulse.schema import Entity, ImpactDrivers, RiskSignal  # noqa: E402
 @pytest.fixture
 def make_signal():
     def _make(i: int = 0, **over) -> RiskSignal:
-        base = dict(signal_id=f"s{i}", published_at=datetime(2025, 4, 3, 14, i % 60, tzinfo=timezone.utc),
+        base = dict(signal_id=f"s{i}", published_at=datetime(2025, 4, 3, 14, i % 60, tzinfo=UTC),
                     source="test", source_type="news", publisher="Reuters", doc_ids=[f"d{i}"], story_id=f"S{i}",
                     headline=f"headline {i}", entity=Entity(type="company", id="BA", name="Boeing Co.", ticker="BA",
                                                             sector="Industrials"),

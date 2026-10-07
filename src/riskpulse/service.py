@@ -12,7 +12,7 @@ import gzip
 import logging
 import threading
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 
@@ -190,4 +190,4 @@ class RiskPulseService:
                                                                     "error": self.engine_error},
                 "sources": srcs, "bus": self.bus.status(), "signals_stored": self.store.signal_count(),
                 "replay_finished": bool(self.replay and self.replay.finished),
-                "window": [str(self.window[0]), str(self.window[1])], "server_time": datetime.now(timezone.utc).isoformat()}
+                "window": [str(self.window[0]), str(self.window[1])], "server_time": datetime.now(UTC).isoformat()}

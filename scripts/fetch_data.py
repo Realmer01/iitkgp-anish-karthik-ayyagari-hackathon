@@ -15,10 +15,10 @@ import argparse
 import io
 import zipfile
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 import requests
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import PRICES, RAW
 from riskpulse.universe import tickers
 

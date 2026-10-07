@@ -16,7 +16,7 @@ import logging
 import threading
 import time
 from collections.abc import Callable
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from riskpulse import config
 from riskpulse.bus.subscriber import SignalSubscriber
@@ -36,7 +36,7 @@ class StressMonitor:
         self.eligible = set(c.get("eligible_events", []))
         self.min_conf = float(c.get("min_event_confidence", 0.45))
         self.cooldown = timedelta(minutes=float(c.get("cooldown_minutes", 60)))
-        self.sink, self.now = sink, now or (lambda: datetime.now(timezone.utc))
+        self.sink, self.now = sink, now or (lambda: datetime.now(UTC))
         self.runs: list[dict] = []
         self.suppressed = {"story_dedup": 0, "cooldown": 0}
         self._stories: set[str] = set()

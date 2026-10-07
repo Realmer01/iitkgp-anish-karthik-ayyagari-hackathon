@@ -1,11 +1,11 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from riskpulse.clock import ReplayClock
 from riskpulse.ingestion.news import parse_date, parse_gdelt_articles
 from riskpulse.ingestion.replay import ReplaySource
 from riskpulse.schema import RawDocument
 
-T0 = datetime(2025, 4, 2, 20, 0, tzinfo=timezone.utc)
+T0 = datetime(2025, 4, 2, 20, 0, tzinfo=UTC)
 
 
 def test_parse_date_formats():

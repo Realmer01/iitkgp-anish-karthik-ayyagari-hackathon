@@ -9,7 +9,7 @@ from __future__ import annotations
 import threading
 import time
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 
@@ -24,7 +24,7 @@ class LiveRebalancer:
     name = "module_a_rebalancer"
 
     def __init__(self, sink=None, now: Callable[[], datetime] | None = None):
-        self.sink, self.now = sink, now or (lambda: datetime.now(timezone.utc))
+        self.sink, self.now = sink, now or (lambda: datetime.now(UTC))
         self.params = PolicyParams.from_config()
         self.base = base_weights(self.params)
         self.current = self.base.copy()

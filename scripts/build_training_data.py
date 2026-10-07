@@ -16,9 +16,9 @@ from __future__ import annotations
 
 import re
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import PROCESSED, RAW
 from riskpulse.nlp import lexicons as lx
 from riskpulse.nlp.preprocess import clean

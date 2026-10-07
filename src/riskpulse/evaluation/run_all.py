@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import matplotlib
 
@@ -125,7 +125,7 @@ def main(quick: bool = False) -> dict:
         runpy.run_path(str(ROOT / "scripts" / "build_training_data.py"), run_name="__main__")
     REPORTS.mkdir(exist_ok=True)
     print("1/6 sentiment ...", flush=True)
-    m = {"generated_at": datetime.now(timezone.utc).isoformat(), "version": __version__, "tier_evaluated": "full" if full else "lite"}
+    m = {"generated_at": datetime.now(UTC).isoformat(), "version": __version__, "tier_evaluated": "full" if full else "lite"}
     m["sentiment"] = nlp_eval.evaluate_sentiment(full)
     print("2/6 events ...", flush=True)
     ev = nlp_eval.evaluate_events(full)

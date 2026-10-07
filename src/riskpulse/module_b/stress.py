@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from functools import lru_cache
 
 import numpy as np
@@ -47,7 +47,7 @@ def run(shocks: scenarios.ShockSet, trigger: dict | None = None, now: datetime |
     before, pnl = float(res["value"].sum()), float(res["pnl_total"].sum())
     top = res.reindex(res["pnl_total"].sort_values().index).head(10)
     result = {
-        "run_id": uuid.uuid4().hex[:12], "ts": (now or datetime.now(timezone.utc)).isoformat(),
+        "run_id": uuid.uuid4().hex[:12], "ts": (now or datetime.now(UTC)).isoformat(),
         "trigger": trigger or {"type": "manual"}, "scenario_key": shocks.key, "scenario": shocks.name,
         "analogue": shocks.analogue, "scale": round(shocks.scale, 3), "shocks": shocks.describe(),
         "value_before": before, "value_after": before + pnl, "pnl": pnl, "pnl_pct": pnl / before,

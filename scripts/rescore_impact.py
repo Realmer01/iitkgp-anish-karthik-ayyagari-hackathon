@@ -15,9 +15,9 @@ import gzip
 import json
 from collections import defaultdict, deque
 
-import _bootstrap  # noqa: F401
 import pandas as pd
 
+import _bootstrap  # noqa: F401
 from riskpulse.config import OUTPUT
 from riskpulse.nlp import impact
 from riskpulse.schema import RiskSignal
