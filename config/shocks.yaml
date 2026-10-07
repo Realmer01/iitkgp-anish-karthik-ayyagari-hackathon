@@ -1,6 +1,7 @@
 # Module B scenario library. Shocks are at scale 1.0; the trigger scales them by Impact Score
 # (impact 7 -> 0.7x, 10 -> 1.3x). Magnitudes are loosely calibrated to public historical episodes
-# and are APPROXIMATE - they illustrate a framework, not a regulatory scenario.
+# and are APPROXIMATE - they illustrate a framework, not a regulatory scenario. Sources for every analogue
+# figure are listed in docs/references.md; the 2025 episode is measured directly from data/prices.
 #
 # units: rates_bp / spreads_bp in basis points; equity_pct, fx_pct (foreign ccy vs USD), oil_pct as fractions;
 # pd_multiplier multiplies 1-year PDs. `sector` / `region` keys override or multiply the defaults.
@@ -8,7 +9,8 @@
 scenarios:
   conflict:
     name: Geopolitical conflict & sanctions
-    analogue: "Russia-Ukraine, Feb-Mar 2022: S&P 500 ~-12% peak-to-trough, Brent ~+30%, EURUSD ~-5%, US HY ~+150bp"
+    analogue: "Russia-Ukraine, Feb-Mar 2022: S&P 500 ~-12% YTD by the invasion (-7% in the week before), Brent
+               above $100 and peaking near $128 in early March, euro and rouble sold off, haven bid for USD/JPY"
     rates_bp: {USD: -25, EUR: -20, GBP: -20, JPY: -5, BRL: 100, INR: 25, CNH: 0}
     spreads_bp: {AAA: 10, AA: 15, A: 25, BBB: 45, BB: 120, B: 200, CCC: 400}
     sovereign_spreads_bp: {DM: 10, EM: 150}
@@ -21,21 +23,22 @@ scenarios:
 
   trade_war:
     name: Tariff escalation / trade war
-    analogue: "US tariff shock, 2-8 Apr 2025: S&P 500 ~-12%, US HY ~+150bp, UST 10y ~+50bp in a week, WTI ~-15%"
+    analogue: "US tariff shock, 2-8 Apr 2025 (measured in data/prices): SPY -12.1%, WTI -16.9%, VIX 21 -> 52,
+               UST 10y +29bp net to 11 Apr (+51bp off the 4 Apr low); US high-yield spreads ~+110bp"
     rates_bp: {USD: 30, EUR: -10, GBP: 0, JPY: -5, BRL: 50, INR: 0, CNH: -10}
-    spreads_bp: {AAA: 10, AA: 15, A: 25, BBB: 50, BB: 130, B: 220, CCC: 450}
+    spreads_bp: {AAA: 8, AA: 12, A: 20, BBB: 35, BB: 90, B: 140, CCC: 300}
     sovereign_spreads_bp: {DM: 5, EM: 100}
     equity_pct: {default: -0.12, Information Technology: -0.15, Consumer Discretionary: -0.16, Industrials: -0.13,
                  Materials: -0.12, Consumer Staples: -0.05, Utilities: -0.04, Health Care: -0.06}
     fx_pct: {EUR: 0.03, GBP: 0.01, JPY: 0.04, CNH: -0.02, BRL: -0.05, INR: -0.02}
-    oil_pct: -0.15
+    oil_pct: -0.17
     pd_multiplier: {default: 1.3}
     region_pd_multiplier: {China: 2.0, Asia-Pacific: 1.4, Latin America: 1.3}
 
   rates_shock:
     name: Hawkish rates shock
-    analogue: "2022 Fed tightening: UST 10y ~+230bp over the year, S&P 500 ~-25% peak-to-trough; the case study's
-               own example (equities -10%, rates +200bp)"
+    analogue: "2022 Fed tightening: UST 10y ~+235bp over the year (1.5% -> 3.9%), S&P 500 ~-25% peak to trough;
+               plus the case study's own example (equities -10%, rates +200bp)"
     rates_bp: {USD: 200, EUR: 150, GBP: 175, JPY: 50, BRL: 250, INR: 100, CNH: 25}
     spreads_bp: {AAA: 10, AA: 15, A: 30, BBB: 50, BB: 150, B: 250, CCC: 450}
     sovereign_spreads_bp: {DM: 15, EM: 120}
@@ -47,9 +50,10 @@ scenarios:
 
   growth_shock:
     name: Recession / growth shock
-    analogue: "Feb-Mar 2020 COVID crash at roughly half strength: S&P 500 -34%, US IG +200bp, HY +600bp, UST 10y -100bp"
+    analogue: "Feb-Mar 2020 COVID crash at roughly half strength - the episode itself: S&P 500 ~-35% peak to trough,
+               US high yield 357 -> 1,087bp (+730bp), BBB ~+300bp, UST 10y ~-100bp"
     rates_bp: {USD: -100, EUR: -50, GBP: -75, JPY: -10, BRL: 50, INR: -50, CNH: -30}
-    spreads_bp: {AAA: 25, AA: 40, A: 80, BBB: 150, BB: 350, B: 550, CCC: 1000}
+    spreads_bp: {AAA: 25, AA: 40, A: 80, BBB: 150, BB: 300, B: 450, CCC: 900}
     sovereign_spreads_bp: {DM: 20, EM: 250}
     equity_pct: {default: -0.20, Energy: -0.30, Financials: -0.25, Consumer Discretionary: -0.25,
                  Consumer Staples: -0.08, Health Care: -0.10, Utilities: -0.10}
@@ -70,8 +74,8 @@ scenarios:
 
   credit_crisis:
     name: Systemic credit crisis
-    analogue: "Between March 2023 regional-bank stress and Sep-Nov 2008: financials equity -28%, US IG +175bp
-               (BBB), HY +450bp, UST -75bp flight to quality"
+    analogue: "Between the March 2023 regional-bank stress (KBW Bank index -15.8% in one week, 2y UST -~100bp in
+               three days, the largest fall since 1987) and the far more severe 2008 crisis"
     rates_bp: {USD: -75, EUR: -50, GBP: -50, JPY: -10, BRL: 100, INR: -25, CNH: -20}
     spreads_bp: {AAA: 30, AA: 50, A: 100, BBB: 175, BB: 450, B: 700, CCC: 1200}
     sovereign_spreads_bp: {DM: 25, EM: 300}
