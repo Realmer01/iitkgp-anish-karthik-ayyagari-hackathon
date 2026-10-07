@@ -33,6 +33,7 @@ def test_range_and_rounding():
     ({"entity": MARKET}, {"entity": BA}),
     ({"entity": AAPL}, {"entity": BA}),                           # larger index weight, more systemic
     ({"n_sources": 6}, {"n_sources": 1}),
+    ({"entity_signals_24h": 12}, {"entity_signals_24h": 1}),     # a name in the news cycle moves more
     ({"publisher": "Reuters"}, {"publisher": "random-blog.example"}),
 ])
 def test_monotonic(worse, better):

@@ -16,7 +16,8 @@ import hashlib
 import logging
 import threading
 import time
-from collections import Counter, deque
+from collections import Counter, defaultdict, deque
+from datetime import timedelta
 
 import numpy as np
 
@@ -53,6 +54,7 @@ class RiskEngine:
             self.tier, self.embedder, self.sentiment = "lite", LiteEmbedder(), LiteSentiment()
         self.events = EventClassifier(self.tier)
         self.stories = self._new_clusterer()
+        self.attention: dict[str, deque] = defaultdict(deque)   # entity -> timestamps of recent signals
         self.min_chars = int(config.get("engine.min_chars", 20))
         self.min_words = int(config.get("engine.min_words", 4))
         self.model_version = (f"riskpulse-{__version__}|{self.tier}|{self.sentiment.version}|"
@@ -75,6 +77,14 @@ class RiskEngine:
             return []
         with self._lock:
             return self._process(docs, self.stories)
+
+    def _entity_count(self, entity_id: str, ts) -> int:
+        """Causal count of this entity's signals in the trailing 24h, including the current one."""
+        q = self.attention[entity_id]
+        while q and ts - q[0] > timedelta(hours=24):
+            q.popleft()
+        q.append(ts)
+        return len(q)
 
     def analyze_text(self, text: str, source_type: str = "news", publisher: str = "analyst input") -> list[RiskSignal]:
         """Score one ad-hoc text (API /analyze, dashboard) without touching the live story state."""
@@ -166,11 +176,12 @@ class RiskEngine:
         for i, (d, text, entities, a) in enumerate(zip(kept, shown, links, assignments)):
             ev, regions = events[i], ent.regions(text)
             for e in entities:
+                n_24h = self._entity_count(e.id, d.published_at) if count else 1
                 s_score, s_label, s_conf = summarise(ent_p.get((i, e.id), doc_p[i]))
                 score, drivers = impact.score(
                     event_type=ev["event_type"], event_conf=ev["event_confidence"], sentiment=s_score,
                     sentiment_conf=s_conf, text=text, entity=e, source_type=types[i], publisher=d.publisher,
-                    n_sources=len(a.sources), mentions=a.mention_count, novel=a.novel)
+                    n_sources=len(a.sources), mentions=a.mention_count, novel=a.novel, entity_signals_24h=n_24h)
                 out.append(RiskSignal(
                     signal_id=hashlib.sha1(f"{d.id}|{e.id}".encode()).hexdigest()[:16],
                     published_at=d.published_at, source=d.source, source_type=d.source_type, publisher=d.origin,

@@ -15,7 +15,8 @@ from riskpulse.nlp import lexicons as lx
 from riskpulse.schema import Entity, ImpactDrivers
 from riskpulse.universe import companies
 
-FEATURES = ("severity", "sentiment", "intensity", "systemic", "confirmation", "velocity", "credibility", "novelty")
+FEATURES = ("severity", "sentiment", "intensity", "systemic", "confirmation", "velocity", "attention",
+            "credibility", "novelty")
 
 
 @lru_cache(maxsize=1)
@@ -64,7 +65,7 @@ def systemic(entity: Entity) -> float:
 
 def features(*, event_type: str, event_conf: float, sentiment: float, sentiment_conf: float, text: str,
              entity: Entity, source_type: str, publisher: str, n_sources: int = 1, mentions: int = 1,
-             novel: bool = True) -> tuple[dict[str, float], list[str]]:
+             novel: bool = True, entity_signals_24h: int = 1) -> tuple[dict[str, float], list[str]]:
     pos_factor = float(load_yaml("impact.yaml").get("positive_sentiment_factor", 0.75))
     inten, cues = intensity(text)
     f = {
@@ -74,15 +75,21 @@ def features(*, event_type: str, event_conf: float, sentiment: float, sentiment_
         "systemic": systemic(entity),
         "confirmation": 1.0 - math.exp(-(max(n_sources, 1) - 1) / 3.0),
         "velocity": 1.0 - math.exp(-(max(mentions, 1) - 1) / 5.0),
+        "attention": attention(entity_signals_24h),
         "credibility": lx.credibility(source_type, publisher),
         "novelty": 1.0 if novel else 0.0,
     }
     return {k: round(v, 4) for k, v in f.items()}, cues
 
 
+def attention(entity_signals_24h: int) -> float:
+    """Abnormal news volume on the entity: signals in the trailing 24h (this one included)."""
+    return 1.0 - math.exp(-(max(entity_signals_24h, 1) - 1) / 4.0)
+
+
 def score_features(f: dict[str, float]) -> tuple[float, dict[str, float], float]:
     b, w, _ = model_params()
-    contrib = {k: round(w.get(k, 0.0) * f[k], 4) for k in FEATURES}
+    contrib = {k: round(w.get(k, 0.0) * f.get(k, 0.0), 4) for k in FEATURES}
     logit = b + sum(contrib.values())
     return round(1.0 + 9.0 / (1.0 + math.exp(-logit)), 1), contrib, round(logit, 4)
 
