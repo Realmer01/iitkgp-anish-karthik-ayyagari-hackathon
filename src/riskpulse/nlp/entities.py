@@ -28,6 +28,26 @@ FALSE_POSITIVES = re.compile(
     r"\b(apple (pie|juice|cider|orchard|tree)s?|big apple|amazon (rainforest|river|basin)|"
     r"meta[- ](analysis|data)|goldman (prize|environmental)|coca[- ]leaf)\b", re.I)
 
+# Banks in the universe often appear as the ANALYST, not the subject: "Hilton downgraded by Goldman Sachs",
+# "JPMorgan sees recession odds at 60%". Those mentions are not news about GS / JPM.
+_BROKER = r"(?:Goldman Sachs|Goldman|JPMorgan|JP Morgan|J\.P\. Morgan)"
+BROKER_CONTEXT = re.compile(
+    rf"\b(?:by|at|from|per|according to)\s+(?:analysts?\s+(?:at|from)\s+)?(?P<a>{_BROKER})\b"
+    rf"|\b(?P<b>{_BROKER})(?:'s|’s)?\s+(?:analysts?|strategists?|economists?|research|upgrades?|downgrades?|initiates|"
+    rf"reiterates)\b"
+    rf"|\b(?P<c>{_BROKER})(?:'s|’s)?\s+(?:raises|cuts|lifts|lowers|trims|slashes|hikes|boosts)\b(?=.{{0,40}}"
+    rf"\b(?:target|forecast|outlook|estimates?|rating|odds|view|call)s?\b)"
+    rf"|\b(?P<d>{_BROKER})\s+(?:says|sees|expects|predicts|forecasts|warns)\b(?=.{{0,60}}\b(?:S&P|stocks|equities|oil|"
+    rf"Fed|recession|inflation|rates|yields|economy|markets?|dollar|gold)\b)", re.I)
+
+
+def broker_spans(text: str) -> list[tuple[int, int]]:
+    spans = []
+    for m in BROKER_CONTEXT.finditer(text):
+        g = next(k for k in "abcd" if m.group(k))
+        spans.append(m.span(g))
+    return spans
+
 
 def _alias_rx(aliases: tuple[str, ...], flags: int) -> re.Pattern | None:
     if not aliases:
@@ -61,13 +81,15 @@ def link(text: str) -> list[Entity]:
         c = idx.get(m.group(1))
         if c and c.bare_ticker and c.ticker not in found:
             found[c.ticker] = company_entity(c, m.group(1))
+    brokers = broker_spans(guarded)
     for c in companies():
         if c.ticker in found:
             continue
         ci, cs = _patterns()[c.ticker]
-        m = (ci.search(guarded) if ci else None) or (cs.search(guarded) if cs else None)
-        if m:
-            found[c.ticker] = company_entity(c, m.group(0))
+        hits = [m for rx in (ci, cs) if rx for m in rx.finditer(guarded)]
+        subject = [m for m in hits if not any(a <= m.start() < b for a, b in brokers)]
+        if subject:
+            found[c.ticker] = company_entity(c, subject[0].group(0))
     if found:
         return list(found.values())
 

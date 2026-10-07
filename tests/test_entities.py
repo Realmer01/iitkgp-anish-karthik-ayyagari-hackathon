@@ -30,6 +30,20 @@ def test_false_positive_guard(text):
     assert not any(e.type == "company" for e in link(text))
 
 
+@pytest.mark.parametrize("text,expected", [
+    ("Hyatt, Hilton, and Marriott Stocks Downgraded by Goldman Sachs on Weaker Hotel Outlook", []),
+    ("Ford, Lear, Visteon downgraded at Goldman Sachs on tariff risks", ["MARKET"]),   # tariffs: market-wide
+    ("Goldman Sachs slashes S&P 500 target as tariffs bite", ["MARKET"]),
+    ("JPMorgan sees recession odds rising to 60% after tariffs", ["MARKET"]),
+    ("Goldman Sachs upgrades Caterpillar to Buy", ["CAT"]),
+    ("Goldman Sachs tops estimates on boom in equities trading revenue", ["GS"]),
+    ("JPMorgan CEO Jamie Dimon warns businesses are going to default on loans", ["JPM"]),
+    ("$GS downgraded by JPMorgan", ["GS"]),
+])
+def test_broker_mentions_are_not_the_subject(text, expected):
+    assert ids(text) == expected
+
+
 def test_sector_and_market_fallbacks():
     assert link("Chipmakers slump as export curbs widen")[0].id == "Information Technology"
     assert link("Fed raises interest rates by 50 basis points")[0].id == "MARKET"
