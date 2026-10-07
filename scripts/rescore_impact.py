@@ -51,18 +51,20 @@ def main() -> None:
     path = OUTPUT / f"signals_history_{args.tier}.csv.gz"
     df = pd.read_csv(path)              # file order = engine emission order
     df = rescore(add_attention(df))
-    df.to_csv(path, index=False, compression="gzip")
+    df.drop(columns=["_ts"], errors="ignore").to_csv(path, index=False, compression="gzip")
     print(f"{path.name}: {len(df):,} signals rescored ({impact.weights_source()} weights); "
           f"impact>7: {(df['impact'] > 7).mean():.2%}")
     if args.tier == "full" and (OUTPUT / "demo_signals.jsonl.gz").exists():
-        by_id = df.set_index("signal_id")
+        df["_ts"] = pd.to_datetime(df["published_at"], utc=True, format="ISO8601")
+        by_id = df.drop_duplicates(["signal_id", "_ts"]).set_index(["signal_id", "_ts"])
         out = []
         with gzip.open(OUTPUT / "demo_signals.jsonl.gz", "rt", encoding="utf-8") as fh:
             for line in fh:
                 s = RiskSignal.model_validate_json(line)
-                if s.signal_id in by_id.index:
+                key = (s.signal_id, pd.Timestamp(s.published_at))
+                if key in by_id.index:
                     f = dict(s.impact_drivers.features)
-                    f["attention"] = float(by_id.loc[s.signal_id, "f_attention"])
+                    f["attention"] = float(by_id.loc[key, "f_attention"])
                     score, contrib, logit = impact.score_features(f)
                     s = s.model_copy(update={"impact_score": score, "impact_drivers": s.impact_drivers.model_copy(
                         update={"features": f, "contributions": contrib, "logit": logit})})
