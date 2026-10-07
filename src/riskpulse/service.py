@@ -130,8 +130,11 @@ class RiskPulseService:
         last_heartbeat = time.monotonic()
         while not self._stop.is_set():
             try:
+                if self.mode == "replay" and self.sources and getattr(self.sources[0], "finished", False):
+                    self._hold_at_window_end()
                 if self.replay is not None:
                     self.publish(self.replay.due())
+                    self._hold_at_window_end()
                 elif self.engine_ready.is_set() and self.engine is not None:
                     docs = []
                     for src in self.sources:
@@ -147,6 +150,12 @@ class RiskPulseService:
                 log.exception("pipeline iteration failed")
             self._stop.wait(0.25)
 
+    def _hold_at_window_end(self) -> None:
+        """Freeze the replay clock at the end of its window so the dashboard shows the final state."""
+        if isinstance(self.clock, ReplayClock) and not self.clock.paused                 and self.clock.now() >= self.window[1].to_pydatetime():
+            self.clock.pause()
+            self.clock.jump(self.window[1].to_pydatetime())
+
     def restart_replay(self) -> None:
         """Rewind the demo / replay to the start of its window with fresh module state."""
         if not isinstance(self.clock, ReplayClock):
@@ -154,6 +163,7 @@ class RiskPulseService:
         self.store.reset()
         self.bus = SignalBus()
         self.clock.jump(self.window[0].to_pydatetime())
+        self.clock.resume()
         self._make_modules()
         self._make_sources()
 
