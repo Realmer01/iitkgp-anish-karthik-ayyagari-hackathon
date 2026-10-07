@@ -35,7 +35,7 @@ def parse_date(value: str | None) -> datetime:
 
 
 def short_name(name: str) -> str:
-    for suffix in (" Inc.", " Corp.", " & Co.", " Co.", " Group Inc."):
+    for suffix in (" Group Inc.", " Inc.", " Corp.", " & Co.", " Co."):   # longest first
         name = name.replace(suffix, "")
     return name
 

@@ -27,7 +27,8 @@ OUT = RAW / "gdelt_headlines.csv.gz"
 
 def query_for(name: str) -> str:
     short = short_name(name).replace(".com", "")
-    return f'"{short}"' if " " in short else short
+    # quote multi-word or punctuated names: GDELT reads a bare hyphen ("Coca-Cola") as NOT
+    return short if short.isalnum() else f'"{short}"'
 
 
 def get(session: requests.Session, params: dict, spacing: float) -> list[dict] | None:
@@ -59,7 +60,10 @@ def main() -> None:
     done = set(zip(prior["query_key"], prior["slice"]))
     rows = prior.to_dict("records")
     end = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
-    jobs = [(c.ticker, query_for(c.name)) for c in companies()] + list(THEMES.items())
+    names = [query_for(c.name) for c in companies()]
+    # GDELT throttles hard per IP, so companies are grouped into OR-queries (fewer, larger requests).
+    jobs = [(f"COMPANIES_{i // 6 + 1}", f"({' OR '.join(names[i:i + 6])})") for i in range(0, len(names), 6)]
+    jobs += list(THEMES.items())
     for d in range(0, args.days, args.slice):
         hi, lo = end - timedelta(days=d), end - timedelta(days=min(d + args.slice, args.days))
         tag = lo.strftime("%Y-%m-%d")
