@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime, timezone
 from functools import lru_cache
 
+import numpy as np
 import pandas as pd
 
 from riskpulse.module_b import scenarios
@@ -17,6 +18,21 @@ from riskpulse.module_b.revaluation import COMPONENTS, revalue
 @lru_cache(maxsize=1)
 def book() -> pd.DataFrame:
     return positions()
+
+
+def plain(obj):
+    """Recursively convert numpy / pandas scalars so results serialise to JSON anywhere."""
+    if isinstance(obj, dict):
+        return {str(k): plain(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [plain(v) for v in obj]
+    if isinstance(obj, np.bool_):
+        return bool(obj)
+    if isinstance(obj, np.integer):
+        return int(obj)
+    if isinstance(obj, np.floating):
+        return float(obj)
+    return obj
 
 
 def _group(res: pd.DataFrame, col: str) -> dict[str, float]:
@@ -51,7 +67,7 @@ def run(shocks: scenarios.ShockSet, trigger: dict | None = None, now: datetime |
         result["naive"] = {k: naive[k] for k in ("scenario", "pnl", "pnl_pct", "by_asset_class", "by_component")}
         result["naive"]["cet1_ratio_after"] = naive["capital"]["cet1_ratio_after"]
     result["compute_ms"] = round((time.perf_counter() - t0) * 1000, 1)
-    return result
+    return plain(result)
 
 
 def what_if(event_type: str, impact: float, headline: str = "", ticker: str = "", sector: str = "",
