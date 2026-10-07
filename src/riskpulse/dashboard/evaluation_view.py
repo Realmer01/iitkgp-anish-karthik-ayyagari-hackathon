@@ -45,6 +45,15 @@ def render() -> None:
         st.markdown("### Impact score vs realised market moves (event study)")
         _table(i["table"], "score")
         st.caption(i.get("note", ""))
+        if ml := i.get("market_level"):
+            st.markdown("**Market-wide signals vs the S&P 500's own move** (the scope Module B stress tests use)")
+            _table(ml["table"], "score")
+        if cal := i.get("calibration"):
+            t = cal["test_spearman"]
+            st.caption(f"Walk-forward calibration (train to {cal['train_end']}): out-of-sample Spearman expert "
+                       f"{t['expert']:.3f} vs calibrated {t['calibrated']:.3f} vs |sentiment| {t['abs_sentiment']:.3f} - "
+                       + ("calibrated weights adopted." if cal["adopted"] else
+                          "not adopted (pre-registered rule: must beat expert by > 0.01)."))
         if d := i.get("deciles"):
             df = pd.DataFrame(d)
             st.plotly_chart(charts.grouped_bars([str(x) for x in df["decile"]],
