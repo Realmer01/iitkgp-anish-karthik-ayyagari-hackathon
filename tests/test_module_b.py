@@ -72,8 +72,13 @@ def test_trigger_threshold_dedup_and_cooldown(make_signal):
     bus.publish([make_signal(4, impact_score=8.5, story_id="B", **geo)])        # same scenario within cooldown
     assert len(mon.runs) == 1 and mon.suppressed == {"story_dedup": 1, "cooldown": 1}
     clock["t"] += timedelta(hours=2)
-    bus.publish([make_signal(5, impact_score=8.5, story_id="C", **geo)])
+    bus.publish([make_signal(5, impact_score=9.3, story_id="C", **geo)])        # escalation: >= 8.2 + 1.0
     assert len(mon.runs) == 2
+    bus.publish([make_signal(6, impact_score=9.5, story_id="D", **geo)])        # not 1 point above 9.3
+    assert len(mon.runs) == 2
+    clock["t"] += timedelta(hours=7)                                            # cooldown (6h) has passed
+    bus.publish([make_signal(7, impact_score=7.5, story_id="E", **geo)])
+    assert len(mon.runs) == 3
     assert isinstance(pd.DataFrame(mon.runs[0]["top_contributors"]), pd.DataFrame)
 
 

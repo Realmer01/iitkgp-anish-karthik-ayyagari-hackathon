@@ -56,7 +56,8 @@ module_b:                                     # strategic stress tester
   eligible_events: [Geopolitical, Macroeconomic, Credit Event, Operational Risk, Legal & Regulatory,
                     Merger & Acquisition]
   min_event_confidence: 0.45
-  cooldown_minutes: 60                        # same scenario + story is not re-run within this window
+  cooldown_minutes: 360                       # the same scenario is not re-run within 6h of simulated time ...
+  escalation_delta: 1.0                       # ... unless impact rises at least this much above the last run
   scale_at_threshold: 0.7                     # shock multiplier at impact 7
   scale_at_max: 1.3                           # shock multiplier at impact 10
   sicr_pd_multiple: 2.0                       # IFRS 9 Stage 2 trigger: stressed PD >= 2x the base PD

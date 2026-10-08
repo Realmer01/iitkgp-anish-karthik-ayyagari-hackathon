@@ -6,7 +6,9 @@ A signal triggers a stress test when
   * event_confidence >= min_event_confidence.
 One real-world event must cause one stress run, so a trigger is suppressed when
   * its story already triggered a run (story dedup), or
-  * the same scenario + target ran within cooldown_minutes of simulated time.
+  * the same scenario (and, for company overlays, the same company) ran within cooldown_minutes of
+    simulated time - unless the new signal ESCALATES, i.e. its impact exceeds the last run's by at
+    least escalation_delta. A desk wants one run per developing event, plus a re-run when it worsens.
 Every run is logged with its triggering signal, the scenario applied, results and the
 headline-to-result latency.
 """
@@ -35,12 +37,13 @@ class StressMonitor:
         self.thresholds = {k: float(v) for k, v in (c.get("thresholds") or {}).items()}
         self.eligible = set(c.get("eligible_events", []))
         self.min_conf = float(c.get("min_event_confidence", 0.45))
-        self.cooldown = timedelta(minutes=float(c.get("cooldown_minutes", 60)))
+        self.cooldown = timedelta(minutes=float(c.get("cooldown_minutes", 360)))
+        self.escalation = float(c.get("escalation_delta", 1.0))
         self.sink, self.now = sink, now or (lambda: datetime.now(UTC))
         self.runs: list[dict] = []
         self.suppressed = {"story_dedup": 0, "cooldown": 0}
         self._stories: set[str] = set()
-        self._last: dict[tuple[str, str], datetime] = {}
+        self._last: dict[tuple[str, str], tuple[datetime, float]] = {}
         self._lock = threading.Lock()
 
     def attach(self, subscriber: SignalSubscriber) -> None:
@@ -61,16 +64,17 @@ class StressMonitor:
         with self._lock:
             now = self.now()
             rule = scenarios.route(s.event_type, s.headline)
-            target = s.entity.id if s.entity.type != "market" else ""
+            target = s.entity.id if s.entity.type == "company" and rule.get("overlay") else ""
             key = (rule["scenario"], target)
             if s.story_id in self._stories:
                 self.suppressed["story_dedup"] += 1
                 return None
-            if key in self._last and now - self._last[key] < self.cooldown:
+            last = self._last.get(key)
+            if last and now - last[0] < self.cooldown and s.impact_score < last[1] + self.escalation:
                 self.suppressed["cooldown"] += 1
                 return None
             self._stories.add(s.story_id)
-            self._last[key] = now
+            self._last[key] = (now, s.impact_score)
         shocks = scenarios.build(s.event_type, s.impact_score, s.headline, s.entity.type, s.entity.ticker or "",
                                  s.entity.sector or "", s.regions)
         trigger = {"type": "signal", "signal_id": s.signal_id, "story_id": s.story_id, "headline": s.headline,
@@ -93,4 +97,5 @@ class StressMonitor:
     def state(self) -> dict:
         return {"runs": len(self.runs), "suppressed": dict(self.suppressed), "eligible_events": sorted(self.eligible),
                 "default_threshold": self.default_threshold, "thresholds": self.thresholds,
-                "min_event_confidence": self.min_conf, "cooldown_minutes": self.cooldown.total_seconds() / 60}
+                "min_event_confidence": self.min_conf, "cooldown_minutes": self.cooldown.total_seconds() / 60,
+                "escalation_delta": self.escalation}
