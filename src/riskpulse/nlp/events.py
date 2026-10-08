@@ -66,7 +66,8 @@ class EventClassifier:
         if path.exists():
             bundle = joblib.load(path)
             if bundle.get("kind") == "ensemble":
-                self.parts = [("text", bundle["tfidf"]), ("embedding", bundle["emb"])]
+                tfidf = bundle.get("tfidf") or joblib.load(MODELS / bundle["tfidf_from"])["model"]
+                self.parts = [("text", tfidf), ("embedding", bundle["emb"])]
             else:
                 self.model = bundle["model"]
                 self.parts = [("embedding" if tier == "full" else "text", self.model)]

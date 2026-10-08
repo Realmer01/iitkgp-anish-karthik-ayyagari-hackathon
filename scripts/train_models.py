@@ -98,9 +98,8 @@ def train_full(events: pd.DataFrame, tweets: pd.DataFrame, gold: pd.DataFrame) -
     texts, labels, weights = event_training(events, gold)
     xe = emb.encode(texts)
     emb_clf = LogisticRegression(C=4.0, max_iter=4000, class_weight="balanced").fit(xe, labels, sample_weight=weights)
-    tfidf = tfidf_lr()
-    tfidf.fit(texts, labels, logisticregression__sample_weight=weights)
-    joblib.dump({"kind": "ensemble", "tfidf": tfidf, "emb": emb_clf, "classes": list(emb_clf.classes_),
+    # The TF-IDF half of the ensemble is the lite-tier model (identical training data), stored once.
+    joblib.dump({"kind": "ensemble", "tfidf_from": "events_lite.joblib", "emb": emb_clf, "classes": list(emb_clf.classes_),
                  "embedding_model": emb.model_id, "trained_on": len(texts), "in_domain_weight": IN_DOMAIN_WEIGHT},
                 MODELS / "events_full.joblib", compress=3)
     print(f"  events_full: ensemble of TF-IDF and embedding LR, {len(texts)} examples, {time.time() - t0:.0f}s")
