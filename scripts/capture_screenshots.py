@@ -31,9 +31,20 @@ def main() -> None:
     ap.add_argument("--out", default=str(DOCS / "images"))
     ap.add_argument("--url", default="http://localhost:8501")
     ap.add_argument("--analyze", action="store_true", help="also run the 'Analyze & publish' demo flow")
+    ap.add_argument("--fast-forward", action="store_true", help="replay the whole demo window before capturing")
+    ap.add_argument("--api", default="http://127.0.0.1:8000")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    if args.fast_forward:
+        import httpx
+
+        httpx.post(f"{args.api}/replay/restart", timeout=30)
+        httpx.post(f"{args.api}/replay/speed", params={"value": 200_000}, timeout=30)
+        deadline = time.time() + 300
+        while time.time() < deadline and not httpx.get(f"{args.api}/stats", timeout=30).json().get("replay_finished"):
+            time.sleep(2)
+        print("replay finished:", httpx.get(f"{args.api}/stats", timeout=30).json().get("replay_finished"))
     with sync_playwright() as p:
         for channel in ("msedge", "chrome", None):
             try:
@@ -46,6 +57,9 @@ def main() -> None:
         page.get_by_text("RiskPulse · AI/NLP Financial Risk Engine").wait_for(timeout=90_000)
         settle(page, 6)
         if args.analyze:
+            page.get_by_text("(type your own)").first.click()
+            page.get_by_role("option", name="Geopolitical shock (triggers Module B)").click()
+            settle(page, 2)
             page.get_by_role("button", name="Analyze & publish to modules").click()
             page.get_by_text("Impact score", exact=True).first.wait_for(timeout=180_000)
             settle(page, 3)
