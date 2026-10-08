@@ -4,12 +4,6 @@ Problem Statement*
 picture required for context*
 *.docx
 
-# Local tooling / agent configuration
-.claude/
-CLAUDE.md
-CLAUDE_*.md
-AGENTS.md
-
 # Python
 __pycache__/
 *.py[cod]
