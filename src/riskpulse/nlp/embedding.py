@@ -19,7 +19,8 @@ class FullEmbedder:
 
         self.model_id = model_id or config.get("engine.embedding_model", "BAAI/bge-small-en-v1.5")
         self.model = SentenceTransformer(self.model_id, device="cpu")
-        self.dim = self.model.get_sentence_embedding_dimension()
+        dim = getattr(self.model, "get_embedding_dimension", None) or self.model.get_sentence_embedding_dimension
+        self.dim = dim()   # method renamed in sentence-transformers 5.x
 
     def encode(self, texts: list[str]) -> np.ndarray:
         if not texts:
