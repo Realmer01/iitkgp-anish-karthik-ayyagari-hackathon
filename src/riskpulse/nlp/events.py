@@ -1,8 +1,10 @@
 """Event Classification into the 12-class taxonomy (config/taxonomy.yaml).
 
-full : logistic regression on bge-small embeddings (the same vectors used for story clustering)
-lite : TF-IDF word/bi-gram + logistic regression pipeline
-Both are trained by scripts/train_models.py on the weakly-supervised corpus and ensembled with a
+full : average of two classifiers - logistic regression on bge-small embeddings (the vectors story
+       clustering already computes) and a TF-IDF word/bi-gram logistic regression
+lite : the TF-IDF logistic regression alone
+Both are trained by scripts/train_models.py on the weakly-supervised tweet corpus plus the dev half of the
+gold news headlines (domain adaptation), and ensembled with a
 small set of high-precision rules (lexicons.OVERRIDES): when a rule fires ("files for Chapter 11",
 "agrees to acquire"), its class wins. `KeywordBaseline` is the naive comparison used in evaluation.
 """
@@ -46,27 +48,39 @@ class KeywordBaseline:
         return out / out.sum(axis=1, keepdims=True)
 
 
+def _aligned(model, raw: np.ndarray) -> np.ndarray:
+    """Re-order a classifier's probability columns into EVENT_TYPES order."""
+    out = np.zeros((raw.shape[0], len(EVENT_TYPES)))
+    for j, c in enumerate(model.classes_):
+        out[:, EVENT_TYPES.index(c)] = raw[:, j]
+    return out
+
+
 class EventClassifier:
+    """Full tier: average of a TF-IDF and an embedding classifier (an ensemble); lite tier: TF-IDF only."""
+
     def __init__(self, tier: str):
         self.tier = tier
         path = MODELS / f"events_{tier}.joblib"
-        self.model, self.classes = None, list(EVENT_TYPES)
+        self.model, self.parts = None, []
         if path.exists():
             bundle = joblib.load(path)
-            self.model, self.classes = bundle["model"], list(bundle["classes"])
+            if bundle.get("kind") == "ensemble":
+                self.parts = [("text", bundle["tfidf"]), ("embedding", bundle["emb"])]
+            else:
+                self.model = bundle["model"]
+                self.parts = [("embedding" if tier == "full" else "text", self.model)]
         else:
             log.warning("no trained event model at %s - using keyword baseline", path)
         self._fallback = KeywordBaseline()
-        self.version = f"lr-{tier}" if self.model is not None else "keywords"
+        self.version = {2: f"ensemble-{tier}", 1: f"lr-{tier}"}.get(len(self.parts), "keywords")
 
     def model_probs(self, texts: list[str], embeddings: np.ndarray | None) -> np.ndarray:
-        if self.model is None:
+        usable = [(kind, m) for kind, m in self.parts if kind == "text" or embeddings is not None]
+        if not usable:
             return self._fallback.probs(texts)
-        raw = self.model.predict_proba(embeddings if self.tier == "full" else texts)
-        out = np.zeros((len(texts), len(EVENT_TYPES)))
-        for j, c in enumerate(self.classes):
-            out[:, EVENT_TYPES.index(c)] = raw[:, j]
-        return out
+        probs = [_aligned(m, m.predict_proba(texts if kind == "text" else embeddings)) for kind, m in usable]
+        return np.mean(probs, axis=0)
 
     def predict(self, texts: list[str], embeddings: np.ndarray | None = None) -> list[dict]:
         probs = self.model_probs(texts, embeddings) if texts else np.zeros((0, len(EVENT_TYPES)))
