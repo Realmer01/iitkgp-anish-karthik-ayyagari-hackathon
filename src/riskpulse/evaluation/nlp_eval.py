@@ -3,7 +3,8 @@
 Datasets
   tweets_valid   zeroshot finance-tweet validation split (never used in training or tuning)
   phrasebank     Financial PhraseBank AllAgree news sentences (FinBERT was trained on it: leaky for FinBERT)
-  gold_news      400 real archive headlines, labelled blind to model output (out-of-domain for every model)
+  gold_news      the TEST half (200) of the 400 real archive headlines labelled blind to model output. The dev
+                 half was used for domain adaptation (scripts/train_models.py); the test half never was.
 """
 from __future__ import annotations
 
@@ -25,10 +26,16 @@ def _scores(y, p) -> dict:
             "macro_f1": round(float(f1_score(y, p, average="macro", labels=sorted(set(y)))), 4)}
 
 
+def gold_test() -> pd.DataFrame:
+    gold = pd.read_csv(LABELED / "gold_sample.csv").merge(pd.read_csv(LABELED / "gold_labels.csv"), on="gold_id")
+    split = pd.read_csv(LABELED / "gold_split.csv")
+    return gold.merge(split, on="gold_id").query("split == 'test'").reset_index(drop=True)
+
+
 def sentiment_datasets() -> dict[str, tuple[list[str], list[str], str]]:
     tw = pd.read_csv(RAW / "twitter_sentiment_valid.csv")
     pb = pd.read_csv(RAW / "phrasebank_allagree.csv")
-    gold = pd.read_csv(LABELED / "gold_sample.csv").merge(pd.read_csv(LABELED / "gold_labels.csv"), on="gold_id")
+    gold = gold_test()
     return {"tweets_valid": ([normalize_social(clean(t)) for t in tw["text"]], tw["label"].map(TWEET_LABELS).tolist(), "social"),
             "phrasebank": ([clean(t) for t in pb["text"]], pb["label"].tolist(), "news"),
             "gold_news": ([clean(t) for t in gold["text"]], gold["sentiment"].tolist(), "news")}
@@ -73,13 +80,14 @@ def evaluate_sentiment(full: bool) -> dict:
     cm = confusion_matrix(y_gold, preds[("gold_news", best)], labels=list(LABELS))
     return {"table": rows, "confusion": {"model": best, "dataset": "gold_news", "labels": list(LABELS),
                                          "matrix": cm.tolist()},
-            "note": "PhraseBank is leaky for FinBERT (its training data). gold_news = 400 real headlines labelled blind "
-                    "to model output: the fairest test. Macro-F1 over negative / neutral / positive."}
+            "note": "PhraseBank is leaky for FinBERT (its training data). gold_news = 200 real headlines (the test half "
+                    "of the gold set) labelled blind to model output and never used for training or tuning: the "
+                    "fairest test. Macro-F1 over negative / neutral / positive."}
 
 
 def evaluate_events(full: bool) -> dict:
     valid = pd.read_csv(PROCESSED / "events_valid.csv")
-    gold = pd.read_csv(LABELED / "gold_sample.csv").merge(pd.read_csv(LABELED / "gold_labels.csv"), on="gold_id")
+    gold = gold_test()
     data = {"tweets_valid (weak labels)": (valid["text"].tolist(), valid["event_type"].tolist()),
             "gold_news": ([clean(t) for t in gold["text"]], gold["event_type"].tolist())}
     kb = KeywordBaseline()
@@ -98,8 +106,8 @@ def evaluate_events(full: bool) -> dict:
         from riskpulse.nlp.embedding import FullEmbedder
         enc, fullc = FullEmbedder(), EventClassifier("full")
         encoders = {ds: enc.encode(x) for ds, (x, _) in data.items()}
-        models["Full: embeddings + LR (no rules)"] = lambda x, e: [EVENT_TYPES[i] for i in fullc.model_probs(x, e).argmax(1)]
-        models["RiskPulse full: embeddings + LR + rules"] = lambda x, e: [o["event_type"] for o in fullc.predict(x, e)]
+        models["Full: ensemble, no rules"] = lambda x, e: [EVENT_TYPES[i] for i in fullc.model_probs(x, e).argmax(1)]
+        models["RiskPulse full: ensemble + rules"] = lambda x, e: [o["event_type"] for o in fullc.predict(x, e)]
     rows, gold_preds = [], {}
     for ds, (x, y) in data.items():
         for name, fn in models.items():
@@ -107,7 +115,7 @@ def evaluate_events(full: bool) -> dict:
             rows.append({"dataset": ds, "model": name, **_scores(y, p)})
             if ds == "gold_news":
                 gold_preds[name] = p
-    best = "RiskPulse full: embeddings + LR + rules" if full else "Lite: TF-IDF + LR + rules"
+    best = "RiskPulse full: ensemble + rules" if full else "Lite: TF-IDF + LR + rules"
     y = data["gold_news"][1]
     classes = [c for c in EVENT_TYPES if c in set(y)]
     per_class = []
@@ -120,6 +128,7 @@ def evaluate_events(full: bool) -> dict:
     return {"table": rows, "per_class": per_class,
             "confusion": {"model": best, "dataset": "gold_news", "labels": classes, "matrix": cm.tolist()},
             "gold_predictions": {k: v for k, v in gold_preds.items()},
-            "note": "tweets_valid labels come from the same weak-supervision mapping as training (optimistic). "
-                    "gold_news uses human-style labels on real headlines (out-of-domain). Classes with support < 10 "
+            "note": "tweets_valid labels come from the same weak-supervision mapping as training (optimistic for the "
+                    "TF-IDF model, which can learn the keyword rules). gold_news = test half of the real headlines, never "
+                    "used for training or tuning; the dev half adapted the models to news. Classes with support < 10 "
                     "have unstable F1."}

@@ -76,10 +76,10 @@ def charts(m: dict, equity: pd.DataFrame) -> list[str]:
                   "Sentiment: macro-F1 vs the naive VADER baseline", "macro-F1", IMAGES / "eval_sentiment.png")
     saved.append("eval_sentiment.png")
     pc = pd.DataFrame(m["events"]["per_class"])
-    pc = pc[pc["support"] >= 10]
+    pc = pc[pc["support"] >= 6]
     _grouped_barh(pc["class"].tolist(), {"RiskPulse hybrid": pc["hybrid_f1"].tolist(),
                                          "Keyword baseline": pc["keyword_f1"].tolist()},
-                  "Event classification: per-class F1 on real headlines (support >= 10)", "F1",
+                  "Event classification: per-class F1 on held-out real headlines (support >= 6)", "F1",
                   IMAGES / "eval_events.png")
     saved.append("eval_events.png")
     d = pd.DataFrame(m["impact"]["deciles"])

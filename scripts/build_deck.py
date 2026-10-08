@@ -147,7 +147,7 @@ def build() -> None:
     s_naive = metric(sent, dataset="gold_news", model="VADER (naive baseline)")["macro_f1"]
     s_best = metric(sent, dataset="gold_news", model="RiskPulse full (blend + policy rule)")["macro_f1"]
     e_naive = metric(ev, dataset="gold_news", model="Keyword baseline (naive)")
-    e_best = metric(ev, dataset="gold_news", model="RiskPulse full: embeddings + LR + rules")
+    e_best = metric(ev, dataset="gold_news", model="RiskPulse full: ensemble + rules")
     mk = {r["score"]: r for r in m["impact"]["market_level"]["table"]}
     imp_m, base_m = mk["Impact score (RiskPulse)"], mk["|Sentiment| only (naive)"]
     mb = m["module_b"]
@@ -236,9 +236,9 @@ def build() -> None:
     # ---------------------------------------------------------------- 5 key results
     s = d.slide(kicker="Key results vs naive approaches")
     d.text(s, "Measured against naive baselines on held-out data", 0.6, 0.85, 12, 0.8, 34, TEXT, bold=True)
-    stats = [(f"{s_best:.2f}", f"vs {s_naive:.2f}", "sentiment macro-F1 on 400 real headlines (naive: VADER)"),
+    stats = [(f"{s_best:.2f}", f"vs {s_naive:.2f}", "sentiment macro-F1 on 200 held-out real headlines (naive: VADER)"),
              (f"{e_best['macro_f1']:.2f}", f"vs {e_naive['macro_f1']:.2f}",
-              "event macro-F1 on real headlines (naive: keyword rules)"),
+              "event macro-F1 on the same headlines (naive: keyword rules)"),
              (f"{imp_m['spearman_all_days']:.2f}", f"vs {base_m['spearman_all_days']:.2f}",
               "impact vs S&P 500 moves, Spearman (naive: |sentiment|)"),
              (f"{mb['rates_sign_errors_naive']} / 6", "scenarios",
