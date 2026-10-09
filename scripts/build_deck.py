@@ -19,7 +19,7 @@ from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Inches, Pt
 
 import _bootstrap  # noqa: F401
-from riskpulse.config import CONFIG, DOCS, OUTPUT, RAW, REPORTS, load_yaml
+from riskpulse.config import CONFIG, DOCS, RAW, REPORTS, load_yaml
 from riskpulse.module_b.stress import book
 
 INK, NAVY, WHITE, PAPER = "0F1B2D", "15263D", "FFFFFF", "F3F6FA"
@@ -157,9 +157,11 @@ def build() -> None:
                            cwd=str(DOCS.parent)).stdout
     n_tests = next((ln.split()[0] for ln in tests.splitlines() if "tests collected" in ln or "test collected" in ln), "?")
     book_bn = float(book()["value"].sum()) / 1e9
-    hist = pd.read_csv(OUTPUT / "signals_history_full.csv.gz", usecols=["time_precision"])
-    date_only = float((hist["time_precision"] == "day").mean())
-    n_headlines = len(pd.read_csv(RAW / "news_history.csv.gz", usecols=["title"]))
+    stamps = pd.to_datetime(pd.read_csv(RAW / "news_history.csv.gz", usecols=["published_at"])["published_at"],
+                            utc=True, format="ISO8601")
+    # date-only items are stamped midnight US Pacific (07:00 / 08:00 UTC), same rule as precompute_signals.py
+    date_only = float(((stamps.dt.strftime("%M:%S") == "00:00") & stamps.dt.hour.isin([7, 8])).mean())
+    n_headlines = len(stamps)
     d = Deck()
 
     # ---------------------------------------------------------------- 1 title
