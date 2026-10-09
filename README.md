@@ -87,7 +87,7 @@ typical long-run levels and risk weights follow Basel CRE20.
 Runtime: Python 3.11+ (developed on Python 3.12.7, Windows 11; CI runs the lite tier on Ubuntu, Python 3.11).
 
 ```bash
-git clone https://github.com/<github-user>/iitkgp-anish-karthik-ayyagari-hackathon.git
+git clone https://github.com/Realmer01/iitkgp-anish-karthik-ayyagari-hackathon.git
 cd iitkgp-anish-karthik-ayyagari-hackathon
 python -m venv .venv
 .venv\Scripts\activate            # macOS / Linux: source .venv/bin/activate
