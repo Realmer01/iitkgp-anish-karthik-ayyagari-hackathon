@@ -4,8 +4,9 @@
 """
 from __future__ import annotations
 
-import _bootstrap  # noqa: F401
 import matplotlib
+
+import _bootstrap  # noqa: F401
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
