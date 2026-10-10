@@ -6,7 +6,7 @@ import streamlit as st
 
 from riskpulse.dashboard import charts
 from riskpulse.dashboard.client import get, post
-from riskpulse.dashboard.theme import tint
+from riskpulse.dashboard.theme import money, tint
 
 EXAMPLES = {
     "Geopolitical shock (triggers Module B)":
@@ -67,12 +67,13 @@ def _signal_card(s: dict) -> None:
                 + "".join(f"<span class='rp-chip'>{r}</span>" for r in s["regions"])
                 + (f"<span class='rp-chip'>rule: {s['event_rule']}</span>" if s.get("event_rule") else "")
                 + f"<span class='rp-chip'>{s['model_tier']} tier · {s['latency_ms']:.0f} ms</span>", unsafe_allow_html=True)
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Sentiment score", f"{s['sentiment_score']:+.2f}", s["sentiment_label"],
-              delta_color="normal" if s["sentiment_score"] >= 0 else "inverse")
-    m2.metric("Event classification", s["event_type"], f"confidence {s['event_confidence']:.0%}", delta_color="off")
-    m3.metric("Impact score", f"{s['impact_score']:.1f} / 10",
-              "above stress threshold" if s["impact_score"] > 7 else "below stress threshold", delta_color="off")
+    m1, m2, m3 = st.columns(3)                  # captions, not metric deltas: a delta arrow would point up for "negative"
+    m1.metric("Sentiment score", f"{s['sentiment_score']:+.2f}")
+    m1.caption(s["sentiment_label"])
+    m2.metric("Event classification", s["event_type"])
+    m2.caption(f"confidence {s['event_confidence']:.0%}")
+    m3.metric("Impact score", f"{s['impact_score']:.1f} / 10")
+    m3.caption("above the default stress threshold (7)" if s["impact_score"] > 7 else "below the default stress threshold (7)")
     c1, c2 = st.columns([3, 2])
     with c1:
         contrib = {k.replace("_", " "): v for k, v in d["contributions"].items()}
@@ -92,7 +93,7 @@ def _module_reactions(res: dict, before: dict | None) -> None:
         r = runs[0]
         cap = r["capital"]
         st.markdown(f"<div class='rp-callout'>⚠ <b>Module B stress test triggered</b> - {r['scenario']} "
-                    f"(scale {r['scale']:.2f}): portfolio P&L <b>${r['pnl'] / 1e6:,.1f}m</b> ({r['pnl_pct']:.2%}), "
+                    f"(scale {r['scale']:.2f}): portfolio P&L <b>{money(r['pnl'])}</b> ({r['pnl_pct']:.2%}), "
                     f"CET1 {cap['cet1_ratio_before']:.2%} → {cap['cet1_ratio_after']:.2%}. See the Module B tab.</div>",
                     unsafe_allow_html=True)
     else:

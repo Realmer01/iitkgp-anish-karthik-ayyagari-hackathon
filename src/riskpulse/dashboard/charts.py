@@ -74,7 +74,8 @@ def lines(df: pd.DataFrame, title: str, yfmt: str = ".2f", height: int = 340, re
     if reference is not None:
         fig.add_trace(go.Scatter(x=reference.index, y=reference.values, name=reference_name, mode="lines",
                                  line=dict(color=MUTED, width=1), hovertemplate="%{y:" + yfmt + "}"))
-    fig.update_layout(hovermode="x unified", showlegend=len(fig.data) > 1)
+    fig.update_layout(hovermode="x unified", showlegend=len(fig.data) > 1,
+                      legend=dict(orientation="h", yanchor="top", y=-0.16, x=0), margin=dict(b=70))  # clear of title
     fig.update_yaxes(tickformat=yfmt, title=ytitle)
     return _finish(fig, title, height)
 

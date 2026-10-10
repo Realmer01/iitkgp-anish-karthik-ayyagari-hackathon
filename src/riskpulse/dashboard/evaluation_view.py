@@ -12,7 +12,8 @@ from riskpulse.dashboard import charts
 
 def _table(rows: list[dict], index: str | list[str], fmt: str = "{:.3f}") -> None:
     df = pd.DataFrame(rows).set_index(index)
-    st.dataframe(df.style.format(fmt, subset=df.select_dtypes("number").columns), use_container_width=True)
+    st.dataframe(df.style.format(fmt, subset=df.select_dtypes("float").columns)
+                 .format("{:,}", subset=df.select_dtypes("integer").columns), use_container_width=True)
 
 
 def render() -> None:

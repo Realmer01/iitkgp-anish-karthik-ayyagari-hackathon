@@ -6,7 +6,7 @@ import streamlit as st
 
 from riskpulse.dashboard import charts
 from riskpulse.dashboard.client import get, post
-from riskpulse.dashboard.theme import tint
+from riskpulse.dashboard.theme import md_safe, money, tint
 
 EVENTS = ["Geopolitical", "Macroeconomic", "Credit Event", "Operational Risk", "Legal & Regulatory",
           "Merger & Acquisition"]
@@ -22,15 +22,17 @@ def render_run(r: dict) -> None:
     cap = r["capital"]
     t = r.get("trigger", {})
     if t.get("headline"):
-        st.markdown(f"**Trigger:** “{t['headline']}” · {t.get('event_type')} · impact {t.get('impact_score', t.get('impact'))}"
+        st.markdown(f"**Trigger:** “{md_safe(t['headline'])}” · {t.get('event_type')} · impact "
+                    f"{t.get('impact_score', t.get('impact'))}"
                     + (f" · {t.get('publisher')}" if t.get("publisher") else ""))
-    st.markdown(f"**Scenario:** {r['scenario']} ×{r['scale']:.2f}  <span class='rp-muted'>analogue: {r['analogue']}</span>",
+    st.markdown(f"**Scenario:** {r['scenario']} ×{r['scale']:.2f}  <span class='rp-muted'>analogue: "
+                f"{md_safe(r['analogue'])}</span>",
                 unsafe_allow_html=True)
     k = st.columns(5)
     k[0].metric("Value before", f"${r['value_before'] / 1e9:,.3f}bn")
     k[1].metric("Value after", f"${r['value_after'] / 1e9:,.3f}bn", f"{r['pnl_pct']:+.2%}")
-    k[2].metric("Stress P&L", f"${r['pnl'] / 1e6:,.1f}m")
-    k[3].metric("Δ expected loss", f"${r['delta_expected_loss'] / 1e6:,.1f}m")
+    k[2].metric("Stress P&L", money(r["pnl"]))
+    k[3].metric("Δ expected loss", money(r["delta_expected_loss"]))
     k[4].metric("CET1 ratio", f"{cap['cet1_ratio_after']:.2%}", f"{(cap['cet1_ratio_after'] - cap['cet1_ratio_before']) * 1e4:+.0f} bp")
     if cap["breach"]:
         st.markdown(f"<div class='rp-callout'>⚠ <b>Capital breach</b>: stressed CET1 {cap['cet1_ratio_after']:.2%} is "
@@ -53,7 +55,8 @@ def render_run(r: dict) -> None:
         top = pd.DataFrame(r["top_contributors"])
         if not top.empty:
             st.dataframe(top[["position_id", "counterparty", "instrument", "pnl"]].style
-                         .map(lambda v: tint(v, -2e7, 2e7), subset=["pnl"]).format({"pnl": "${:,.0f}"}),
+                         .map(lambda v: tint(v, -2e7, 2e7), subset=["pnl"])
+                         .format({"pnl": lambda v: money(v, 1, "", 0)}),
                          hide_index=True, use_container_width=True, height=380)
     if "naive" in r:
         n = r["naive"]
@@ -62,8 +65,8 @@ def render_run(r: dict) -> None:
                                                     "Naive static shock": [n["by_component"].get(c, 0) / 1e6 for c in comps]},
                                             "Event-driven vs naive static stress (P&L, $m)", fmt=",.1f"),
                         use_container_width=True)
-        st.caption(f"Naive approach (rates +200bp, spreads +100bp, equities −10% for every event): P&L "
-                   f"${n['pnl'] / 1e6:,.1f}m vs event-driven ${r['pnl'] / 1e6:,.1f}m. The naive shock ignores what the "
+        st.caption(md_safe(f"Naive approach (rates +200bp, spreads +100bp, equities −10% for every event): P&L "
+                           f"{money(n['pnl'])} vs event-driven {money(r['pnl'])}. ") + "The naive shock ignores what the "
                    "event actually does - e.g. it adds rate losses in flight-to-quality events where yields fall.")
 
 

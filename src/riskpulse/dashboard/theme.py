@@ -55,6 +55,16 @@ def install_template() -> None:
     pio.templates.default = "riskpulse"
 
 
+def money(value: float, scale: float = 1e6, unit: str = "m", digits: int = 1) -> str:
+    """-196.0e6 -> '-$196.0m' (sign before the currency symbol)."""
+    return f"{'-' if value < 0 else ''}${abs(value) / scale:,.{digits}f}{unit}"
+
+
+def md_safe(text: str) -> str:
+    """Escape $ so Streamlit markdown does not render '$100 ... $128' as LaTeX."""
+    return str(text).replace("$", "\\$")
+
+
 def tint(value: float, lo: float = -1.0, hi: float = 1.0) -> str:
     """Background tint for a signed value in a table cell (text stays in primary ink)."""
     if value is None:
