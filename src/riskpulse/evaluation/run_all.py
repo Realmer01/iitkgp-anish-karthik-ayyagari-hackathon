@@ -134,6 +134,7 @@ def main(quick: bool = False) -> dict:
     ev = nlp_eval.evaluate_events(full)
     gold_preds = ev.pop("gold_predictions")
     m["events"] = ev
+    m["gold_agreement"] = nlp_eval.annotator_agreement()
     print("3/6 impact event study ...", flush=True)
     m["impact"] = impact_eval.evaluate("full", write_calibration=not quick)
     print("4/6 engine performance ...", flush=True)

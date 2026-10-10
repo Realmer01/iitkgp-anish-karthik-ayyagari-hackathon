@@ -5,12 +5,16 @@ Datasets
   phrasebank     Financial PhraseBank AllAgree news sentences (FinBERT was trained on it: leaky for FinBERT)
   gold_news      the TEST half (200) of the 400 real archive headlines labelled blind to model output. The dev
                  half was used for domain adaptation (scripts/train_models.py); the test half never was.
+Gold labels: the first annotator's labels (gold_labels.csv, proposed by the AI assistant) are checked by a
+second, independent annotator (the author) on a random 40 test headlines (gold_labels_author_check.csv),
+labelled blind to both the first labels and the models. Agreement is reported; where they disagree, the
+author's label is used.
 """
 from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, cohen_kappa_score, confusion_matrix, f1_score
 
 from riskpulse.config import LABELED, PROCESSED, RAW
 from riskpulse.nlp.events import EventClassifier, KeywordBaseline, rule_override
@@ -26,10 +30,42 @@ def _scores(y, p) -> dict:
             "macro_f1": round(float(f1_score(y, p, average="macro", labels=sorted(set(y)))), 4)}
 
 
+AUTHOR_CHECK = LABELED / "gold_labels_author_check.csv"
+
+
+def _author_check() -> pd.DataFrame | None:
+    return pd.read_csv(AUTHOR_CHECK).set_index("gold_id") if AUTHOR_CHECK.exists() else None
+
+
 def gold_test() -> pd.DataFrame:
+    """Test-half gold labels: first annotator, with the second annotator's label where the two disagree."""
     gold = pd.read_csv(LABELED / "gold_sample.csv").merge(pd.read_csv(LABELED / "gold_labels.csv"), on="gold_id")
     split = pd.read_csv(LABELED / "gold_split.csv")
-    return gold.merge(split, on="gold_id").query("split == 'test'").reset_index(drop=True)
+    test = gold.merge(split, on="gold_id").query("split == 'test'").reset_index(drop=True)
+    check = _author_check()
+    if check is not None:
+        assert set(check.index) <= set(test["gold_id"]), "the author check must only cover test headlines"
+        for col in ("event_type", "sentiment"):
+            test[col] = test["gold_id"].map(check[col]).fillna(test[col])
+    return test
+
+
+def annotator_agreement() -> dict | None:
+    """First annotator (AI-proposed labels) vs the author's blind labels on the spot-check sample."""
+    check = _author_check()
+    if check is None:
+        return None
+    first = pd.read_csv(LABELED / "gold_labels.csv").set_index("gold_id").loc[check.index]
+    out = {"n": int(len(check))}
+    for col, key in (("event_type", "event"), ("sentiment", "sentiment")):
+        a, b = first[col].tolist(), check[col].tolist()
+        out[key] = {"agreement": round(float(np.mean([x == y for x, y in zip(a, b)])), 4),
+                    "cohen_kappa": round(float(cohen_kappa_score(a, b)), 4),
+                    "changed_to_author_label": int(sum(x != y for x, y in zip(a, b)))}
+    out["note"] = ("Second annotator = the author, labelling a random 40 of the 200 test headlines (seed 2026) blind "
+                   "to the first labels and to model output. Kappa corrects agreement for chance. Where the two "
+                   "disagree, the author's label is the one evaluated.")
+    return out
 
 
 def sentiment_datasets() -> dict[str, tuple[list[str], list[str], str]]:
