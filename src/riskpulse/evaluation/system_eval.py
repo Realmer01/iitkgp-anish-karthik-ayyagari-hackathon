@@ -79,6 +79,7 @@ def module_a(quick: bool = False) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
            "placebo_ticker_shuffle_active_return": [round(x, 4) for x in placebo],
            "delay_plus_1d_active_return": round(bt.metrics(rd["strategy"], r["neutral_policy"])["active_return_annual"], 4),
            "april_2025_window": {k: round(v, 4) for k, v in bt.window(res, "2025-04-01", "2025-04-14").items()},
+           "stress_days": bt.stress_days(res),
            "note": "Hourly open-to-open returns, Oct 2024 - Oct 2026, 5 bp costs, strict no-look-ahead (date-only news "
                    "usable only after its day ends). Active figures are vs the neutral policy. With correct timing the "
                    "sentiment tilt shows no reliable edge: day-stamped news on mega caps is priced by the next open."}
@@ -138,7 +139,11 @@ def replay_triggers() -> dict:
         if mon.wants(s):
             mon.consider(s)
     runs = mon.runs[::-1]
+
+    def brief(r: dict) -> dict:
+        return {"time": r["ts"][:16], "headline": r["trigger"]["headline"], "impact": r["trigger"]["impact_score"],
+                "scenario": r["scenario"], "pnl_musd": round(r["pnl"] / 1e6, 1),
+                "cet1_after_pct": round(r["capital"]["cet1_ratio_after"] * 100, 2)}
     return {"signals": len(sigs), "eligible": sum(mon.wants(s) for s in sigs), "runs": len(runs),
-            "suppressed": mon.suppressed,
-            "first_run": {"time": runs[0]["ts"][:16], "headline": runs[0]["trigger"]["headline"],
-                          "scenario": runs[0]["scenario"], "pnl_musd": round(runs[0]["pnl"] / 1e6, 1)} if runs else None}
+            "suppressed": mon.suppressed, "first_run": brief(runs[0]) if runs else None,
+            "highest_impact_run": brief(max(runs, key=lambda r: r["trigger"]["impact_score"])) if runs else None}
