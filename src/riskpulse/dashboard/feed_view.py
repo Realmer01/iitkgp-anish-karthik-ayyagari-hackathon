@@ -10,7 +10,7 @@ from riskpulse.dashboard.theme import tint
 
 EXAMPLES = {
     "Geopolitical shock (triggers Module B)":
-        "Russia launches missile strikes on Ukraine; US and EU impose sweeping new sanctions on Moscow",
+        "Russia launches full-scale invasion of Ukraine; global stocks plunge as US and EU impose sweeping sanctions",
     "Credit event at an index company": "Boeing files for Chapter 11 bankruptcy protection after missing debt payments",
     "Positive product news (lifts weight)": "Nvidia unveils next-generation AI chip as analysts say demand far exceeds supply",
     "Hawkish central bank": "Fed raises interest rates by 75 basis points and signals more hikes to fight inflation",
