@@ -77,6 +77,14 @@ def results_block(m: dict) -> str:
         f"the S&P 500 by {abs(sd['mean_next_day_excess_return_bp']):.0f} bp the next day - the right direction, but far "
         "too small to change the overall result.",
     ]
+    ga = m.get("gold_agreement")
+    if ga:
+        notes.append(
+            f"Gold labels were proposed by the AI assistant; a second annotator (the author) labelled a random {ga['n']} "
+            f"of the 200 test headlines blind to those labels and to the models. Agreement: {ga['event']['agreement']:.0%} "
+            f"on event type (Cohen's kappa {ga['event']['cohen_kappa']:.2f}) and {ga['sentiment']['agreement']:.0%} on "
+            f"sentiment (kappa {ga['sentiment']['cohen_kappa']:.2f}). Where the two disagree, the author's label is "
+            "the one scored.")
     return "\n".join(lines + notes)
 
 
