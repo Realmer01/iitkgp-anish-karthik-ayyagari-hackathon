@@ -7,6 +7,7 @@ Uses Playwright with the locally installed Edge or Chrome (no browser download).
 from __future__ import annotations
 
 import argparse
+import re
 import time
 from pathlib import Path
 
@@ -45,6 +46,13 @@ def main() -> None:
         while time.time() < deadline and not httpx.get(f"{args.api}/stats", timeout=30).json().get("replay_finished"):
             time.sleep(2)
         print("replay finished:", httpx.get(f"{args.api}/stats", timeout=30).json().get("replay_finished"))
+        last, stable_since = -1, time.time()          # the bus may still be delivering the last batches to Module B
+        while time.time() - stable_since < 8 and time.time() < deadline + 120:
+            n = len((httpx.get(f"{args.api}/module-b/runs", params={"limit": 100}, timeout=30).json() or {}).get("runs", []))
+            if n != last:
+                last, stable_since = n, time.time()
+            time.sleep(1)
+        print("module B runs after the replay:", last)
     with sync_playwright() as p:
         for channel in ("msedge", "chrome", None):
             try:
@@ -72,6 +80,11 @@ def main() -> None:
         for i, tab in enumerate(TABS):
             page.get_by_role("tab", name=tab).click()
             settle(page, 5)
+            if i == 2 and args.analyze:                     # inspect the run the typed headline triggered
+                box = page.locator("[data-testid='stSelectbox']", has_text="Inspect run")
+                box.locator("div[data-baseweb='select']").click()
+                page.get_by_role("option", name=re.compile("Russia launches full-scale")).first.click()
+                settle(page, 3)
             if i == 0:                                      # the hero already shows the analyze box
                 page.get_by_text("Signals stored").first.evaluate("e => e.scrollIntoView({block: 'start'})")
                 page.mouse.wheel(0, -40)
