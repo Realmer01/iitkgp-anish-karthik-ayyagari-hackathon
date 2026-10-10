@@ -7,6 +7,7 @@ sensitivity sweep.
 from __future__ import annotations
 
 import json
+import sys
 import time
 from datetime import UTC, datetime
 
@@ -122,6 +123,7 @@ def main(quick: bool = False) -> dict:
         import runpy
 
         from riskpulse.config import ROOT
+        sys.path.insert(0, str(ROOT / "scripts"))          # the script imports its _bootstrap helper
         runpy.run_path(str(ROOT / "scripts" / "build_training_data.py"), run_name="__main__")
     REPORTS.mkdir(exist_ok=True)
     print("1/6 sentiment ...", flush=True)
