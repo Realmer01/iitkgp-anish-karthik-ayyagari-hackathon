@@ -72,14 +72,14 @@ def test_trigger_threshold_dedup_and_cooldown(make_signal):
     bus.publish([make_signal(3, impact_score=8.5, story_id="A", **geo)])        # same story
     bus.publish([make_signal(4, impact_score=8.5, story_id="B", **geo)])        # same scenario within cooldown
     assert len(mon.runs) == 1 and mon.suppressed == {"story_dedup": 1, "cooldown": 1, "commentary": 0, "not_adverse": 0}
-    clock["t"] += timedelta(hours=2)
-    bus.publish([make_signal(5, impact_score=9.3, story_id="C", **geo)])        # escalation: >= 8.2 + 1.0
+    later = datetime(2025, 4, 3, 16, tzinfo=UTC)                               # cooldown runs on news time
+    bus.publish([make_signal(5, impact_score=9.3, story_id="C", published_at=later, **geo)])   # escalation: >= 8.2 + 1
     assert len(mon.runs) == 2
-    bus.publish([make_signal(6, impact_score=9.5, story_id="D", **geo)])        # not 1 point above 9.3
+    bus.publish([make_signal(6, impact_score=9.5, story_id="D", published_at=later, **geo)])   # not 1 point above 9.3
     assert len(mon.runs) == 2
-    clock["t"] += timedelta(hours=7)                                            # cooldown (6h) has passed
-    bus.publish([make_signal(7, impact_score=7.5, story_id="E", **geo)])
-    assert len(mon.runs) == 3
+    clock["t"] += timedelta(hours=1)                                            # processing time is irrelevant ...
+    bus.publish([make_signal(7, impact_score=7.5, story_id="E", published_at=later + timedelta(hours=7), **geo)])
+    assert len(mon.runs) == 3                                                   # ... 7h of news time has passed
     assert isinstance(pd.DataFrame(mon.runs[0]["top_contributors"]), pd.DataFrame)
 
 

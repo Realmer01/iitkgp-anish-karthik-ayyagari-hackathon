@@ -11,8 +11,9 @@ and it reports an adverse event:
 One real-world event must cause one stress run, so a trigger is suppressed when
   * its story already triggered a run (story dedup), or
   * the same scenario (and, for company overlays, the same company) ran within cooldown_minutes of
-    simulated time - unless the new signal ESCALATES, i.e. its impact exceeds the last run's by at
-    least escalation_delta. A desk wants one run per developing event, plus a re-run when it worsens.
+    news time (the signals' published_at, so replay speed and batching cannot change the result) -
+    unless the new signal ESCALATES, i.e. its impact exceeds the last run's by at least
+    escalation_delta. A desk wants one run per developing event, plus a re-run when it worsens.
 Every run is logged with its triggering signal, the scenario applied, results and the
 headline-to-result latency.
 """
@@ -89,7 +90,7 @@ class StressMonitor:
 
     def consider(self, s: RiskSignal) -> dict | None:
         with self._lock:
-            now = self.now()
+            now, news_time = self.now(), s.published_at
             rule = scenarios.route(s.event_type, s.headline)
             target = s.entity.id if s.entity.type == "company" and rule.get("overlay") else ""
             key = (rule["scenario"], target)
@@ -102,14 +103,14 @@ class StressMonitor:
                 self.last_skip = "this story already triggered a run"
                 return None
             last = self._last.get(key)
-            if last and now - last[0] < self.cooldown and s.impact_score < last[1] + self.escalation:
+            if last and news_time - last[0] < self.cooldown and s.impact_score < last[1] + self.escalation:
                 self.suppressed["cooldown"] += 1
-                hours = (now - last[0]).total_seconds() / 3600
+                hours = (news_time - last[0]).total_seconds() / 3600
                 self.last_skip = (f"the same scenario ran {hours:.1f} h ago and impact did not rise by "
                                   f"{self.escalation:.0f}+ (cooldown)")
                 return None
             self._stories.add(s.story_id)
-            self._last[key] = (now, s.impact_score)
+            self._last[key] = (news_time, s.impact_score)
         shocks = scenarios.build(s.event_type, s.impact_score, s.headline, s.entity.type, s.entity.ticker or "",
                                  s.entity.sector or "", s.regions)
         trigger = {"type": "signal", "signal_id": s.signal_id, "story_id": s.story_id, "headline": s.headline,

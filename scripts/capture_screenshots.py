@@ -73,8 +73,8 @@ def main() -> None:
             page.get_by_role("tab", name=tab).click()
             settle(page, 5)
             if i == 0:                                      # the hero already shows the analyze box
-                page.get_by_text("Latest signals").first.scroll_into_view_if_needed()
-                page.mouse.wheel(0, -120)
+                page.get_by_text("Signals stored").first.evaluate("e => e.scrollIntoView({block: 'start'})")
+                page.mouse.wheel(0, -40)
                 settle(page, 1)
             path = out / f"dashboard_{i + 1}_{tab.split(' ')[0].lower()}{'_' + tab.split(' ')[1] if i in (1, 2) else ''}.png"
             page.screenshot(path=str(path), full_page=True)
