@@ -88,12 +88,13 @@ typical long-run levels and risk weights follow Basel CRE20.
 
 ## 4. Quickstart & Installation
 
-Runtime: Python 3.11+ (developed on Python 3.12.7, Windows 11; CI runs the lite tier on Ubuntu, Python 3.11).
+Runtime: **Python 3.11 or 3.12** on Windows 11 (developed on Python 3.12.7; CI runs the lite tier on Ubuntu,
+Python 3.11). Python 3.13 is not supported: the pinned numpy, pandas and scikit-learn have no 3.13 wheels.
 
 ```bash
 git clone https://github.com/Realmer01/iitkgp-anish-karthik-ayyagari-hackathon.git
 cd iitkgp-anish-karthik-ayyagari-hackathon
-python -m venv .venv
+python -m venv .venv              # Python 3.11 or 3.12, e.g. `py -3.12 -m venv .venv` on Windows
 .venv\Scripts\activate            # macOS / Linux: source .venv/bin/activate
 pip install -r requirements.txt
 python run.py demo

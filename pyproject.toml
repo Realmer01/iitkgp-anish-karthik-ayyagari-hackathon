@@ -2,7 +2,7 @@
 name = "riskpulse"
 version = "1.0.0"
 description = "Real-time AI/NLP financial risk engine with index-rebalancing and stress-testing modules"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.13"   # pinned numpy / pandas / scikit-learn have no 3.13 wheels
 license = { text = "MIT" }
 
 [tool.ruff]
