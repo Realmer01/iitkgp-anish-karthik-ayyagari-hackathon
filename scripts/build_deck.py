@@ -153,8 +153,8 @@ def build() -> None:
     mb = m["module_b"]
     lat = mb["headline_to_stress_result_s"]
     a_ic = m["module_a"]["ic"]["mean_ic"]
-    tests = subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q"], capture_output=True, text=True,
-                           cwd=str(DOCS.parent)).stdout
+    tests = subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q", "-o", "addopts="],
+                           capture_output=True, text=True, cwd=str(DOCS.parent)).stdout   # one -q: keeps the total
     n_tests = next((ln.split()[0] for ln in tests.splitlines() if "tests collected" in ln or "test collected" in ln), "?")
     book_bn = float(book()["value"].sum()) / 1e9
     stamps = pd.to_datetime(pd.read_csv(RAW / "news_history.csv.gz", usecols=["published_at"])["published_at"],
@@ -203,7 +203,7 @@ def build() -> None:
     # ---------------------------------------------------------------- 3 system design
     s = d.slide(kicker="System design")
     d.text(s, "One engine, decoupled consumers, one versioned signal", 0.6, 0.85, 12, 0.8, 34, TEXT, bold=True)
-    d.picture(s, DOCS / "architecture.png", 0.95, 1.7, w=11.4, name="architecture")
+    d.picture(s, DOCS / "architecture.png", 1.91, 1.55, h=5.35, name="architecture")    # 16:9, clear of the footer
     d.notes(s, "Data flows left to right. Connectors produce RawDocuments; the normaliser cleans and clusters them "
                "into stories; the NLP stages link entities and score sentiment, event and impact. The output is a "
                "versioned RiskSignal published on a bus and written to JSONL, SQLite and a FastAPI REST and SSE API. "
@@ -220,8 +220,8 @@ def build() -> None:
                                   "subscribers", AQUA),
              ("Module A", "Sentiment tilt with caps, drift band, turnover cap and costs; hourly no-look-ahead "
                           "backtest", AMBER),
-             ("Module B", "Cited scenario library, impact scaling, IFRS 9 staging, Basel CRE20 weights, CET1 proxy",
-              RED),
+             ("Module B", "Fires only on reported adverse events; cited scenarios scaled by impact, IFRS 9 "
+                          "staging, Basel CRE20 weights, CET1 proxy", RED),
              ("Runs anywhere", f"Lite tier without torch, offline replay demo, {n_tests} tests, CI on Python 3.11",
               "5B6573")]
     for i, (head, body, col) in enumerate(cards):
@@ -238,7 +238,7 @@ def build() -> None:
     # ---------------------------------------------------------------- 5 key results
     s = d.slide(kicker="Key results vs naive approaches")
     d.text(s, "Measured against naive baselines on held-out data", 0.6, 0.85, 12, 0.8, 34, TEXT, bold=True)
-    stats = [(f"{s_best:.2f}", f"vs {s_naive:.2f}", "sentiment macro-F1 on 200 held-out real headlines (naive: VADER)"),
+    stats = [(f"{s_best:.2f}", f"vs {s_naive:.2f}", "sentiment macro-F1, 200 held-out headlines (naive: VADER)"),
              (f"{e_best['macro_f1']:.2f}", f"vs {e_naive['macro_f1']:.2f}",
               "event macro-F1 on the same headlines (naive: keyword rules)"),
              (f"{imp_m['spearman_all_days']:.2f}", f"vs {base_m['spearman_all_days']:.2f}",
@@ -259,8 +259,9 @@ def build() -> None:
                  "showing IR 3.7 was a look-ahead leak we traced and fixed.", {"color": MUTED})]],
            5.75, 5.75, 6.95, 1.2, 13)
     d.notes(s, "Each number compares RiskPulse with a naive approach on data the models never saw. Sentiment and "
-               "event classification beat their baselines; the impact score lines up with market-wide moves far "
-               "better than sentiment alone; and event-aware stress tests avoid the sign errors of a static shock. "
+               "event classification beat their baselines; the impact score lines up with market-wide moves better "
+               "than sentiment alone, though both correlations are modest; and event-aware stress tests avoid the "
+               "sign errors of a static shock. "
                "I also report what did not work: no reliable trading edge once timing is strict.")
 
     # ---------------------------------------------------------------- 6 domain impact
@@ -270,8 +271,8 @@ def build() -> None:
     if shot.exists():
         d.card(s, 6.55, 1.75, 6.2, 4.9, fill=PAPER, line=LINE, name="screenshot-frame")
         d.picture(s, shot, 6.7, 1.9, w=5.9, name="dashboard-module-b")
-    rows = [("Risk managers", "Event-aware stress tests run when news breaks, with CET1 headroom and the "
-                              "positions that drive the loss", RED),
+    rows = [("Risk managers", "The right stress test runs when an adverse event is reported (not on commentary), "
+                              "with CET1 headroom and the positions that drive the loss", RED),
             ("Portfolio managers", "Index tilts react to company news within limits, every change linked to its "
                                    "headline", BLUE),
             ("Model risk & audit", "Every score carries its drivers, schema and model version; results are "

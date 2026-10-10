@@ -59,8 +59,9 @@ def _grouped_barh(labels, series: dict, title: str, xlabel: str, path, fmt="{:.2
     ax.set_xlabel(xlabel, color=INK_2)
     _style(ax, title, horizontal=True)
     ax.axvline(0, color=AXIS, linewidth=1)
-    ax.legend(frameon=False, loc="lower right", fontsize=9, labelcolor=INK_2)
-    fig.tight_layout()
+    fig.legend(*ax.get_legend_handles_labels(), frameon=False, loc="lower center", ncol=n, fontsize=9,
+               labelcolor=INK_2)                                # below the plot, never over a bar
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
     fig.savefig(path, facecolor=SURFACE)
     plt.close(fig)
 

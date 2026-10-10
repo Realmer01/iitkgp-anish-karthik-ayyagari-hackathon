@@ -63,6 +63,12 @@ def main() -> None:
             page.get_by_role("button", name="Analyze & publish to modules").click()
             page.get_by_text("Impact score", exact=True).first.wait_for(timeout=180_000)
             settle(page, 3)
+            page.get_by_text("Sentiment score", exact=True).first.scroll_into_view_if_needed()
+            page.mouse.wheel(0, -160)                       # keep the headline box in frame
+            settle(page, 1)
+            page.screenshot(path=str(out / "dashboard_hero.png"))     # one viewport: headline -> scores -> drivers
+            print("saved", out / "dashboard_hero.png")
+            page.mouse.wheel(0, -10_000)
         for i, tab in enumerate(TABS):
             page.get_by_role("tab", name=tab).click()
             settle(page, 5)
