@@ -18,6 +18,7 @@ import _bootstrap  # noqa: F401
 from riskpulse import config
 from riskpulse.config import OUTPUT, RAW
 from riskpulse.engine import RiskEngine
+from riskpulse.ingestion.base import excluded_publisher
 from riskpulse.nlp.impact import FEATURES
 from riskpulse.schema import RawDocument, SourceType
 
@@ -27,6 +28,7 @@ def load_history() -> list[RawDocument]:
     if (RAW / "gdelt_headlines.csv.gz").exists():
         frames.append(pd.read_csv(RAW / "gdelt_headlines.csv.gz").assign(source="gdelt"))
     df = pd.concat(frames, ignore_index=True).dropna(subset=["title"])
+    df = df[~df["publisher"].map(excluded_publisher)]          # no S&P Global / Crisil content
     df["published_at"] = pd.to_datetime(df["published_at"], utc=True, format="ISO8601")
     df = df.sort_values("published_at").drop_duplicates(["title", "publisher"])
     # Google News gives most items a date only (stamped midnight US Pacific = 07:00/08:00 UTC).

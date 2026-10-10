@@ -8,6 +8,7 @@ into the engine - it is logged and counted.
 from __future__ import annotations
 
 import logging
+import re
 import time
 from abc import ABC, abstractmethod
 from collections import OrderedDict
@@ -19,6 +20,15 @@ from riskpulse.schema import RawDocument, SourceType
 
 log = logging.getLogger("riskpulse.ingestion")
 USER_AGENT = "Mozilla/5.0 (RiskPulse research prototype)"
+
+# Nothing published by S&P Global or Crisil (or their businesses) is ingested, so no content of either firm
+# enters the engine. Third-party news that merely mentions them, e.g. a reported public rating action, is kept.
+EXCLUDED_PUBLISHERS = re.compile(r"s&p global|spglobal|standard (?:&|and) poor|s&p dow jones|platts|ihs markit|"
+                                 r"kensho|crisil|coalition greenwich", re.I)
+
+
+def excluded_publisher(publisher: str | None) -> bool:
+    return bool(EXCLUDED_PUBLISHERS.search(publisher or ""))
 
 
 class RateLimited(RuntimeError):
@@ -58,7 +68,7 @@ class Source(ABC):
         raise RuntimeError("unreachable")
 
     def _new(self, docs: list[RawDocument]) -> list[RawDocument]:
-        fresh = [d for d in docs if d.id not in self._seen]
+        fresh = [d for d in docs if d.id not in self._seen and not excluded_publisher(d.publisher)]
         for d in fresh:
             self._seen[d.id] = None
         while len(self._seen) > 50_000:

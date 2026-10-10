@@ -10,7 +10,7 @@ from urllib.parse import quote_plus, urlparse
 import feedparser
 
 from riskpulse import config
-from riskpulse.ingestion.base import Source
+from riskpulse.ingestion.base import Source, excluded_publisher
 from riskpulse.nlp.preprocess import clean, strip_publisher
 from riskpulse.schema import RawDocument, SourceType
 from riskpulse.universe import companies
@@ -44,7 +44,8 @@ def parse_gdelt_articles(articles: list[dict]) -> list[RawDocument]:
     return [RawDocument(source="gdelt", source_type=SourceType.NEWS, publisher=a.get("domain", ""),
                         published_at=parse_date(a.get("seendate")), title=clean(a.get("title", "")),
                         url=a.get("url", ""), lang=(a.get("language") or "English")[:2].lower(),
-                        raw_meta={"country": a.get("sourcecountry", "")}) for a in articles]
+                        raw_meta={"country": a.get("sourcecountry", "")})
+            for a in articles if not excluded_publisher(a.get("domain", ""))]
 
 
 class GdeltSource(Source):
@@ -105,6 +106,8 @@ class GoogleNewsSource(Source):
         out = []
         for e in feedparser.parse(self.get(self.URL.format(q=quote_plus(query))).content).entries:
             publisher = (e.get("source") or {}).get("title", "")
+            if excluded_publisher(publisher):
+                continue
             out.append(RawDocument(source=self.name, source_type=SourceType.NEWS, publisher=publisher,
                                    published_at=parse_date(e.get("published")),
                                    title=clean(strip_publisher(e.get("title", ""), publisher)), url=e.get("link", "")))
