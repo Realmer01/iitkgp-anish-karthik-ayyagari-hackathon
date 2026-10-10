@@ -1,0 +1,201 @@
+Keyword baseline (naive),Lite: TF-IDF + LR + rules,"Full: ensemble, no rules",RiskPulse full: ensemble + rules
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Product Launch,Product Launch,Product Launch,Product Launch
+General News,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,Product Launch,Analyst Rating,Analyst Rating
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Earnings,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+Operational Risk,Geopolitical,Operational Risk,Operational Risk
+Geopolitical,Geopolitical,Legal & Regulatory,Legal & Regulatory
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Leadership Change,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+Operational Risk,Operational Risk,Operational Risk,Operational Risk
+General News,General News,General News,General News
+Merger & Acquisition,General News,Merger & Acquisition,Merger & Acquisition
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Leadership Change,General News,General News,General News
+Merger & Acquisition,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+General News,General News,Analyst Rating,Analyst Rating
+Geopolitical,Geopolitical,Legal & Regulatory,Legal & Regulatory
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Earnings,Earnings,Earnings,Earnings
+Product Launch,General News,General News,General News
+General News,Merger & Acquisition,General News,General News
+Earnings,Earnings,Earnings,Earnings
+Product Launch,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Operational Risk,Geopolitical,Geopolitical,Geopolitical
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Product Launch,Product Launch,Product Launch,Product Launch
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+Product Launch,Product Launch,Product Launch,Product Launch
+Macroeconomic,Geopolitical,Geopolitical,Geopolitical
+Product Launch,Product Launch,Product Launch,Product Launch
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+General News,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Leadership Change,General News,General News,General News
+Geopolitical,Macroeconomic,Macroeconomic,Macroeconomic
+Earnings,General News,General News,General News
+Geopolitical,Macroeconomic,Geopolitical,Geopolitical
+Earnings,General News,General News,General News
+Earnings,General News,Earnings,Earnings
+General News,General News,General News,General News
+Earnings,Earnings,Earnings,Earnings
+General News,General News,General News,General News
+Merger & Acquisition,General News,General News,General News
+Credit Event,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,Operational Risk,Operational Risk
+General News,General News,General News,General News
+Leadership Change,General News,General News,General News
+Product Launch,Product Launch,Product Launch,Product Launch
+Macroeconomic,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+General News,General News,General News,General News
+Merger & Acquisition,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+Geopolitical,Macroeconomic,Macroeconomic,Macroeconomic
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Product Launch,Product Launch,Product Launch,Product Launch
+Leadership Change,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Earnings,Earnings,Earnings,Earnings
+Merger & Acquisition,Merger & Acquisition,Merger & Acquisition,Merger & Acquisition
+Product Launch,Product Launch,Product Launch,Product Launch
+General News,General News,General News,General News
+Legal & Regulatory,General News,General News,General News
+Macroeconomic,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Credit Event,Credit Event,Credit Event,Credit Event
+General News,General News,General News,General News
+Geopolitical,Macroeconomic,Macroeconomic,Macroeconomic
+Earnings,General News,Earnings,Earnings
+General News,Capital Markets,Merger & Acquisition,Merger & Acquisition
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,General News,General News
+Earnings,Earnings,Earnings,Earnings
+Product Launch,Product Launch,Product Launch,Product Launch
+Earnings,Earnings,Earnings,Earnings
+Macroeconomic,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,General News,General News
+Operational Risk,General News,General News,General News
+Operational Risk,General News,General News,General News
+Legal & Regulatory,General News,Legal & Regulatory,Legal & Regulatory
+Macroeconomic,General News,Macroeconomic,Macroeconomic
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Legal & Regulatory,General News,Legal & Regulatory,Legal & Regulatory
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Geopolitical,General News,General News,General News
+Leadership Change,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+Geopolitical,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+Legal & Regulatory,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,General News,General News
+General News,General News,General News,General News
+Credit Event,Analyst Rating,Analyst Rating,Analyst Rating
+Geopolitical,General News,General News,General News
+General News,General News,General News,General News
+Macroeconomic,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Product Launch,Geopolitical,Geopolitical,Geopolitical
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Geopolitical,Macroeconomic,Macroeconomic,Macroeconomic
+Merger & Acquisition,Merger & Acquisition,Merger & Acquisition,Merger & Acquisition
+Product Launch,Product Launch,Product Launch,Product Launch
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,Merger & Acquisition,Merger & Acquisition
+General News,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+Operational Risk,General News,General News,General News
+Operational Risk,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+General News,General News,General News,General News
+Merger & Acquisition,Merger & Acquisition,Merger & Acquisition,Merger & Acquisition
+General News,General News,General News,General News
+General News,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,Product Launch,Product Launch
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,General News,General News
+Credit Event,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Credit Event,Credit Event,Credit Event,Credit Event
+Earnings,Earnings,Earnings,Earnings
+Geopolitical,General News,General News,General News
+Earnings,General News,Earnings,Earnings
+General News,General News,General News,General News
+Earnings,Earnings,Earnings,Earnings
+Operational Risk,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,Merger & Acquisition,Merger & Acquisition
+Credit Event,Credit Event,Credit Event,Credit Event
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+General News,General News,General News,General News
+General News,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+Leadership Change,General News,General News,General News
+Credit Event,Credit Event,Credit Event,Credit Event
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Merger & Acquisition,General News,General News,General News
+General News,General News,General News,General News
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+Merger & Acquisition,General News,General News,General News
+Macroeconomic,General News,General News,General News
+Legal & Regulatory,Legal & Regulatory,Legal & Regulatory,Legal & Regulatory
+Leadership Change,Analyst Rating,Analyst Rating,Analyst Rating
+Credit Event,Credit Event,Credit Event,Credit Event
+Earnings,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+Product Launch,Product Launch,Product Launch,Product Launch
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+Credit Event,Analyst Rating,Analyst Rating,Analyst Rating
+Operational Risk,Analyst Rating,Analyst Rating,Analyst Rating
+General News,General News,General News,General News
+Macroeconomic,Macroeconomic,Macroeconomic,Macroeconomic
+General News,General News,General News,General News
+General News,Product Launch,Product Launch,Product Launch
+Merger & Acquisition,General News,General News,General News
+Geopolitical,General News,Macroeconomic,Macroeconomic
+Leadership Change,General News,General News,General News
+General News,General News,General News,General News
+Macroeconomic,Analyst Rating,General News,General News
+General News,General News,General News,General News
+Geopolitical,Macroeconomic,Geopolitical,Geopolitical
+General News,Credit Event,Analyst Rating,Analyst Rating
+Merger & Acquisition,General News,General News,General News
+Geopolitical,Geopolitical,Geopolitical,Geopolitical
+General News,General News,General News,General News
+General News,General News,General News,General News
+Earnings,Earnings,Earnings,Earnings
+General News,General News,General News,General News
+Operational Risk,General News,General News,General News
+Credit Event,Credit Event,Analyst Rating,Analyst Rating

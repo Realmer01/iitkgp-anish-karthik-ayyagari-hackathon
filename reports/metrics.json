@@ -1,0 +1,753 @@
+{
+  "generated_at": "2026-10-10T10:15:58.798980+00:00",
+  "version": "1.0.0",
+  "tier_evaluated": "full",
+  "sentiment": {
+    "table": [
+      {
+        "dataset": "tweets_valid",
+        "model": "VADER (naive baseline)",
+        "n": 2388,
+        "accuracy": 0.4937,
+        "macro_f1": 0.4467
+      },
+      {
+        "dataset": "tweets_valid",
+        "model": "Lite: VADER + finance lexicon",
+        "n": 2388,
+        "accuracy": 0.5779,
+        "macro_f1": 0.5218
+      },
+      {
+        "dataset": "tweets_valid",
+        "model": "FinBERT",
+        "n": 2388,
+        "accuracy": 0.7178,
+        "macro_f1": 0.6641
+      },
+      {
+        "dataset": "tweets_valid",
+        "model": "Social head (bge-small + LR)",
+        "n": 2388,
+        "accuracy": 0.7726,
+        "macro_f1": 0.7339
+      },
+      {
+        "dataset": "tweets_valid",
+        "model": "RiskPulse full (blend + policy rule)",
+        "n": 2388,
+        "accuracy": 0.7831,
+        "macro_f1": 0.7447
+      },
+      {
+        "dataset": "phrasebank",
+        "model": "VADER (naive baseline)",
+        "n": 2264,
+        "accuracy": 0.5711,
+        "macro_f1": 0.4871
+      },
+      {
+        "dataset": "phrasebank",
+        "model": "Lite: VADER + finance lexicon",
+        "n": 2264,
+        "accuracy": 0.61,
+        "macro_f1": 0.5288
+      },
+      {
+        "dataset": "phrasebank",
+        "model": "FinBERT",
+        "n": 2264,
+        "accuracy": 0.9717,
+        "macro_f1": 0.9625
+      },
+      {
+        "dataset": "phrasebank",
+        "model": "Social head (bge-small + LR)",
+        "n": 2264,
+        "accuracy": 0.8375,
+        "macro_f1": 0.8001
+      },
+      {
+        "dataset": "phrasebank",
+        "model": "RiskPulse full (blend + policy rule)",
+        "n": 2264,
+        "accuracy": 0.9355,
+        "macro_f1": 0.9147
+      },
+      {
+        "dataset": "gold_news",
+        "model": "VADER (naive baseline)",
+        "n": 200,
+        "accuracy": 0.465,
+        "macro_f1": 0.4619
+      },
+      {
+        "dataset": "gold_news",
+        "model": "Lite: VADER + finance lexicon",
+        "n": 200,
+        "accuracy": 0.565,
+        "macro_f1": 0.557
+      },
+      {
+        "dataset": "gold_news",
+        "model": "FinBERT",
+        "n": 200,
+        "accuracy": 0.61,
+        "macro_f1": 0.6049
+      },
+      {
+        "dataset": "gold_news",
+        "model": "Social head (bge-small + LR)",
+        "n": 200,
+        "accuracy": 0.68,
+        "macro_f1": 0.6805
+      },
+      {
+        "dataset": "gold_news",
+        "model": "RiskPulse full (blend + policy rule)",
+        "n": 200,
+        "accuracy": 0.685,
+        "macro_f1": 0.6854
+      }
+    ],
+    "confusion": {
+      "model": "RiskPulse full (blend + policy rule)",
+      "dataset": "gold_news",
+      "labels": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "matrix": [
+        [
+          45,
+          20,
+          10
+        ],
+        [
+          3,
+          51,
+          9
+        ],
+        [
+          4,
+          17,
+          41
+        ]
+      ]
+    },
+    "note": "PhraseBank is leaky for FinBERT (its training data). gold_news = 200 real headlines (the test half of the gold set) labelled blind to model output and never used for training or tuning: the fairest test. Macro-F1 over negative / neutral / positive."
+  },
+  "events": {
+    "table": [
+      {
+        "dataset": "tweets_valid (weak labels)",
+        "model": "Keyword baseline (naive)",
+        "n": 3955,
+        "accuracy": 0.6334,
+        "macro_f1": 0.5004
+      },
+      {
+        "dataset": "tweets_valid (weak labels)",
+        "model": "Lite: TF-IDF + LR + rules",
+        "n": 3955,
+        "accuracy": 0.8718,
+        "macro_f1": 0.8379
+      },
+      {
+        "dataset": "tweets_valid (weak labels)",
+        "model": "Full: ensemble, no rules",
+        "n": 3955,
+        "accuracy": 0.8349,
+        "macro_f1": 0.7653
+      },
+      {
+        "dataset": "tweets_valid (weak labels)",
+        "model": "RiskPulse full: ensemble + rules",
+        "n": 3955,
+        "accuracy": 0.8349,
+        "macro_f1": 0.7697
+      },
+      {
+        "dataset": "gold_news",
+        "model": "Keyword baseline (naive)",
+        "n": 200,
+        "accuracy": 0.6,
+        "macro_f1": 0.5104
+      },
+      {
+        "dataset": "gold_news",
+        "model": "Lite: TF-IDF + LR + rules",
+        "n": 200,
+        "accuracy": 0.705,
+        "macro_f1": 0.6191
+      },
+      {
+        "dataset": "gold_news",
+        "model": "Full: ensemble, no rules",
+        "n": 200,
+        "accuracy": 0.76,
+        "macro_f1": 0.6506
+      },
+      {
+        "dataset": "gold_news",
+        "model": "RiskPulse full: ensemble + rules",
+        "n": 200,
+        "accuracy": 0.76,
+        "macro_f1": 0.6506
+      }
+    ],
+    "per_class": [
+      {
+        "class": "Geopolitical",
+        "support": 20,
+        "hybrid_f1": 0.667,
+        "keyword_f1": 0.588
+      },
+      {
+        "class": "Macroeconomic",
+        "support": 22,
+        "hybrid_f1": 0.756,
+        "keyword_f1": 0.766
+      },
+      {
+        "class": "Credit Event",
+        "support": 7,
+        "hybrid_f1": 0.833,
+        "keyword_f1": 0.588
+      },
+      {
+        "class": "Merger & Acquisition",
+        "support": 6,
+        "hybrid_f1": 0.615,
+        "keyword_f1": 0.235
+      },
+      {
+        "class": "Product Launch",
+        "support": 16,
+        "hybrid_f1": 0.571,
+        "keyword_f1": 0.621
+      },
+      {
+        "class": "Earnings",
+        "support": 13,
+        "hybrid_f1": 0.72,
+        "keyword_f1": 0.69
+      },
+      {
+        "class": "Legal & Regulatory",
+        "support": 14,
+        "hybrid_f1": 0.846,
+        "keyword_f1": 0.75
+      },
+      {
+        "class": "Operational Risk",
+        "support": 6,
+        "hybrid_f1": 0.444,
+        "keyword_f1": 0.75
+      },
+      {
+        "class": "Analyst Rating",
+        "support": 12,
+        "hybrid_f1": 0.88,
+        "keyword_f1": 0.0
+      },
+      {
+        "class": "Capital Markets",
+        "support": 2,
+        "hybrid_f1": 0.0,
+        "keyword_f1": 0.0
+      },
+      {
+        "class": "General News",
+        "support": 82,
+        "hybrid_f1": 0.824,
+        "keyword_f1": 0.626
+      }
+    ],
+    "confusion": {
+      "model": "RiskPulse full: ensemble + rules",
+      "dataset": "gold_news",
+      "labels": [
+        "Geopolitical",
+        "Macroeconomic",
+        "Credit Event",
+        "Merger & Acquisition",
+        "Product Launch",
+        "Earnings",
+        "Legal & Regulatory",
+        "Operational Risk",
+        "Analyst Rating",
+        "Capital Markets",
+        "General News"
+      ],
+      "matrix": [
+        [
+          15,
+          3,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          4,
+          17,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          11,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          11,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          0,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          0,
+          70
+        ]
+      ]
+    },
+    "note": "tweets_valid labels come from the same weak-supervision mapping as training (optimistic for the TF-IDF model, which can learn the keyword rules). gold_news = test half of the real headlines, never used for training or tuning; the dev half adapted the models to news. Classes with support < 10 have unstable F1."
+  },
+  "impact": {
+    "n_ticker_days": 6564,
+    "period": [
+      "2024-10-08",
+      "2026-10-02"
+    ],
+    "table": [
+      {
+        "score": "Impact score (RiskPulse)",
+        "spearman_event_window": 0.122,
+        "spearman_forward": 0.0618,
+        "top_decile_hit_rate": 0.1994
+      },
+      {
+        "score": "|Sentiment| only (naive)",
+        "spearman_event_window": 0.1489,
+        "spearman_forward": 0.0707,
+        "top_decile_hit_rate": 0.2237
+      },
+      {
+        "score": "News volume",
+        "spearman_event_window": 0.1507,
+        "spearman_forward": 0.0739,
+        "top_decile_hit_rate": 0.2062
+      }
+    ],
+    "deciles": [
+      {
+        "decile": 1,
+        "impact_mean_abs_ar": 1.491,
+        "baseline_mean_abs_ar": 1.523
+      },
+      {
+        "decile": 2,
+        "impact_mean_abs_ar": 1.636,
+        "baseline_mean_abs_ar": 1.587
+      },
+      {
+        "decile": 3,
+        "impact_mean_abs_ar": 1.618,
+        "baseline_mean_abs_ar": 1.663
+      },
+      {
+        "decile": 4,
+        "impact_mean_abs_ar": 1.756,
+        "baseline_mean_abs_ar": 1.724
+      },
+      {
+        "decile": 5,
+        "impact_mean_abs_ar": 1.85,
+        "baseline_mean_abs_ar": 1.763
+      },
+      {
+        "decile": 6,
+        "impact_mean_abs_ar": 1.92,
+        "baseline_mean_abs_ar": 1.689
+      },
+      {
+        "decile": 7,
+        "impact_mean_abs_ar": 1.969,
+        "baseline_mean_abs_ar": 2.058
+      },
+      {
+        "decile": 8,
+        "impact_mean_abs_ar": 1.934,
+        "baseline_mean_abs_ar": 2.034
+      },
+      {
+        "decile": 9,
+        "impact_mean_abs_ar": 2.202,
+        "baseline_mean_abs_ar": 2.245
+      },
+      {
+        "decile": 10,
+        "impact_mean_abs_ar": 2.631,
+        "baseline_mean_abs_ar": 2.721
+      }
+    ],
+    "calibration": {
+      "intercept": -1.8405,
+      "weights": {
+        "severity": 0.0627,
+        "sentiment": 0.2703,
+        "intensity": 0.3013,
+        "systemic": 0.0,
+        "confirmation": 0.1203,
+        "velocity": 0.0778,
+        "attention": 0.4154,
+        "credibility": 0.0275,
+        "novelty": 0.0
+      },
+      "target": "top-quintile |CAR[D, D+1]| on the training period",
+      "train_end": "2026-01-20",
+      "test_spearman": {
+        "expert": 0.064,
+        "calibrated": 0.0702,
+        "abs_sentiment": 0.1129
+      },
+      "adopted": false
+    },
+    "market_level": {
+      "n_days": 491,
+      "table": [
+        {
+          "score": "Impact score (RiskPulse)",
+          "spearman_all_days": 0.0876,
+          "spearman_test_period": 0.0954
+        },
+        {
+          "score": "|Sentiment| only (naive)",
+          "spearman_all_days": 0.027,
+          "spearman_test_period": 0.0836
+        },
+        {
+          "score": "News volume",
+          "spearman_all_days": -0.0095,
+          "spearman_test_period": -0.074
+        }
+      ],
+      "note": "Daily max over market-wide signals vs |SPY return| over [D, D+1]."
+    },
+    "note": "Market-adjusted abnormal returns from data/prices. Event window [D, D+1] because most archive timestamps are date-only. Forward window opens after the news is public (next open). Calibration not adopted (did not beat the expert weights out of sample)."
+  },
+  "engine": {
+    "tiers": [
+      {
+        "tier": "lite",
+        "model_load_s": 0.38,
+        "batch_docs_per_s": 670.0,
+        "single_doc_ms_p50": 4.8,
+        "single_doc_ms_p95": 7.8
+      },
+      {
+        "tier": "full",
+        "model_load_s": 12.12,
+        "batch_docs_per_s": 28.1,
+        "single_doc_ms_p50": 118.5,
+        "single_doc_ms_p95": 217.5
+      }
+    ],
+    "note": "CPU only (laptop, 12 logical cores). 512 archive headlines in batches of 64; single-document latency over 60 gold headlines."
+  },
+  "module_a": {
+    "table": [
+      {
+        "portfolio": "RiskPulse sentiment tilt (FinBERT tier)",
+        "cumulative_return": 0.6303,
+        "annual_return": 0.2809,
+        "annual_volatility": 0.2162,
+        "max_drawdown": -0.2673,
+        "sharpe_rf0": 1.2992,
+        "annual_turnover": 11.727,
+        "active_return_annual": -0.0062,
+        "tracking_error": 0.0107,
+        "information_ratio": -0.5782,
+        "daily_hit_rate": 0.5152
+      },
+      {
+        "portfolio": "Neutral policy (same rules, kappa = 0)",
+        "cumulative_return": 0.6499,
+        "annual_return": 0.2887,
+        "annual_volatility": 0.2168,
+        "max_drawdown": -0.2657,
+        "sharpe_rf0": 1.3316
+      },
+      {
+        "portfolio": "Static capped cap-weight",
+        "cumulative_return": 0.6507,
+        "annual_return": 0.2891,
+        "annual_volatility": 0.2168,
+        "max_drawdown": -0.2644,
+        "sharpe_rf0": 1.3333
+      },
+      {
+        "portfolio": "Equal weight",
+        "cumulative_return": 0.5874,
+        "annual_return": 0.2638,
+        "annual_volatility": 0.1712,
+        "max_drawdown": -0.2284,
+        "sharpe_rf0": 1.5407
+      },
+      {
+        "portfolio": "Naive: lexicon sentiment tilt (lite tier)",
+        "cumulative_return": 0.6505,
+        "annual_return": 0.289,
+        "annual_volatility": 0.2171,
+        "max_drawdown": -0.2622,
+        "sharpe_rf0": 1.3308,
+        "annual_turnover": 10.4516,
+        "active_return_annual": 0.0003,
+        "tracking_error": 0.0084,
+        "information_ratio": 0.034,
+        "daily_hit_rate": 0.4848
+      }
+    ],
+    "ic": {
+      "days": 494,
+      "mean_ic": -0.003905744422917288,
+      "ic_t_stat": -0.3288962330284133,
+      "share_positive_days": 0.5101214574898786
+    },
+    "placebo_ticker_shuffle_active_return": [
+      -0.0097,
+      -0.0112,
+      -0.0131
+    ],
+    "delay_plus_1d_active_return": -0.0116,
+    "april_2025_window": {
+      "strategy": -0.0059,
+      "neutral_policy": -0.0145,
+      "static_cap": -0.0134,
+      "equal_weight": -0.0358
+    },
+    "stress_days": {
+      "stress_days": 23,
+      "spy_threshold": -0.015,
+      "mean_active_return_bp": -1.25,
+      "t_stat": -0.47,
+      "negative_news_stock_days": 286,
+      "mean_active_weight_pp": -0.988,
+      "mean_next_day_excess_return_bp": -10.84
+    },
+    "note": "Hourly open-to-open returns, Oct 2024 - Oct 2026, 5 bp costs, strict no-look-ahead (date-only news usable only after its day ends). Active figures are vs the neutral policy. With correct timing the sentiment tilt shows no reliable edge: day-stamped news on mega caps is priced by the next open."
+  },
+  "module_b": {
+    "scenarios": [
+      {
+        "scenario": "Tariff escalation / trade war",
+        "pnl_musd": -42.44,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": -17.27,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -4.96,
+        "cet1_after_pct": 12.64,
+        "compute_ms": 507.8
+      },
+      {
+        "scenario": "Geopolitical conflict & sanctions",
+        "pnl_musd": -199.98,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": 21.25,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -22.11,
+        "cet1_after_pct": 9.57,
+        "compute_ms": 141.8
+      },
+      {
+        "scenario": "Hawkish rates shock",
+        "pnl_musd": -349.21,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": -204.33,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -5.21,
+        "cet1_after_pct": 8.32,
+        "compute_ms": 124.7
+      },
+      {
+        "scenario": "Recession / growth shock",
+        "pnl_musd": -198.09,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": 85.12,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -80.37,
+        "cet1_after_pct": 8.49,
+        "compute_ms": 95.5
+      },
+      {
+        "scenario": "Systemic credit crisis",
+        "pnl_musd": -102.1,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": 23.45,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -10.98,
+        "cet1_after_pct": 11.55,
+        "compute_ms": 77.0
+      },
+      {
+        "scenario": "Market-wide operational disruption",
+        "pnl_musd": -24.25,
+        "naive_pnl_musd": -255.12,
+        "rates_pnl_musd": 8.76,
+        "naive_rates_pnl_musd": -224.11,
+        "credit_pnl_musd": -0.64,
+        "cet1_after_pct": 12.78,
+        "compute_ms": 73.9
+      }
+    ],
+    "rates_sign_errors_naive": 4,
+    "headline_to_stress_result_s": 0.249,
+    "baseline_cet1_pct": 13.0,
+    "minimum_cet1_pct": 10.5,
+    "note": "Impact 8.5 for every scenario. Naive = rates +200bp, spreads +100bp, equities -10% for any event. Latency = engine scoring of one headline + full portfolio revaluation on a laptop CPU; the comparison is an assumed daily (overnight) batch stress run, i.e. up to ~24h from news to numbers.",
+    "april_2025_replay": {
+      "signals": 787,
+      "eligible": 146,
+      "runs": 22,
+      "suppressed": {
+        "story_dedup": 3,
+        "cooldown": 65,
+        "commentary": 29,
+        "not_adverse": 27
+      },
+      "first_run": {
+        "time": "2025-03-31T07:00",
+        "headline": "Global stock markets fall as new Trump tariffs loom",
+        "impact": 8.8,
+        "scenario": "Tariff escalation / trade war",
+        "pnl_musd": -44.3,
+        "cet1_after_pct": 12.61
+      },
+      "highest_impact_run": {
+        "time": "2025-04-03T07:00",
+        "headline": "Global markets in turmoil as Trump tariffs wipe $2.5tn off Wall Street",
+        "impact": 9.5,
+        "scenario": "Tariff escalation / trade war",
+        "pnl_musd": -121.1,
+        "cet1_after_pct": 9.77
+      }
+    }
+  },
+  "runtime_s": 888.1
+}
