@@ -27,6 +27,7 @@ TEXT, MUTED, LINE = "1B2430", "5B6573", "D5DBE3"
 BLUE, RED, AMBER, AQUA = "2A78D6", "E34948", "F2A541", "1BAF7A"
 FONT = "Calibri"
 IMG = DOCS / "images"
+GOLD_NOTE = "Gold labels from one annotator (AI-proposed)"   # how the gold set was labelled (data/README.md)
 
 
 def rgb(h: str) -> RGBColor:
@@ -286,27 +287,36 @@ def build() -> None:
                "right scenario for the event that just happened, sized by its impact, and shows the capital effect "
                "within seconds. Because every score is explainable and reproducible, it fits model-risk governance.")
 
-    # ---------------------------------------------------------------- 7 limitations & next steps
-    s = d.slide(dark=True, kicker="Limitations & next steps")
-    d.text(s, "What we would build next", 0.6, 0.85, 12, 0.8, 34, WHITE, bold=True)
-    lim = [[("Limitations", {"bold": True, "size": 19, "color": AMBER})],
-           f"{date_only:.0%} of the {n_headlines:,} archive headlines carry dates, not times",
-           "Mega-cap universe of 16 names; two years of history",
-           "Gold labels from a single annotator",
-           "Sensitivity-based revaluation; simplified CET1 proxy"]
-    nxt = [[("Next steps", {"bold": True, "size": 19, "color": AMBER})],
-           "Intraday timestamped feeds to test fast reactions",
-           "Multilingual sources and target-aware sentiment",
-           "Kafka bus, feature store, model registry",
-           "Full revaluation library and regulatory scenarios"]
-    d.text(s, lim, 0.6, 1.95, 5.6, 3.2, 16, "C9D3E0")
-    d.text(s, nxt, 6.9, 1.95, 5.8, 3.2, 16, "C9D3E0")
-    d.pulse(s, 0.6, 5.55, 12.1, 0.7)
+    # ---------------------------------------------------------------- 7 challenges, limitations & next steps
+    skipped = mb["april_2025_replay"]["suppressed"]["commentary"]
+    s = d.slide(dark=True, kicker="Challenges, limitations & next steps")
+    d.text(s, "What was hard, what is missing, what comes next", 0.6, 0.85, 12.2, 0.8, 32, WHITE, bold=True)
+    cols = [("Challenges we solved",
+             ["A backtest information ratio of 3.7 was a look-ahead leak: traced and fixed",
+              f"{date_only:.0%} of {n_headlines:,} headlines carry a date, not a time: used only after the day ends",
+              f"Questions and opinion pieces fired stress tests: now filtered ({skipped} skipped in the replay)",
+              "Story clusters swallowed unrelated news: now anchored on the first report"]),
+            ("Limitations",
+             ["Day-level history, so fast intraday reactions are untested",
+              "16 mega-cap names and two years of data",
+              GOLD_NOTE,
+              "Sensitivity-based revaluation; simplified CET1 proxy"]),
+            ("Next steps",
+             ["Intraday timestamped feeds to test fast reactions",
+              "Multilingual sources and target-aware sentiment",
+              "Kafka bus, feature store, model registry",
+              "Full revaluation library and regulatory scenarios"])]
+    for i, (head, items) in enumerate(cols):
+        d.text(s, [[(head, {"bold": True, "size": 18, "color": AMBER})], *items], 0.6 + i * 4.15, 1.9, 3.85, 3.5,
+               14, "C9D3E0")
+    d.pulse(s, 0.6, 5.6, 12.1, 0.65)
     d.text(s, "Open source (MIT) · public and synthetic data only · github repo and demo video in the README",
            0.6, 6.45, 12, 0.4, 13, "8A97A8")
-    d.notes(s, "The main limitation is timing: most historical headlines carry a date only, so the backtest has to "
-               "wait a full day, which is why no trading edge shows. The next step is intraday feeds. I would also "
-               "add more languages, a production message bus and a full revaluation library.")
+    d.notes(s, "The hardest problems were about trust, not models. An early backtest looked brilliant until I found "
+               "it used news before it was published; with strict timing the edge disappears, and I report that. Most "
+               "headlines carry only a date, so they count only after the day ends. And the stress trigger first "
+               "fired on questions and opinion pieces, so it now runs only on reported, adverse events. Next: intraday "
+               "feeds, more languages, a production message bus and a full revaluation library.")
 
     out = DOCS / "presentation.pptx"
     d.prs.save(out)
