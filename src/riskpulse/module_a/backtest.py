@@ -46,7 +46,7 @@ def signal_events(sig: pd.DataFrame, min_conf: float) -> list[tuple]:
         e = evidence(r.sent_conf, r.f_credibility, r.impact, r.mention_count)
         targets = [r.entity_id] if r.entity_type == "company" else sectors.get(r.entity_id, [])
         mult = 1.0 if r.entity_type == "company" else SECTOR_SPILLOVER
-        out += [(r.available_at, t, r.sentiment, e * mult, r.headline) for t in targets]
+        out += [(r.available_at, t, r.sentiment, e * mult, r.headline, r.impact, r.entity_type) for t in targets]
     return out
 
 
@@ -62,7 +62,7 @@ def _simulate(rets: pd.DataFrame, events: list[tuple], p: PolicyParams, half_lif
     W, S = np.zeros((n, len(base))), np.zeros((n, len(base)))
     for i, (t, r) in enumerate(zip(rets.index, rets.to_numpy())):
         while j < len(events) and events[j][0] < t:               # strictly before the bar starts
-            ts, tick, s, e, _ = events[j]
+            ts, tick, s, e = events[j][:4]
             book.add(tick, s, e, ts.to_pydatetime())
             j += 1
         sent = np.asarray(book.vector(t.to_pydatetime()))[perm]
@@ -152,6 +152,51 @@ def sensitivity(signals: pd.DataFrame, bars: pd.DataFrame, kappas=(0.4, 0.8, 1.2
             rows.append({"kappa": k, "half_life_hours": hl, **{x: round(m[x], 4) for x in (
                 "active_return_annual", "information_ratio", "annual_turnover", "max_drawdown")}})
     return pd.DataFrame(rows)
+
+
+def stress_days(res: dict, spy_threshold: float = -0.015) -> dict:
+    """Pre-specified risk test (defined before looking at results).
+
+    Primary: on market stress days - the S&P 500 (SPY) down more than 1.5% open-to-open - the mean daily
+    return of the sentiment tilt minus the identical kappa = 0 policy, with a t-statistic.
+    Diagnostic: on stock-days where a high-impact (> 7) negative company signal became available before the
+    day's first bar, the tilt's mean active weight on that stock and the stock's next open-to-open return
+    in excess of SPY.
+    """
+    px = pd.read_csv(PRICES / "prices_hourly_open.csv.gz", index_col=0)
+    px.index = pd.to_datetime(px.index, utc=True)
+    opens = px.groupby(px.index.normalize()).head(1)
+    opens.index = opens.index.normalize()
+    fwd = (opens.shift(-1) / opens - 1).dropna(how="all")
+    r = res["returns"]
+    daily = (1 + r[["strategy", "neutral_policy"]]).groupby(r.index.normalize()).prod() - 1
+    stress = fwd.index[fwd["SPY"] < spy_threshold].intersection(daily.index)
+    active = (daily.loc[stress, "strategy"] - daily.loc[stress, "neutral_policy"]).to_numpy()
+    t_stat = float(active.mean() / active.std(ddof=1) * np.sqrt(len(active))) if len(active) > 2 and active.std() else 0.0
+
+    w = res["weights"]
+    w_first = w.groupby(w.index.normalize()).head(1)       # weights set at each day's first bar
+    neutral_w = base_weights(PolicyParams.from_config()).reindex(w.columns)
+    seen, act, excess = set(), [], []
+    for ts, tick, sent, _, _, impact, kind in res.get("events", []):
+        if kind != "company" or sent >= 0 or impact <= 7:
+            continue
+        i = w_first.index.searchsorted(ts, side="right")      # first day whose opening bar starts after ts
+        if i >= len(w_first):
+            continue
+        bar = w_first.index[i]
+        day = bar.normalize()
+        if (tick, day) in seen or day not in fwd.index or tick not in fwd.columns:
+            continue
+        seen.add((tick, day))
+        act.append(float(w_first.loc[bar, tick] - neutral_w[tick]))
+        excess.append(float(fwd.loc[day, tick] - fwd.loc[day, "SPY"]))
+    return {"stress_days": int(len(active)), "spy_threshold": spy_threshold,
+            "mean_active_return_bp": round(float(active.mean()) * 1e4, 2) if len(active) else 0.0,
+            "t_stat": round(t_stat, 2),
+            "negative_news_stock_days": len(act),
+            "mean_active_weight_pp": round(float(np.mean(act)) * 100, 3) if act else 0.0,
+            "mean_next_day_excess_return_bp": round(float(np.mean(excess)) * 1e4, 2) if excess else 0.0}
 
 
 def window(res: dict, start: str, end: str) -> dict:
