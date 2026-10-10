@@ -30,6 +30,7 @@ def test_annuity_and_impact_scale():
 
 def test_routing_by_headline_cues():
     assert scenarios.route("Geopolitical", "New tariffs on Chinese imports")["scenario"] == "trade_war"
+    assert scenarios.route("Geopolitical", "Canada cracks under trade-war pressure")["scenario"] == "trade_war"
     assert scenarios.route("Geopolitical", "Troops cross the border")["scenario"] == "conflict"
     assert scenarios.route("Macroeconomic", "Recession fears grow")["scenario"] == "growth_shock"
     assert scenarios.route("Macroeconomic", "Fed signals more hikes")["scenario"] == "rates_shock"
@@ -70,7 +71,7 @@ def test_trigger_threshold_dedup_and_cooldown(make_signal):
     assert len(mon.runs) == 1 and mon.runs[0]["scenario_key"] == "trade_war"
     bus.publish([make_signal(3, impact_score=8.5, story_id="A", **geo)])        # same story
     bus.publish([make_signal(4, impact_score=8.5, story_id="B", **geo)])        # same scenario within cooldown
-    assert len(mon.runs) == 1 and mon.suppressed == {"story_dedup": 1, "cooldown": 1}
+    assert len(mon.runs) == 1 and mon.suppressed == {"story_dedup": 1, "cooldown": 1, "commentary": 0, "not_adverse": 0}
     clock["t"] += timedelta(hours=2)
     bus.publish([make_signal(5, impact_score=9.3, story_id="C", **geo)])        # escalation: >= 8.2 + 1.0
     assert len(mon.runs) == 2
@@ -87,3 +88,15 @@ def test_low_confidence_and_ineligible_events_do_not_trigger(make_signal):
     assert not mon.wants(make_signal(1, impact_score=9.5, event_confidence=0.2))
     assert not mon.wants(make_signal(2, impact_score=9.5, event_type="Product Launch"))
     assert mon.wants(make_signal(3, impact_score=9.5))
+    assert "threshold" in mon.explain(make_signal(4, impact_score=6.0))
+
+
+def test_commentary_and_positive_news_do_not_trigger(make_signal):
+    mon = StressMonitor()
+    mkt = {"type": "market", "id": "MARKET", "name": "Broad market"}
+    question = make_signal(1, impact_score=8.5, entity=mkt, headline="Can US farms withstand a trade war with China?")
+    relief = make_signal(2, impact_score=8.5, entity=mkt, sentiment_score=0.6, headline="Stocks soar as tariffs paused")
+    assert mon.wants(question) and mon.consider(question) is None and "commentary (question)" in mon.explain(question)
+    assert mon.consider(relief) is None and "positive tone" in mon.explain(relief)
+    assert not mon.runs and mon.suppressed["commentary"] == 1 and mon.suppressed["not_adverse"] == 1
+    assert mon.consider(make_signal(3, impact_score=8.5, entity=mkt, headline="New tariffs on Chinese imports"))

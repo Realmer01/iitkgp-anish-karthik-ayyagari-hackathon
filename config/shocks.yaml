@@ -105,7 +105,7 @@ overlays:
 # event type -> scenario. `when` lists cue words checked against the headline (first match wins).
 routing:
   Geopolitical:
-    - {when: [tariff, tariffs, "trade war", "export controls", duties, "export ban"], scenario: trade_war}
+    - {when: [tariff, tariffs, "trade war", "trade-war", "export controls", duties, "export ban"], scenario: trade_war}
     - {scenario: conflict}
   Macroeconomic:
     - {when: [recession, jobless, unemployment, contraction, slowdown, layoffs, "gdp shrinks", downturn], scenario: growth_shock}

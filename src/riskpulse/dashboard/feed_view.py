@@ -96,8 +96,8 @@ def _module_reactions(res: dict, before: dict | None) -> None:
                     f"CET1 {cap['cet1_ratio_before']:.2%} → {cap['cet1_ratio_after']:.2%}. See the Module B tab.</div>",
                     unsafe_allow_html=True)
     else:
-        st.markdown("<div class='rp-callout ok'>✓ No stress test: below the impact threshold, not a stress-eligible "
-                    "event, or suppressed by story dedup / cooldown.</div>", unsafe_allow_html=True)
+        why = res.get("stress_note") or "below the impact threshold, not a stress-eligible event, or suppressed"
+        st.markdown(f"<div class='rp-callout ok'>✓ No stress test: {why}.</div>", unsafe_allow_html=True)
     after = get("/module-a/state")
     if before and after:
         b = {w["ticker"]: w["weight"] for w in before["weights"]}

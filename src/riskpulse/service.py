@@ -179,8 +179,10 @@ class RiskPulseService:
             signals = [s.model_copy(update={"published_at": now, "generated_at": utcnow()}) for s in signals]
             self.publish(signals)
             self.module_a.step()
-        return {"signals": [s.model_dump(mode="json") for s in signals], "injected": inject,
-                "stress_runs": self.module_b.runs[: len(self.module_b.runs) - runs_before] if inject else [],
+        new_runs = self.module_b.runs[: len(self.module_b.runs) - runs_before] if inject else []
+        top = max(signals, key=lambda x: x.impact_score) if signals else None
+        return {"signals": [s.model_dump(mode="json") for s in signals], "injected": inject, "stress_runs": new_runs,
+                "stress_note": "" if new_runs or top is None else self.module_b.explain(top),
                 "elapsed_ms": round((time.perf_counter() - t0) * 1000, 1)}
 
     def status(self) -> dict:

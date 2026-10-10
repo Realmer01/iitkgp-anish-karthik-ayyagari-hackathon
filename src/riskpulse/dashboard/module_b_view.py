@@ -92,10 +92,12 @@ def live_module_b(refresh: int) -> None:
         runs, mon = data.get("runs", []), data.get("monitor", {})
         sup = mon.get("suppressed", {})
         st.markdown(f"##### Trigger log  <span class='rp-muted'>rule: impact > {mon.get('default_threshold', 7)} "
-                    f"(per-type overrides), confidence ≥ {mon.get('min_event_confidence', 0.45)}; the same scenario "
-                    f"re-runs within {mon.get('cooldown_minutes', 360) / 60:.0f} h only if impact rises by "
-                    f"{mon.get('escalation_delta', 1.0):.0f}+ · suppressed: {sup.get('story_dedup', 0)} repeats of a "
-                    f"story, {sup.get('cooldown', 0)} non-escalating</span>", unsafe_allow_html=True)
+                    f"(per-type overrides), confidence ≥ {mon.get('min_event_confidence', 0.45)}, adverse tone, a "
+                    f"reported event (not commentary); the same scenario re-runs within "
+                    f"{mon.get('cooldown_minutes', 360) / 60:.0f} h only if impact rises by "
+                    f"{mon.get('escalation_delta', 1.0):.0f}+ · suppressed: {sup.get('commentary', 0)} commentary / "
+                    f"speculation, {sup.get('not_adverse', 0)} positive-tone, {sup.get('story_dedup', 0)} repeats "
+                    f"of a story, {sup.get('cooldown', 0)} non-escalating</span>", unsafe_allow_html=True)
         if not runs:
             st.info("No stress test triggered yet - waiting for a high-impact event.")
             return
