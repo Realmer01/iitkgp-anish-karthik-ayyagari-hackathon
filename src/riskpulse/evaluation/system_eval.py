@@ -131,7 +131,9 @@ def replay_triggers() -> dict:
     from riskpulse.schema import RiskSignal
 
     with gzip.open(OUTPUT / "demo_signals.jsonl.gz", "rt", encoding="utf-8") as fh:
-        sigs = sorted((RiskSignal.model_validate_json(x) for x in fh if x.strip()), key=lambda s: s.published_at)
+        # time order, and within one timestamp highest impact first - exactly how the live monitor takes a batch
+        sigs = sorted((RiskSignal.model_validate_json(x) for x in fh if x.strip()),
+                      key=lambda s: (s.published_at, -s.impact_score))
     clock = {"t": sigs[0].published_at}
     mon = StressMonitor(now=lambda: clock["t"])
     for s in sigs:
