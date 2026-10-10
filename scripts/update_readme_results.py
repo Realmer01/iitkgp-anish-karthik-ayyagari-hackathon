@@ -33,6 +33,7 @@ def results_block(m: dict) -> str:
     b = m["module_b"]
     eng = {r["tier"]: r for r in m["engine"]["tiers"]}
     rep = b["april_2025_replay"]
+    sd = m["module_a"]["stress_days"]
     lines = [
         "| Result | RiskPulse | Naive baseline | Data |",
         "|---|---|---|---|",
@@ -57,15 +58,24 @@ def results_block(m: dict) -> str:
         f"| Engine throughput | {eng.get('full', {}).get('batch_docs_per_s', '-')} docs/s full, "
         f"{eng['lite']['batch_docs_per_s']} docs/s lite | - | CPU only |",
     ]
-    first = rep.get("first_run") or {}
+    top = rep.get("highest_impact_run") or {}
+    sup = rep.get("suppressed", {})
     notes = [
         "",
         f"Bold marks the better score. In the April 2025 tariff-shock replay, {rep['runs']} stress tests fired "
-        f"from {rep['eligible']} eligible signals (the rest were deduplicated or not escalating); the first came "
-        f"from \"{first.get('headline', '')}\" and routed to *{first.get('scenario', '')}*.",
+        f"from {rep['eligible']} signals above the threshold: {sup.get('commentary', 0)} were skipped as commentary "
+        f"or speculation, {sup.get('not_adverse', 0)} as positive news, and the rest were repeats of a story or not "
+        f"escalating. The highest-impact run (impact {top.get('impact', 0):.1f}) came from \"{top.get('headline', '')}\" "
+        f"and routed to *{top.get('scenario', '')}*: P&L {'-' if top.get('pnl_musd', 0) < 0 else ''}"
+        f"${abs(top.get('pnl_musd', 0)):,.1f}m, CET1 {top.get('cet1_after_pct', 0):.2f}%.",
         "Two results are deliberately reported as they are: |sentiment| alone ranks single-stock moves slightly "
         "better than the composite impact score, and sentiment tilts show no reliable edge once timing is strict "
-        "(an early backtest showing IR 3.7 was a look-ahead leak, traced and fixed).",
+        "(an early backtest showing IR 3.7 was a look-ahead leak, traced and fixed). A risk test fixed in advance "
+        f"agrees: on the {sd['stress_days']} days the S&P 500 fell more than {abs(sd['spy_threshold']):.1%}, the tilt's "
+        f"active return was {sd['mean_active_return_bp']:+.1f} bp a day (t = {sd['t_stat']:.1f}); after high-impact "
+        f"negative company news it was {abs(sd['mean_active_weight_pp']):.1f} points underweight in stocks that lagged "
+        f"the S&P 500 by {abs(sd['mean_next_day_excess_return_bp']):.0f} bp the next day - the right direction, but far "
+        "too small to change the overall result.",
     ]
     return "\n".join(lines + notes)
 
