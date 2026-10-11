@@ -27,7 +27,7 @@ TEXT, MUTED, LINE = "1B2430", "5B6573", "D5DBE3"
 BLUE, RED, AMBER, AQUA = "2A78D6", "E34948", "F2A541", "1BAF7A"
 FONT = "Calibri"
 IMG = DOCS / "images"
-GOLD_NOTE = "Gold labels from one annotator (AI-proposed)"   # how the gold set was labelled (data/README.md)
+GOLD_NOTE = "Gold labels from one annotator (AI-proposed, author-reviewed)"   # how the gold set was labelled (data/README.md)
 
 
 def rgb(h: str) -> RGBColor:

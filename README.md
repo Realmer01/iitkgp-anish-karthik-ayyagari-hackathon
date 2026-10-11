@@ -309,7 +309,7 @@ runs the tests and a quick evaluation.
 - Most archive headlines carry dates, not times, so historical tests are day-level; intraday timestamped
   feeds are the next step for testing fast reactions.
 - 16 mega-cap names over two years: a small, survivorship-biased sample.
-- Gold labels come from a single annotator; a second annotator would measure agreement.
+- Gold labels come from a single annotator (AI-proposed, reviewed by the author); a second annotator would measure agreement.
 - English only; multilingual encoders and translation are natural extensions.
 - Module B uses sensitivity-based revaluation and a simplified capital proxy; production would use a full
   pricing library and regulatory scenarios.
@@ -322,7 +322,7 @@ This project was built with extensive help from an AI coding assistant (Claude, 
 Claude Code), as the hackathon rules allow. I wrote the requirements and build plan, made the scope and data
 decisions (both modules, public and synthetic data only, what to publish), reviewed the results and decided
 how to report them. The assistant generated most of the code, tests and documentation, looked up public
-sources used for calibration, and proposed the gold-set labels, which were assigned blind to model output.
+sources used for calibration, and proposed the gold-set labels, which I reviewed; all labels were assigned blind to model output.
 All reported numbers are produced by the scripts in this repository and can be regenerated with
 `python run.py evaluate`. No AI-generated text is presented as real data: the only synthetic text (85 seed
 headlines about fictional companies) and the synthetic portfolio are labelled as such.
