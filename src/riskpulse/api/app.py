@@ -129,8 +129,9 @@ def create_app(service: RiskPulseService | None = None) -> FastAPI:
 
     @app.get("/module-b/portfolio")
     def module_b_portfolio():
-        pos = stress.book()
-        return {"summary": summary(pos), "positions": pos.round(6).to_dict(orient="records")}
+        pos = stress.book().round(6)
+        pos = pos.astype(object).where(pos.notna(), None)   # empty fields (e.g. equity maturity) -> null, not NaN
+        return {"summary": summary(stress.book()), "positions": pos.to_dict(orient="records")}
 
     @app.get("/module-b/runs")
     def module_b_runs(limit: int = Query(50, ge=1, le=500)):
