@@ -239,11 +239,15 @@ def build() -> None:
     # ---------------------------------------------------------------- 5 key results
     s = d.slide(kicker="Key results vs naive approaches")
     d.text(s, "Measured against naive baselines on held-out data", 0.6, 0.85, 12, 0.8, 34, TEXT, bold=True)
+    ra, fun = mb.get("red_alert"), {x["stage"]: x for x in (mb.get("triage_funnel") or {}).get("stages", [])}
+    third = ((f"{ra['test_red_alert_days']['ratio']:.2f}×", f"vs {ra['test_naive_busiest_news_days']['ratio']:.2f}×",
+              "S&P 500 move on red-alert days, out of sample (naive: busiest news days)") if ra else
+             (f"{imp_m['spearman_all_days']:.2f}", f"vs {base_m['spearman_all_days']:.2f}",
+              "impact vs S&P 500 moves, Spearman (naive: |sentiment|)"))
     stats = [(f"{s_best:.2f}", f"vs {s_naive:.2f}", "sentiment macro-F1, 200 held-out headlines (naive: VADER)"),
              (f"{e_best['macro_f1']:.2f}", f"vs {e_naive['macro_f1']:.2f}",
               "event macro-F1 on the same headlines (naive: keyword rules)"),
-             (f"{imp_m['spearman_all_days']:.2f}", f"vs {base_m['spearman_all_days']:.2f}",
-              "impact vs S&P 500 moves, Spearman (naive: |sentiment|)"),
+             third,
              (f"{mb['rates_sign_errors_naive']} / 6", "scenarios",
               "where a naive static stress test gets the rates P&L sign wrong")]
     for i, (big, small, label) in enumerate(stats):
@@ -251,27 +255,29 @@ def build() -> None:
         d.text(s, [[(big, {"size": 34, "bold": True, "color": BLUE}), (f"  {small}", {"size": 16, "color": MUTED})]],
                0.6, y, 4.9, 0.6)
         d.text(s, label, 0.6, y + 0.62, 4.9, 0.5, 13, MUTED)
-    d.picture(s, IMG / "eval_module_b.png", 5.75, 1.75, w=6.95, name="chart-module-b")
+    d.picture(s, IMG / "eval_module_b.png", 6.0, 1.7, w=6.45, name="chart-module-b")
     lat_txt = f"{lat:.1f} s" if lat else "< 1 s"
-    d.text(s, [[("Headline to stress-test result: ", {"bold": True, "color": TEXT}),
-                (f"{lat_txt} on a laptop CPU, vs an overnight batch run (assumed ~24 h).", {"color": MUTED})],
-               [("Honest result: ", {"bold": True, "color": TEXT}),
-                (f"with strict timing, sentiment tilts show no next-day edge (IC {a_ic:+.3f}); a first backtest "
-                 "showing IR 3.7 was a look-ahead leak we traced and fixed.", {"color": MUTED})]],
-           5.75, 5.75, 6.95, 1.2, 13)
+    paras = [[("Headline to stress result: ", {"bold": True, "color": TEXT}),
+              (f"{lat_txt} on a laptop CPU, vs an overnight batch run (assumed).", {"color": MUTED})]]
+    if fun:
+        cut = 1 - fun["stress tests run"]["count"] / fun["stress-eligible and confident"]["count"]
+        paras.append([("Triage: ", {"bold": True, "color": TEXT}),
+                      (f"~{fun['headlines']['per_day']:.0f} headlines a day become {fun['stress tests run']['per_day']:.1f} "
+                       f"stress tests; the trigger rules cut {cut:.0%} of high-impact alerts.", {"color": MUTED})])
+    paras.append([("Honest result: ", {"bold": True, "color": TEXT}),
+                  (f"with strict timing, sentiment tilts show no next-day edge (IC {a_ic:+.3f}); an early IR of 3.7 "
+                   "was a look-ahead leak we traced and fixed.", {"color": MUTED})])
+    d.text(s, paras, 5.75, 5.3, 6.95, 1.6, 12.5)
     d.notes(s, "Each number compares RiskPulse with a naive approach on data the models never saw. Sentiment and "
-               "event classification beat their baselines; the impact score lines up with market-wide moves better "
-               "than sentiment alone, though both correlations are modest; and event-aware stress tests avoid the "
-               "sign errors of a static shock. "
+               "event classification beat their baselines; out of sample, days with a red alert moved the S&P 500 "
+               "about a fifth more than other days, while simply picking the busiest news days did worse than "
+               "chance; and event-aware stress tests avoid the sign errors of a static shock. "
                "I also report what did not work: no reliable trading edge once timing is strict.")
 
     # ---------------------------------------------------------------- 6 domain impact
     s = d.slide(kicker="Domain impact")
     d.text(s, "From headline to capital impact in seconds", 0.6, 0.85, 12, 0.8, 34, TEXT, bold=True)
-    shot = IMG / "dashboard_3_module_B.png"
-    if shot.exists():
-        d.card(s, 6.55, 1.75, 6.2, 4.9, fill=PAPER, line=LINE, name="screenshot-frame")
-        d.picture(s, shot, 6.7, 1.9, w=5.9, name="dashboard-module-b")
+    strip = IMG / "dashboard_module_B_strip.png"
     rows = [("Risk managers", "The right stress test runs when an adverse event is reported (not on commentary), "
                               "with CET1 headroom and the positions that drive the loss", RED),
             ("Portfolio managers", "Index tilts react to company news within limits, every change linked to its "
@@ -279,22 +285,34 @@ def build() -> None:
             ("Model risk & audit", "Every score carries its drivers, schema and model version; results are "
                                    "reproducible from the repo", "4A3AA7")]
     for i, (head, body, col) in enumerate(rows):
-        y = 1.85 + i * 1.6
-        d.dot(s, 0.6, y + 0.05, 0.42, col, name=f"impact{i + 1}-dot")
-        d.text(s, head, 1.25, y, 4.9, 0.45, 19, TEXT, bold=True)
-        d.text(s, body, 1.25, y + 0.5, 4.95, 0.95, 15, MUTED)
+        x = 0.6 + i * 4.15
+        d.dot(s, x, 1.8, 0.38, col, name=f"impact{i + 1}-dot")
+        d.text(s, head, x + 0.55, 1.78, 3.4, 0.45, 18, TEXT, bold=True)
+        d.text(s, body, x + 0.55, 2.25, 3.45, 1.3, 13.5, MUTED)
+    if strip.exists():
+        from PIL import Image
+        w_px, h_px = Image.open(strip).size
+        h = min(12.1 * h_px / w_px, 3.0)
+        d.card(s, 0.5, 3.75, 12.3, h + 0.5, fill=PAPER, line=LINE, name="screenshot-frame")
+        d.picture(s, strip, 0.6, 3.85, h=h, name="dashboard-module-b")
+        d.text(s, "Module B in the dashboard: the triggering headline, the scenario applied, value before and after, "
+                  "and the capital check", 0.6, 3.95 + h + 0.35, 12, 0.35, 12, MUTED, italic=True)
     d.notes(s, "Why it matters: a stress test usually runs on a schedule with a generic shock. RiskPulse runs the "
                "right scenario for the event that just happened, sized by its impact, and shows the capital effect "
                "within seconds. Because every score is explainable and reproducible, it fits model-risk governance.")
 
     # ---------------------------------------------------------------- 7 challenges, limitations & next steps
     skipped = mb["april_2025_replay"]["suppressed"]["commentary"]
+    tv = mb.get("trigger_validation")
+    trig_share = tv["trigger"]["days"] / tv["trading_days"] if tv else None
     s = d.slide(dark=True, kicker="Challenges, limitations & next steps")
     d.text(s, "What was hard, what is missing, what comes next", 0.6, 0.85, 12.2, 0.8, 32, WHITE, bold=True)
     cols = [("Challenges we solved",
              ["A backtest information ratio of 3.7 was a look-ahead leak: traced and fixed",
               f"{date_only:.0%} of {n_headlines:,} headlines carry a date, not a time: used only after the day ends",
               f"Questions and opinion pieces fired stress tests: now filtered ({skipped} skipped in the replay)",
+              (f"The stress trigger ran on {trig_share:.0%} of trading days: added a red-alert tier, tested "
+               "out of sample") if trig_share is not None else
               "Story clusters swallowed unrelated news: now anchored on the first report"]),
             ("Limitations",
              ["Day-level history, so fast intraday reactions are untested",

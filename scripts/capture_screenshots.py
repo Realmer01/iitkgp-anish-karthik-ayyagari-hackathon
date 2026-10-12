@@ -92,6 +92,18 @@ def main() -> None:
             path = out / f"dashboard_{i + 1}_{tab.split(' ')[0].lower()}{'_' + tab.split(' ')[1] if i in (1, 2) else ''}.png"
             page.screenshot(path=str(path), full_page=True)
             print("saved", path)
+            if i == 2:                                      # readable close-up for the deck: trigger -> capital check
+                trig = page.get_by_text("Trigger:").first
+                trig.evaluate("e => e.scrollIntoView({block: 'start'})")
+                page.mouse.wheel(0, -40)
+                settle(page, 1)
+                t, box = trig.bounding_box(), page.locator(".rp-callout").first.bounding_box()
+                if t and box:
+                    top = max(t["y"] - 14, 0)
+                    page.screenshot(path=str(out / "dashboard_module_B_strip.png"),
+                                    clip={"x": box["x"] - 8, "y": top, "width": box["width"] + 16,
+                                          "height": box["y"] + box["height"] + 14 - top})
+                    print("saved", out / "dashboard_module_B_strip.png")
         browser.close()
 
 
