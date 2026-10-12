@@ -15,7 +15,9 @@ One real-world event must cause one stress run, so a trigger is suppressed when
     unless the new signal ESCALATES, i.e. its impact exceeds the last run's by at least
     escalation_delta. A desk wants one run per developing event, plus a re-run when it worsens.
 Every run is logged with its triggering signal, the scenario applied, results and the
-headline-to-result latency.
+headline-to-result latency, and gets an alert level: "red" when the trigger's impact reaches
+red_alert_threshold (set on year 1 of the archive so red alerts fall on <= 10% of trading days, tested on
+year 2 - evaluation/system_eval.red_alert_validation), otherwise "amber".
 """
 from __future__ import annotations
 
@@ -47,6 +49,7 @@ class StressMonitor:
         self.escalation = float(c.get("escalation_delta", 1.0))
         self.max_sentiment = float(c.get("max_sentiment", 0.0))
         self.min_factuality = float(c.get("min_factuality", 1.0))
+        self.red_threshold = float(c.get("red_alert_threshold", 9.2))
         self.sink, self.now = sink, now or (lambda: datetime.now(UTC))
         self.runs: list[dict] = []
         self.suppressed = {"story_dedup": 0, "cooldown": 0, "commentary": 0, "not_adverse": 0}
@@ -117,7 +120,8 @@ class StressMonitor:
                    "event_type": s.event_type, "impact_score": s.impact_score, "event_confidence": s.event_confidence,
                    "sentiment_score": s.sentiment_score, "entity": s.entity.id, "regions": s.regions,
                    "publisher": s.publisher, "published_at": s.published_at.isoformat(),
-                   "threshold": self.threshold(s.event_type)}
+                   "threshold": self.threshold(s.event_type),
+                   "alert": "red" if s.impact_score >= self.red_threshold else "amber"}
         result = stress.run(shocks, trigger=trigger, now=now)
         lag = time.time() - s.generated_at.timestamp()
         result["latency_seconds"] = round(max(lag, 0.0), 3)   # engine output -> stress result, wall clock
@@ -135,4 +139,4 @@ class StressMonitor:
                 "default_threshold": self.default_threshold, "thresholds": self.thresholds,
                 "min_event_confidence": self.min_conf, "cooldown_minutes": self.cooldown.total_seconds() / 60,
                 "escalation_delta": self.escalation, "max_sentiment": self.max_sentiment,
-                "min_factuality": self.min_factuality}
+                "min_factuality": self.min_factuality, "red_alert_threshold": self.red_threshold}

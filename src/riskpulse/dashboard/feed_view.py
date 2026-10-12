@@ -92,7 +92,9 @@ def _module_reactions(res: dict, before: dict | None) -> None:
     if runs:
         r = runs[0]
         cap = r["capital"]
-        st.markdown(f"<div class='rp-callout'>⚠ <b>Module B stress test triggered</b> - {r['scenario']} "
+        red = (r.get("trigger") or {}).get("alert") == "red"
+        st.markdown(f"<div class='rp-callout'>{'🔴 <b>RED ALERT</b> · ' if red else '⚠ '}<b>Module B stress test "
+                    f"triggered</b> - {r['scenario']} "
                     f"(scale {r['scale']:.2f}): portfolio P&L <b>{money(r['pnl'])}</b> ({r['pnl_pct']:.2%}), "
                     f"CET1 {cap['cet1_ratio_before']:.2%} → {cap['cet1_ratio_after']:.2%}. See the Module B tab.</div>",
                     unsafe_allow_html=True)

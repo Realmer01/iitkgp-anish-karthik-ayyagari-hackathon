@@ -91,6 +91,15 @@ def test_low_confidence_and_ineligible_events_do_not_trigger(make_signal):
     assert "threshold" in mon.explain(make_signal(4, impact_score=6.0))
 
 
+def test_runs_carry_an_alert_level(make_signal):
+    mon = StressMonitor()
+    mkt = {"type": "market", "id": "MARKET", "name": "Broad market"}
+    amber = mon.consider(make_signal(1, impact_score=8.2, entity=mkt, headline="New tariffs on Chinese imports"))
+    red = mon.consider(make_signal(2, impact_score=9.6, entity=mkt, headline="Troops cross the border; sanctions imposed"))
+    assert amber["trigger"]["alert"] == "amber" and red["trigger"]["alert"] == "red"
+    assert mon.state()["red_alert_threshold"] == mon.red_threshold
+
+
 def test_commentary_and_positive_news_do_not_trigger(make_signal):
     mon = StressMonitor()
     mkt = {"type": "market", "id": "MARKET", "name": "Broad market"}

@@ -1,6 +1,8 @@
 """Tab 3 - Module B: event-driven stress testing of the wholesale banking book."""
 from __future__ import annotations
 
+import html
+
 import pandas as pd
 import streamlit as st
 
@@ -22,9 +24,10 @@ def render_run(r: dict) -> None:
     cap = r["capital"]
     t = r.get("trigger", {})
     if t.get("headline"):
-        st.markdown(f"**Trigger:** “{md_safe(t['headline'])}” · {t.get('event_type')} · impact "
+        badge = "🔴 <b>RED ALERT</b> · " if t.get("alert") == "red" else "🟠 amber · " if t.get("alert") else ""
+        st.markdown(badge + f"**Trigger:** “{md_safe(html.escape(t['headline']))}” · {t.get('event_type')} · impact "
                     f"{t.get('impact_score', t.get('impact'))}"
-                    + (f" · {t.get('publisher')}" if t.get("publisher") else ""))
+                    + (f" · {t.get('publisher')}" if t.get("publisher") else ""), unsafe_allow_html=True)
     st.markdown(f"**Scenario:** {r['scenario']} ×{r['scale']:.2f}  <span class='rp-muted'>analogue: "
                 f"{md_safe(r['analogue'])}</span>",
                 unsafe_allow_html=True)
@@ -100,11 +103,14 @@ def live_module_b(refresh: int) -> None:
                     f"{mon.get('cooldown_minutes', 360) / 60:.0f} h only if impact rises by "
                     f"{mon.get('escalation_delta', 1.0):.0f}+ · suppressed: {sup.get('commentary', 0)} commentary / "
                     f"speculation, {sup.get('not_adverse', 0)} positive-tone, {sup.get('story_dedup', 0)} repeats "
-                    f"of a story, {sup.get('cooldown', 0)} non-escalating</span>", unsafe_allow_html=True)
+                    f"of a story, {sup.get('cooldown', 0)} non-escalating · 🔴 red alert at impact ≥ "
+                    f"{mon.get('red_alert_threshold', 9.2):.1f}</span>", unsafe_allow_html=True)
         if not runs:
             st.info("No stress test triggered yet - waiting for a high-impact event.")
             return
-        log = pd.DataFrame([{"time (sim)": r["ts"][:16].replace("T", " "), "event": r["trigger"].get("event_type"),
+        log = pd.DataFrame([{"time (sim)": r["ts"][:16].replace("T", " "),
+                             "alert": {"red": "🔴 red", "amber": "🟠 amber"}.get(r["trigger"].get("alert"), ""),
+                             "event": r["trigger"].get("event_type"),
                              "impact": r["trigger"].get("impact_score"), "scenario": r["scenario"],
                              "P&L $m": r["pnl"] / 1e6, "CET1 after": r["capital"]["cet1_ratio_after"],
                              "headline": r["trigger"].get("headline", "")} for r in runs])

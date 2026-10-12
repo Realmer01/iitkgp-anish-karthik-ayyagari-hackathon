@@ -60,6 +60,7 @@ module_b:                                     # strategic stress tester
   escalation_delta: 1.0                       # ... unless impact rises at least this much above the last run
   max_sentiment: 0.0                          # adverse events only: positive-tone news (a de-escalation) never triggers
   min_factuality: 1.0                         # reported events only: questions, explainers, speculation do not trigger
+  red_alert_threshold: 9.2                    # escalation tier: set on year 1 (red on <= 10% of days), tested on year 2
   scale_at_threshold: 0.7                     # shock multiplier at impact 7
   scale_at_max: 1.3                           # shock multiplier at impact 10
   sicr_pd_multiple: 2.0                       # IFRS 9 Stage 2 trigger: stressed PD >= 2x the base PD
