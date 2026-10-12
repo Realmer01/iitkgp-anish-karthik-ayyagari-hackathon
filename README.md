@@ -141,12 +141,15 @@ Every number below is generated from [`reports/metrics.json`](reports/metrics.js
 | Impact vs the S&P 500's own move, market-wide news (Spearman) | **0.088** | 0.027 (\|sentiment\|) | 491 days |
 | Impact vs single-stock abnormal move (Spearman) | 0.122 | **0.149** (\|sentiment\|) | 6,564 company-days |
 | Stress tests: rates P&L with the wrong sign | **0 of 6** | 4 of 6 (static shock) | 6 scenarios at impact 8.5 |
-| Headline to stress-test result | **0.25 s** | overnight batch (assumed) | laptop CPU |
+| Headline to stress-test result | **0.23 s** | overnight batch (assumed) | laptop CPU |
+| S&P 500 move on red-alert days vs other days, out of sample | **1.21x** (p = 0.047) | 0.85x (busiest news days) | 2025-10 to 2026-10, 58 red-alert days |
 | Module A active return vs the same rules without sentiment | -0.62% / yr (IC -0.004) | +0.03% / yr (lexicon tilt) | hourly, Oct 2024 - Oct 2026, 5 bp costs |
-| Engine throughput | 28.1 docs/s full, 670.0 docs/s lite | - | CPU only |
+| Engine throughput | 32.8 docs/s full, 896.3 docs/s lite | - | CPU only |
 
 Bold marks the better score. In the April 2025 tariff-shock replay, 22 stress tests fired from 146 signals above the threshold: 29 were skipped as commentary or speculation, 27 as positive news, and the rest were repeats of a story or not escalating. The highest-impact run (impact 9.5) came from "Global markets in turmoil as Trump tariffs wipe $2.5tn off Wall Street" and routed to *Tariff escalation / trade war*: P&L -$121.1m, CET1 9.77%.
 Two results are deliberately reported as they are: |sentiment| alone ranks single-stock moves slightly better than the composite impact score, and sentiment tilts show no reliable edge once timing is strict (an early backtest showing IR 3.7 was a look-ahead leak, traced and fixed). A risk test fixed in advance agrees: on the 23 days the S&P 500 fell more than 1.5%, the tilt's active return was -1.2 bp a day (t = -0.5); after high-impact negative company news it was 1.0 points underweight in stocks that lagged the S&P 500 by 11 bp the next day - the right direction, but far too small to change the overall result.
+A two-year test of the stress trigger, fixed in code before it was run, is less flattering: over 491 trading days it ran 1,059 stress tests on 441 days (90%), so trigger days were only 1.18x as volatile as other days (p = 0.15). Hence the red-alert tier: its threshold (impact >= 9.2) was set on the first year from alert frequency alone, and in the second year red-alert days moved 1.21x as much as other days (p = 0.047; 28% of them in the most volatile fifth of days, 20% by chance), while the busiest news days did not (0.85x). It fired on 24% of test-year days against a 10% target, so the threshold needs regular recalibration.
+Triage over the archive: about 84 headlines a day become 61 signals, 5.8 with impact above 7 and 1.5 stress tests; the trigger rules remove 70% of the eligible high-impact alerts.
 <!-- results:end -->
 
 ![Sentiment vs baseline](docs/images/eval_sentiment.png)

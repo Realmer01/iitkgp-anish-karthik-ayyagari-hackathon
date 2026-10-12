@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T10:15:58.798980+00:00",
+  "generated_at": "2026-10-12T16:44:47.102400+00:00",
   "version": "1.0.0",
   "tier_evaluated": "full",
   "sentiment": {
@@ -429,6 +429,7 @@
     },
     "note": "tweets_valid labels come from the same weak-supervision mapping as training (optimistic for the TF-IDF model, which can learn the keyword rules). gold_news = test half of the real headlines, never used for training or tuning; the dev half adapted the models to news. Classes with support < 10 have unstable F1."
   },
+  "gold_agreement": null,
   "impact": {
     "n_ticker_days": 6564,
     "period": [
@@ -556,17 +557,17 @@
     "tiers": [
       {
         "tier": "lite",
-        "model_load_s": 0.38,
-        "batch_docs_per_s": 670.0,
-        "single_doc_ms_p50": 4.8,
-        "single_doc_ms_p95": 7.8
+        "model_load_s": 0.25,
+        "batch_docs_per_s": 896.3,
+        "single_doc_ms_p50": 2.8,
+        "single_doc_ms_p95": 3.3
       },
       {
         "tier": "full",
-        "model_load_s": 12.12,
-        "batch_docs_per_s": 28.1,
-        "single_doc_ms_p50": 118.5,
-        "single_doc_ms_p95": 217.5
+        "model_load_s": 10.33,
+        "batch_docs_per_s": 32.8,
+        "single_doc_ms_p50": 103.1,
+        "single_doc_ms_p95": 186.6
       }
     ],
     "note": "CPU only (laptop, 12 logical cores). 512 archive headlines in batches of 64; single-document latency over 60 gold headlines."
@@ -663,7 +664,7 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -4.96,
         "cet1_after_pct": 12.64,
-        "compute_ms": 507.8
+        "compute_ms": 227.6
       },
       {
         "scenario": "Geopolitical conflict & sanctions",
@@ -673,7 +674,7 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -22.11,
         "cet1_after_pct": 9.57,
-        "compute_ms": 141.8
+        "compute_ms": 67.6
       },
       {
         "scenario": "Hawkish rates shock",
@@ -683,7 +684,7 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -5.21,
         "cet1_after_pct": 8.32,
-        "compute_ms": 124.7
+        "compute_ms": 65.2
       },
       {
         "scenario": "Recession / growth shock",
@@ -693,7 +694,7 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -80.37,
         "cet1_after_pct": 8.49,
-        "compute_ms": 95.5
+        "compute_ms": 65.7
       },
       {
         "scenario": "Systemic credit crisis",
@@ -703,7 +704,7 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -10.98,
         "cet1_after_pct": 11.55,
-        "compute_ms": 77.0
+        "compute_ms": 65.7
       },
       {
         "scenario": "Market-wide operational disruption",
@@ -713,11 +714,11 @@
         "naive_rates_pnl_musd": -224.11,
         "credit_pnl_musd": -0.64,
         "cet1_after_pct": 12.78,
-        "compute_ms": 73.9
+        "compute_ms": 65.5
       }
     ],
     "rates_sign_errors_naive": 4,
-    "headline_to_stress_result_s": 0.249,
+    "headline_to_stress_result_s": 0.231,
     "baseline_cet1_pct": 13.0,
     "minimum_cet1_pct": 10.5,
     "note": "Impact 8.5 for every scenario. Naive = rates +200bp, spreads +100bp, equities -10% for any event. Latency = engine scoring of one headline + full portfolio revaluation on a laptop CPU; the comparison is an assumed daily (overnight) batch stress run, i.e. up to ~24h from news to numbers.",
@@ -747,7 +748,119 @@
         "pnl_musd": -121.1,
         "cet1_after_pct": 9.77
       }
+    },
+    "trigger_validation": {
+      "runs": 1059,
+      "stress_eligible_signals": 3512,
+      "suppressed": {
+        "story_dedup": 69,
+        "cooldown": 770,
+        "commentary": 485,
+        "not_adverse": 1129
+      },
+      "trading_days": 491,
+      "trigger": {
+        "days": 441,
+        "mean_move_pct": 0.997,
+        "other_days_mean_move_pct": 0.843,
+        "ratio": 1.183,
+        "p_value": 0.1513,
+        "top_quintile_share": 0.211
+      },
+      "naive_busiest_news_days": {
+        "days": 441,
+        "mean_move_pct": 0.999,
+        "other_days_mean_move_pct": 0.824,
+        "ratio": 1.213,
+        "p_value": 0.1126,
+        "top_quintile_share": 0.206
+      },
+      "trigger_ex_april_2025": {
+        "days": 429,
+        "mean_move_pct": 0.912,
+        "other_days_mean_move_pct": 0.843,
+        "ratio": 1.083,
+        "p_value": 0.2744,
+        "top_quintile_share": 0.196
+      },
+      "note": "Market move = |SPY return over [D, D+1]|. Ratio = mean move on the selected days / mean on all other days; p = one-sided permutation p-value. Naive = the same number of days with the most market-wide headlines. Top-quintile share is 0.20 by chance."
+    },
+    "red_alert": {
+      "threshold": 9.2,
+      "target_share": 0.1,
+      "calibration_period": [
+        "2024-10-08",
+        "2025-10-06"
+      ],
+      "test_period": [
+        "2025-10-07",
+        "2026-10-05"
+      ],
+      "year1_red_day_share": 0.078,
+      "year2_red_day_share": 0.236,
+      "test_red_alert_days": {
+        "days": 58,
+        "mean_move_pct": 1.058,
+        "other_days_mean_move_pct": 0.876,
+        "ratio": 1.208,
+        "p_value": 0.047,
+        "top_quintile_share": 0.276
+      },
+      "test_all_stress_run_days": {
+        "days": 229,
+        "mean_move_pct": 0.935,
+        "other_days_mean_move_pct": 0.698,
+        "ratio": 1.34,
+        "p_value": 0.0858,
+        "top_quintile_share": 0.214
+      },
+      "test_naive_busiest_news_days": {
+        "days": 58,
+        "mean_move_pct": 0.807,
+        "other_days_mean_move_pct": 0.953,
+        "ratio": 0.847,
+        "p_value": 0.9161,
+        "top_quintile_share": 0.121
+      },
+      "note": "Red alert = a stress run whose trigger impact >= threshold; threshold set on year 1 so red alerts fall on <= 10% of trading days (frequency only, no market outcomes). Tested on year 2."
+    },
+    "triage_funnel": {
+      "days": 727,
+      "stages": [
+        {
+          "stage": "headlines",
+          "count": 60952,
+          "per_day": 83.84
+        },
+        {
+          "stage": "signals (linked to a company, sector or market)",
+          "count": 44127,
+          "per_day": 60.7
+        },
+        {
+          "stage": "impact above 7",
+          "count": 4242,
+          "per_day": 5.83
+        },
+        {
+          "stage": "stress-eligible and confident",
+          "count": 3512,
+          "per_day": 4.83
+        },
+        {
+          "stage": "stress tests run",
+          "count": 1059,
+          "per_day": 1.46
+        }
+      ],
+      "suppressed_by_rules": {
+        "story_dedup": 69,
+        "cooldown": 770,
+        "commentary": 485,
+        "not_adverse": 1129
+      },
+      "market_wide_share_above_7": 0.308
     }
   },
-  "runtime_s": 888.1
+  "runtime_s": 707.2
 }
