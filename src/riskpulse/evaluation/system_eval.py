@@ -245,3 +245,89 @@ def trigger_validation(n_perm: int = 10_000) -> dict:
             "note": "Market move = |SPY return over [D, D+1]|. Ratio = mean move on the selected days / mean on all "
                     "other days; p = one-sided permutation p-value. Naive = the same number of days with the most "
                     "market-wide headlines. Top-quintile share is 0.20 by chance."}
+
+
+def _move_and_days():
+    from riskpulse.config import PRICES
+    close = pd.read_csv(PRICES / "prices_daily.csv", index_col=0, parse_dates=True)
+    days = pd.DatetimeIndex(close.index)
+    r = close["SPY"].pct_change(fill_method=None)
+    move = (r + r.shift(-1)).abs().dropna()
+    return move[move.index > days[0]], days
+
+
+def _perm_test(sel: list, universe: pd.Series, rng, n_perm: int) -> dict:
+    sel = [d for d in sel if d in universe.index]
+    inside, outside = universe.loc[sel], universe.drop(sel)
+    if not len(sel) or not len(outside):
+        return {"days": len(sel)}
+    ratio = float(inside.mean() / outside.mean())
+    k, vals = len(sel), universe.to_numpy()
+    perm = np.array([vals[rng.choice(len(vals), k, replace=False)].mean() for _ in range(n_perm)])
+    rest = (vals.sum() - perm * k) / (len(vals) - k)
+    return {"days": k, "mean_move_pct": round(float(inside.mean()) * 100, 3),
+            "other_days_mean_move_pct": round(float(outside.mean()) * 100, 3), "ratio": round(ratio, 3),
+            "p_value": round(float((np.sum(perm / rest >= ratio) + 1) / (n_perm + 1)), 4),
+            "top_quintile_share": round(float((inside >= universe.quantile(0.8)).mean()), 3)}
+
+
+def red_alert_validation(target_share: float = 0.10, n_perm: int = 10_000) -> dict:
+    """Escalation tier on top of the stress trigger, calibrated on year 1 and tested on year 2 (fixed in advance).
+
+    * Same replay as trigger_validation. The 491 trading days are split in half: year 1 (calibration) and
+      year 2 (test).
+    * Red-alert threshold = the lowest impact level such that, on year-1 trading days, red alerts (days with a
+      stress run whose triggering signal's impact >= threshold) occur on at most target_share (10%) of days.
+      Chosen from alert frequency only - no market outcome is used.
+    * Test on year 2: mean |SPY move over [D, D+1]| on red-alert days / on other year-2 days, one-sided
+      permutation p-value (seed 1), top-quintile share; reported next to all stress-run days and the same number
+      of busiest-news days in year 2.
+    """
+    from riskpulse.evaluation.impact_eval import event_day
+
+    sig = _archive_signals()
+    runs, _, _ = _monitor_decisions(sig)
+    move, days = _move_and_days()
+    run_days = pd.DataFrame({"D": [event_day(x["published_at"], x["precision"], days) for x in runs],
+                             "impact": [x["impact"] for x in runs]}).dropna()
+    daily_max = run_days.groupby("D")["impact"].max().reindex(move.index).fillna(0.0)
+    half = len(move) // 2
+    y1, y2 = move.index[:half], move.index[half:]
+    levels = np.round(np.arange(7.0, 10.01, 0.1), 1)
+    share = {lvl: float((daily_max.loc[y1] >= lvl).mean()) for lvl in levels}
+    threshold = float(min(lvl for lvl in levels if share[lvl] <= target_share))
+    red2 = [d for d in y2 if daily_max.loc[d] >= threshold]
+    any2 = [d for d in y2 if daily_max.loc[d] > 0]
+    sig_mk = sig[sig["entity_type"] == "market"]
+    vol = pd.Series([event_day(t, p, days) for t, p in zip(sig_mk["published_at"], sig_mk["time_precision"])]).value_counts()
+    vol2 = vol[vol.index.isin(y2)].sort_values(ascending=False, kind="stable")
+    rng = np.random.default_rng(1)
+    m2 = move.loc[y2]
+    return {"threshold": threshold, "target_share": target_share,
+            "calibration_period": [str(y1[0].date()), str(y1[-1].date())],
+            "test_period": [str(y2[0].date()), str(y2[-1].date())],
+            "year1_red_day_share": round(share[threshold], 3),
+            "year2_red_day_share": round(len(red2) / len(y2), 3),
+            "test_red_alert_days": _perm_test(red2, m2, rng, n_perm),
+            "test_all_stress_run_days": _perm_test(any2, m2, rng, n_perm),
+            "test_naive_busiest_news_days": _perm_test(vol2.index[:len(red2)].tolist(), m2, rng, n_perm),
+            "note": "Red alert = a stress run whose trigger impact >= threshold; threshold set on year 1 so red "
+                    "alerts fall on <= 10% of trading days (frequency only, no market outcomes). Tested on year 2."}
+
+
+def triage_funnel() -> dict:
+    """From raw headlines to stress runs over the whole archive (what a risk desk would have to look at)."""
+    from riskpulse.ingestion.base import excluded_publisher
+
+    frames = [pd.read_csv(RAW / "news_history.csv.gz"), pd.read_csv(RAW / "gdelt_headlines.csv.gz")]
+    raw = pd.concat(frames, ignore_index=True).dropna(subset=["title"])
+    raw = raw[~raw["publisher"].map(excluded_publisher)].drop_duplicates(["title", "publisher"])
+    sig = _archive_signals()
+    runs, suppressed, wanted = _monitor_decisions(sig)
+    span = max((sig["published_at"].max() - sig["published_at"].min()).days, 1)
+    stages = [("headlines", len(raw)), ("signals (linked to a company, sector or market)", len(sig)),
+              ("impact above 7", int((sig["impact"] > 7).sum())),
+              ("stress-eligible and confident", wanted), ("stress tests run", len(runs))]
+    return {"days": span, "stages": [{"stage": n, "count": int(c), "per_day": round(c / span, 2)} for n, c in stages],
+            "suppressed_by_rules": suppressed,
+            "market_wide_share_above_7": round(float((sig.loc[sig["entity_type"] == "market", "impact"] > 7).mean()), 3)}
