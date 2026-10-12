@@ -136,13 +136,12 @@ class RiskPulseService:
                     self.publish(self.replay.due())
                     self._hold_at_window_end()
                 elif self.engine_ready.is_set() and self.engine is not None:
-                    docs = []
-                    for src in self.sources:
+                    for src in self.sources:          # score each source as soon as it answers
                         if time.monotonic() - last_poll.get(src.name, 0) >= (src.poll_seconds if self.mode == "live" else 0.5):
                             last_poll[src.name] = time.monotonic()
-                            docs += src.poll()
-                    for i in range(0, len(docs), 64):
-                        self.publish(self.engine.process(docs[i:i + 64]))
+                            docs = src.poll()
+                            for i in range(0, len(docs), 64):
+                                self.publish(self.engine.process(docs[i:i + 64]))
                 if time.monotonic() - last_heartbeat > 2.0:     # decay sentiment between signal batches
                     self.module_a.step()
                     last_heartbeat = time.monotonic()

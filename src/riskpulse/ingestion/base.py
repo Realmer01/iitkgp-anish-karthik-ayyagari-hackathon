@@ -60,8 +60,8 @@ class Source(ABC):
                 r.raise_for_status()
                 return r
             except (requests.RequestException, RateLimited) as exc:
-                if attempt == self.retries:
-                    raise
+                if isinstance(exc, RateLimited) or attempt == self.retries:
+                    raise            # a rate limit is not retried: the next scheduled poll tries again
                 log.info("%s: %s - retry %d in %.0fs", self.name, exc, attempt + 1, delay)
                 time.sleep(delay)
                 delay *= 2

@@ -8,6 +8,25 @@ from riskpulse.schema import RawDocument
 T0 = datetime(2025, 4, 2, 20, 0, tzinfo=UTC)
 
 
+def test_rate_limit_is_counted_not_retried(monkeypatch):
+    from riskpulse.ingestion.base import Source
+
+    class Limited(Source):
+        name = "limited"
+
+        def fetch(self):
+            return [self.get("https://example.invalid/")]
+
+    calls = []
+
+    class Resp:
+        status_code, text = 429, "Please limit requests to one every 5 seconds"
+
+    src = Limited()
+    monkeypatch.setattr(src.session, "get", lambda *a, **k: calls.append(1) or Resp())
+    assert src.poll() == [] and src.errors == 1 and len(calls) == 1      # one request, no back-off retries
+
+
 def test_parse_date_formats():
     assert parse_date("Wed, 02 Apr 2025 20:00:00 GMT") == T0
     assert parse_date("20250402T200000Z") == T0
