@@ -93,11 +93,12 @@ def main() -> None:
             page.screenshot(path=str(path), full_page=True)
             print("saved", path)
             if i == 2:                                      # readable close-up for the deck: trigger -> capital check
-                trig = page.get_by_text("Trigger:").first
+                trig = page.get_by_text("Trigger:").locator("visible=true").first     # other tabs stay in the DOM
                 trig.evaluate("e => e.scrollIntoView({block: 'start'})")
-                page.mouse.wheel(0, -40)
+                page.mouse.wheel(0, -160)                   # clear Streamlit's fixed top bar
                 settle(page, 1)
-                t, box = trig.bounding_box(), page.locator(".rp-callout").first.bounding_box()
+                cap = page.locator(".rp-callout", has_text="CET1").locator("visible=true").first
+                t, box = trig.bounding_box(), cap.bounding_box()
                 if t and box:
                     top = max(t["y"] - 14, 0)
                     page.screenshot(path=str(out / "dashboard_module_B_strip.png"),

@@ -292,11 +292,13 @@ def build() -> None:
     if strip.exists():
         from PIL import Image
         w_px, h_px = Image.open(strip).size
-        h = min(12.1 * h_px / w_px, 3.0)
-        d.card(s, 0.5, 3.75, 12.3, h + 0.5, fill=PAPER, line=LINE, name="screenshot-frame")
-        d.picture(s, strip, 0.6, 3.85, h=h, name="dashboard-module-b")
+        h = min(12.1 * h_px / w_px, 2.75)                      # keeps the caption clear of the footer
+        w = h * w_px / h_px
+        x0 = (13.333 - w) / 2
+        d.card(s, x0 - 0.12, 3.6, w + 0.24, h + 0.24, fill=PAPER, line=LINE, name="screenshot-frame")
+        d.picture(s, strip, x0, 3.72, h=h, name="dashboard-module-b")
         d.text(s, "Module B in the dashboard: the triggering headline, the scenario applied, value before and after, "
-                  "and the capital check", 0.6, 3.95 + h + 0.35, 12, 0.35, 12, MUTED, italic=True)
+                  "and the capital check", x0, 3.72 + h + 0.22, w, 0.3, 12, MUTED, italic=True)
     d.notes(s, "Why it matters: a stress test usually runs on a schedule with a generic shock. RiskPulse runs the "
                "right scenario for the event that just happened, sized by its impact, and shows the capital effect "
                "within seconds. Because every score is explainable and reproducible, it fits model-risk governance.")
