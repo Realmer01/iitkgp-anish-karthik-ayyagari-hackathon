@@ -60,3 +60,12 @@ def test_replay_controls(client):
     assert client.post("/replay/resume").json()["paused"] is False
     assert client.post("/replay/speed", params={"value": 100}).json()["speed"] == 100
     assert client.post("/replay/bogus").status_code == 422
+    assert client.post("/replay/speed", params={"value": -5}).status_code == 422
+    assert client.post("/replay/speed", params={"value": 0}).status_code == 422
+
+
+def test_input_validation_and_portfolio(client):
+    assert client.get("/signals", params={"since": "garbage"}).status_code == 422
+    assert client.get("/signals", params={"since": "2025-04-02T00:00:00Z"}).status_code == 200
+    pf = client.get("/module-b/portfolio")                     # used to fail on NaN fields
+    assert pf.status_code == 200 and pf.json()["summary"]["positions"] > 0

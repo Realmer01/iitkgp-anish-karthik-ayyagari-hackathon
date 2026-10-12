@@ -17,6 +17,7 @@ import asyncio
 import json
 import os
 from contextlib import asynccontextmanager
+from datetime import UTC, datetime
 
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -74,6 +75,12 @@ def create_app(service: RiskPulseService | None = None) -> FastAPI:
                 since: str | None = None, since_id: int = 0, limit: int = Query(100, ge=1, le=2000)):
         if event_type and event_type not in EVENT_TYPES:
             raise HTTPException(422, f"event_type must be one of {EVENT_TYPES}")
+        if since:                                   # stored as UTC ISO 8601, compared as text
+            try:
+                t = datetime.fromisoformat(since.replace("Z", "+00:00"))
+            except ValueError as exc:
+                raise HTTPException(422, "since must be an ISO 8601 timestamp, e.g. 2025-04-02T00:00:00Z") from exc
+            since = (t if t.tzinfo else t.replace(tzinfo=UTC)).astimezone(UTC).isoformat()
         return svc().store.signals(since_id=since_id, limit=limit, entity_id=ticker, event_type=event_type,
                                    min_impact=min_impact, since=since)
 
@@ -154,6 +161,8 @@ def create_app(service: RiskPulseService | None = None) -> FastAPI:
         elif action == "resume":
             s.clock.resume()
         elif action == "speed" and value is not None:
+            if not 0 < value <= 1_000_000:
+                raise HTTPException(422, "speed must be above 0 and at most 1,000,000 simulated seconds per second")
             s.clock.set_speed(value)
         elif action == "restart":
             s.restart_replay()
