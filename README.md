@@ -84,7 +84,9 @@ third-party news that only mentions them, such as a reported rating action, is k
 Key assumptions: about 97% of archive headlines carry a date but no time, so a headline is treated as
 usable only after its day ends; corpus tweets have no timestamps and are never used in the backtest; loans
 go to fictional borrowers while bonds, CDS and equities reference public issuers; spreads, PDs and LGDs are
-typical long-run levels and risk weights follow Basel CRE20.
+typical long-run levels and risk weights follow Basel CRE20. The case-study pack suggested retail transaction
+datasets (Salad Money open banking, Kaggle card transactions); they describe consumer spending, not a wholesale
+book of loans, bonds and derivatives, so Module B uses a synthetic wholesale trade blotter instead.
 
 ## 4. Quickstart & Installation
 
@@ -263,6 +265,9 @@ The same signals are appended to `runtime/signals.jsonl` for file-based consumer
   listicles, hedged speculation, detected by `nlp/framing.py`) are skipped and counted. Story dedup; the same
   scenario re-runs within 6 hours only if impact rises by at least 1 point. `POST /analyze` says why a
   headline did not trigger.
+- **Alert level:** every run is amber or red. Red means the trigger's impact is at least 9.2, a threshold set
+  on the first year of the archive from alert frequency alone (red on at most 10% of days) and then tested on
+  the second year against actual S&P 500 moves (results above).
 - **Scenarios** (`config/shocks.yaml`): trade war, conflict and sanctions, hawkish rates, recession, oil
   shock, systemic credit, market-wide operational disruption, each loosely calibrated to a public episode
   ([references](docs/references.md)); scaled by impact (7 → 0.7×, 10 → 1.3×); targeted to the regions,
@@ -313,6 +318,10 @@ runs the tests and a quick evaluation.
 - English only; multilingual encoders and translation are natural extensions.
 - Module B uses sensitivity-based revaluation and a simplified capital proxy; production would use a full
   pricing library and regulatory scenarios.
+- The automatic stress trigger runs on about 90% of trading days, so on its own it does not single out
+  volatile days; the red-alert tier does, modestly, but fired on 24% of days in its test year against a 10%
+  target, so its threshold needs regular recalibration.
+- GDELT's free API throttles heavily (HTTP 429); live mode counts and skips it until the next poll.
 - Production hardening: Kafka for the bus, a feature store for entity state, a model registry and
   drift monitoring (see the [model card](docs/model_card.md)).
 

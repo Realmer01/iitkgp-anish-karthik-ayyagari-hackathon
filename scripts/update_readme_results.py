@@ -34,6 +34,7 @@ def results_block(m: dict) -> str:
     eng = {r["tier"]: r for r in m["engine"]["tiers"]}
     rep = b["april_2025_replay"]
     sd = m["module_a"]["stress_days"]
+    ra, tv, fun = b.get("red_alert"), b.get("trigger_validation"), b.get("triage_funnel")
     lines = [
         "| Result | RiskPulse | Naive baseline | Data |",
         "|---|---|---|---|",
@@ -52,6 +53,10 @@ def results_block(m: dict) -> str:
         "6 scenarios at impact 8.5 |",
         f"| Headline to stress-test result | **{b['headline_to_stress_result_s']:.2f} s** | overnight batch (assumed) | "
         "laptop CPU |",
+        *([f"| S&P 500 move on red-alert days vs other days, out of sample | **{ra['test_red_alert_days']['ratio']:.2f}x** "
+           f"(p = {ra['test_red_alert_days']['p_value']:.3f}) | {ra['test_naive_busiest_news_days']['ratio']:.2f}x "
+           f"(busiest news days) | {ra['test_period'][0][:7]} to {ra['test_period'][1][:7]}, "
+           f"{ra['test_red_alert_days']['days']} red-alert days |"] if ra else []),
         f"| Module A active return vs the same rules without sentiment | {tilt['active_return_annual']:+.2%} / yr "
         f"(IC {m['module_a']['ic']['mean_ic']:+.3f}) | {lex['active_return_annual']:+.2%} / yr (lexicon tilt) | "
         "hourly, Oct 2024 - Oct 2026, 5 bp costs |",
@@ -77,6 +82,27 @@ def results_block(m: dict) -> str:
         f"the S&P 500 by {abs(sd['mean_next_day_excess_return_bp']):.0f} bp the next day - the right direction, but far "
         "too small to change the overall result.",
     ]
+    if tv and ra:
+        t = tv["trigger"]
+        notes.append(
+            f"A two-year test of the stress trigger, fixed in code before it was run, is less flattering: over "
+            f"{tv['trading_days']} trading days it ran {tv['runs']:,} stress tests on {t['days']} days "
+            f"({t['days'] / tv['trading_days']:.0%}), so trigger days were only {t['ratio']:.2f}x as volatile as other "
+            f"days (p = {t['p_value']:.2f}). Hence the red-alert tier: its threshold (impact >= {ra['threshold']:.1f}) was "
+            f"set on the first year from alert frequency alone, and in the second year red-alert days moved "
+            f"{ra['test_red_alert_days']['ratio']:.2f}x as much as other days (p = {ra['test_red_alert_days']['p_value']:.3f}; "
+            f"{ra['test_red_alert_days']['top_quintile_share']:.0%} of them in the most volatile fifth of days, 20% by "
+            f"chance), while the busiest news days did not ({ra['test_naive_busiest_news_days']['ratio']:.2f}x). It fired "
+            f"on {ra['year2_red_day_share']:.0%} of test-year days against a {ra['target_share']:.0%} target, so the "
+            "threshold needs regular recalibration.")
+    if fun:
+        st = {s["stage"]: s for s in fun["stages"]}
+        notes.append(
+            f"Triage over the archive: about {st['headlines']['per_day']:.0f} headlines a day become "
+            f"{st['signals (linked to a company, sector or market)']['per_day']:.0f} signals, "
+            f"{st['impact above 7']['per_day']:.1f} with impact above 7 and {st['stress tests run']['per_day']:.1f} "
+            f"stress tests; the trigger rules remove {1 - st['stress tests run']['count'] / st['stress-eligible and confident']['count']:.0%} "
+            "of the eligible high-impact alerts.")
     ga = m.get("gold_agreement")
     if ga:
         notes.append(
