@@ -38,6 +38,7 @@ CSS = f"""
                 border-radius:6px; color:{INK}; margin:6px 0 10px 0; }}
   .rp-callout.ok {{ border-left-color:{STATUS['good']}; background:#eaf6ea; }}
   .rp-muted {{ color:{MUTED}; font-size:0.85rem; }}
+  [data-testid="stStatusWidget"] {{ visibility: hidden; }}   /* auto-refresh would flash "RUNNING..." */
 </style>
 """
 
