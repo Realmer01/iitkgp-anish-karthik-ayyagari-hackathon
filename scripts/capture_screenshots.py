@@ -37,6 +37,10 @@ def main() -> None:
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    if args.analyze:                                   # warm the models so the chip shows steady-state latency
+        import httpx
+
+        httpx.post(f"{args.api}/analyze", json={"text": "Apple shares rise after strong iPhone sales"}, timeout=180)
     if args.fast_forward:
         import httpx
 
