@@ -13,6 +13,8 @@ from riskpulse.dashboard.theme import md_safe, money, tint
 EVENTS = ["Geopolitical", "Macroeconomic", "Credit Event", "Operational Risk", "Legal & Regulatory",
           "Merger & Acquisition"]
 REGIONS = ["North America", "Europe", "China", "Asia-Pacific", "Middle East", "Russia/CIS", "Latin America"]
+FACTOR_LABELS = {"rates": "Interest rates", "spread": "Credit spreads", "credit": "Loan credit losses (ECL)",
+                 "equity": "Equity", "fx": "FX", "commodity": "Commodities"}
 
 
 @st.cache_data(ttl=600, show_spinner=False)
@@ -48,25 +50,30 @@ def render_run(r: dict) -> None:
         st.plotly_chart(charts.waterfall(r["value_before"], r["by_asset_class"], "Portfolio value: before → after by asset class"),
                         use_container_width=True)
     with c2:
-        st.plotly_chart(charts.signed_bars_h(r["by_component"], "P&L by risk factor"), use_container_width=True)
-    sx = pd.DataFrame(r["sector_x_asset"]).T.fillna(0)
+        factors = {FACTOR_LABELS.get(k, k): v / 1e6 for k, v in r["by_component"].items()}
+        st.plotly_chart(charts.signed_bars_h(factors, "P&L by risk factor", fmt=",.1f", xtitle="$m"),
+                        use_container_width=True)
+    sx = pd.DataFrame(r["sector_x_asset"]).T.fillna(0) / 1e6
     c3, c4 = st.columns([3, 2])
     with c3:
-        st.plotly_chart(charts.heatmap_signed(sx, "P&L by sector × asset class", height=420), use_container_width=True)
+        st.plotly_chart(charts.heatmap_signed(sx, "P&L by sector × asset class ($m)", fmt=",.1f", height=420,
+                                              colorbar_title="$m"), use_container_width=True)
     with c4:
         st.markdown("**Top loss contributors**")
         top = pd.DataFrame(r["top_contributors"])
         if not top.empty:
-            st.dataframe(top[["position_id", "counterparty", "instrument", "pnl"]].style
-                         .map(lambda v: tint(v, -2e7, 2e7), subset=["pnl"])
-                         .format({"pnl": lambda v: money(v, 1, "", 0)}),
+            view = pd.DataFrame({"position": top["position_id"], "P&L ($m)": top["pnl"] / 1e6,
+                                 "instrument": top["instrument"], "counterparty": top["counterparty"]})
+            st.dataframe(view.style.map(lambda v: tint(v, -20, 20), subset=["P&L ($m)"])
+                         .format({"P&L ($m)": "{:,.1f}"}),
                          hide_index=True, use_container_width=True, height=380)
     if "naive" in r:
         n = r["naive"]
         comps = list(r["by_component"])
-        st.plotly_chart(charts.grouped_bars(comps, {"Event-driven scenario": [r["by_component"][c] / 1e6 for c in comps],
-                                                    "Naive static shock": [n["by_component"].get(c, 0) / 1e6 for c in comps]},
-                                            "Event-driven vs naive static stress (P&L, $m)", fmt=",.1f"),
+        st.plotly_chart(charts.grouped_bars([FACTOR_LABELS.get(c, c) for c in comps],
+                                            {"Event-driven scenario": [r["by_component"][c] / 1e6 for c in comps],
+                                             "Naive static shock": [n["by_component"].get(c, 0) / 1e6 for c in comps]},
+                                            "Event-driven vs naive static stress (P&L, $m)", fmt=",.1f", ytitle="$m"),
                         use_container_width=True)
         st.caption(md_safe(f"Naive approach (rates +200bp, spreads +100bp, equities −10% for every event): P&L "
                            f"{money(n['pnl'])} vs event-driven {money(r['pnl'])}. ") + "The naive shock ignores what the "

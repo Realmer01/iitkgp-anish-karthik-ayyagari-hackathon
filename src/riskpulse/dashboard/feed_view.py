@@ -27,13 +27,14 @@ def _signal_table(rows: list[dict]) -> None:
                         "source": r["publisher"] or r["source"], "headline": r["headline"]} for r in rows])
     styled = df.style.map(lambda v: tint(v), subset=["sentiment"]).format({"sentiment": "{:+.2f}", "impact": "{:.1f}"})
     st.dataframe(styled, hide_index=True, use_container_width=True, height=360, column_config={
+        "event": st.column_config.TextColumn(width="medium"),      # "Merger & Acquisition" fits
         "impact": st.column_config.ProgressColumn("impact (1-10)", min_value=1, max_value=10, format="%.1f"),
         "headline": st.column_config.TextColumn(width="large")})
 
 
 def analyze_box() -> None:
     st.subheader("Analyze a headline")
-    c1, c2 = st.columns([3, 1])
+    c1, c2 = st.columns([2.5, 1.3])                    # wide enough for the example names
     with c2:
         example = st.selectbox("Example", ["(type your own)", *EXAMPLES])
         source_type = st.radio("Source type", ["news", "social"], horizontal=True,
@@ -127,7 +128,8 @@ def live_feed(refresh: int) -> None:
         k[4].metric("Engine latency p50", f"{lat[len(lat) // 2]:.0f} ms / doc" if lat else "n/a",
                     help="engine processing time per document, measured when each signal was produced")
         now = pd.to_datetime(stats.get("clock", {}).get("now")) if stats.get("clock") else None
-        k[5].metric("Clock (UTC)", now.strftime("%d %b %Y %H:%M") if now is not None else "-")
+        k[5].metric("Clock (UTC)", now.strftime("%d %b %H:%M") if now is not None else "-",
+                    help=now.strftime("%d %b %Y %H:%M UTC") if now is not None else None)
         st.markdown("##### Latest signals")
         _signal_table(rows[:60])
         if rows:
@@ -136,6 +138,6 @@ def live_feed(refresh: int) -> None:
             c1, c2 = st.columns(2)
             c1.plotly_chart(charts.bars_h(df["event"].value_counts().to_dict(), "Event mix (latest 400 signals)",
                                           height=330), use_container_width=True)
-            c2.plotly_chart(charts.histogram(df["impact"], "Impact score distribution", "impact", height=330),
-                            use_container_width=True)
+            c2.plotly_chart(charts.histogram(df["impact"], "Impact score distribution (latest 400 signals)",
+                                             "impact score", height=330), use_container_width=True)
     _feed()
