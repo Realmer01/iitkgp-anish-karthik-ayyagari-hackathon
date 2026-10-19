@@ -3,7 +3,7 @@
 **Candidate Name:** Anish Karthik Ayyagari
 **College Email ID:** anishkarthik02.24@kgpian.iitkgp.ac.in
 **College / Campus:** IIT Kharagpur
-**Demo Video Link:** TODO (YouTube, unlisted)
+**Demo Video Link:** [https://youtu.be/I24syOmDNtY](https://youtu.be/I24syOmDNtY) (YouTube, unlisted)
 **Slide Deck Link (if hosted externally):** [docs/presentation.pdf](docs/presentation.pdf) (in this repository)
 
 ## 1. Project Overview / Problem Statement & Approach
